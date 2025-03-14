@@ -1,0 +1,87 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+ 
+generator client {
+  provider = "prisma-client-js"
+}
+ 
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String          @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  role          String?         @default("user")
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+ 
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+ 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  @@id([provider, providerAccountId])
+}
+ 
+
+ 
+model Response {
+  id        String   @id @default(uuid())
+  name      String
+  phone     String
+  email     String   
+  message   String
+  interest  String
+  createdAt DateTime @default(now())
+}
+
+model Blog {
+  id            String   @id @default(uuid())
+  title         String
+  content       String
+  author        String
+  category      String
+  image         String   
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  published     Boolean  @default(false)
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  rating    Int    
+  comment   String
+  approved  Boolean  @default(false) 
+  createdAt DateTime @default(now())
+}
+
+model Testimonial {
+  id        String   @id @default(uuid())
+  name      String
+  company   String?  
+  message   String
+  image     String?  
+  approved  Boolean  @default(false) 
+  createdAt DateTime @default(now())
+}
+
