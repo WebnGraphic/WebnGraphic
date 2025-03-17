@@ -3,14 +3,13 @@ import SearchForm from "../../Component/search-form";
 import TableSkeleton from "../../Component/table-skeleton";
 import UserTable from "../../Component/user-table";
 
-export default async function PostsPage({
+export default function Page({
   searchParams,
 }: {
   searchParams: { q?: string; page?: string };
 }) {
-  const params = await searchParams;
-  const currentPage = Number(params.page) || 1;
-  const search = params.q || "";
+  const currentPage = Number(searchParams.page) || 1;
+  const search = searchParams.q || "";
 
   return (
     <div className="max-w-7xl w-full mx-auto px-5 py-10">
