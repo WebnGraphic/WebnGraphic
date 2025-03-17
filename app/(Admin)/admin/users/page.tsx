@@ -3,13 +3,15 @@ import SearchForm from "../../Component/search-form";
 import TableSkeleton from "../../Component/table-skeleton";
 import UserTable from "../../Component/user-table";
 
-export default function Page({
+export default async function Page({
   searchParams,
 }: {
-  searchParams: { q?: string; page?: string };
+  searchParams: Promise<{ q?: string; page?: string }>;
 }) {
-  const currentPage = Number(searchParams.page) || 1;
-  const search = searchParams.q || "";
+  // Use await to resolve the Promise
+  const params = await searchParams;
+  const currentPage = Number(params.page) || 1;
+  const search = params.q || "";
 
   return (
     <div className="max-w-7xl w-full mx-auto px-5 py-10">
