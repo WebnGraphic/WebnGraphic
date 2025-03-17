@@ -39,7 +39,9 @@ export default function Accordion({ items }: AccordionProps) {
 
           {/* Answer Section */}
           <div
-            ref={(el) => (contentRefs.current[index] = el)}
+            ref={(el) => {
+              if (el) contentRefs.current[0] = el;
+            }}
             className="overflow-hidden transition-all duration-300"
             style={{
               maxHeight:
