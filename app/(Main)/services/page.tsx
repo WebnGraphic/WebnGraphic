@@ -1,7 +1,6 @@
 import FaqCommon from "@/components/manual/pages/common/FaqCommon";
 import StatsSection from "@/components/manual/pages/common/StatsSection";
 import TestimonialSection from "@/components/manual/pages/common/Testimonial-1";
-import TestimonialSectionWith3D from "@/components/manual/pages/common/Testimonial-2";
 import HowWeWorks from "@/components/manual/pages/services/HowWeWorks";
 import OurServices from "@/components/manual/pages/services/OurServices";
 import ServicesHero from "@/components/manual/pages/services/ServicesHero";
@@ -30,7 +29,7 @@ export default function page() {
       <WhyChooseOurService />
       <StatsSection />
       <TestimonialSection />
-      <TestimonialSectionWith3D />
+
       <div className="relative">
         <FaqCommon />
       </div>
