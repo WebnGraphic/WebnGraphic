@@ -8,13 +8,13 @@ export default function HomeHero() {
       <div className="relative hidden md:block z-10 ">
         <div className="flex  flex-col items-center md:items-start text-center md:text-left max-w-4xl mx-auto">
           <TwHomeHero />
-          <p className="text-Ttext mt-6 text-xl md:text-2xl lg:text-4xl max-w-2xl">
+          <p className="text-white mt-6 text-xl md:text-2xl lg:text-4xl max-w-2xl">
             We offer web solutions, graphic design, SEO, and marketing tailored
             to your business goals.
           </p>
 
           <div className="flex justify-center md:justify-start gap-4 items-center mt-5 md:mt-8">
-            <span className="text-xl md:text-2xl lg:text-3xl text-white cursor-pointer">
+            <span className="text-xl font-semibold md:text-2xl lg:text-4xl text-white cursor-pointer">
               Work With Us
             </span>
 

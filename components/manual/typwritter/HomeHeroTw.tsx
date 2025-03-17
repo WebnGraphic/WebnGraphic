@@ -3,7 +3,7 @@ import { Typewriter } from "react-simple-typewriter";
 
 const TwHomeHero: React.FC = () => {
   return (
-    <h1 className="text-white text-4xl font-bold md:text-6xl lg:text-8xl leading-tight">
+    <h1 className="text-Ttext text-4xl font-bold md:text-6xl lg:text-7xl leading-tight">
       W
       <Typewriter
         words={["E DESIGN...", "E DEVELOP...", "E MARKET..."]}

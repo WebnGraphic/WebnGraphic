@@ -40,43 +40,39 @@ const MainNavbar: React.FC = () => {
 
   return (
     <div
-      className={`fixed w-full transition-colors duration-500 z-50 ease-in-out top-0 ${
-        scrolled
-          ? "bg-[#1E2A47]/60 backdrop-blur-2xl  shadow-sm"
-          : "bg-transparent"
+      className={`fixed w-full transition-colors border-Sbg duration-500 z-50 ease-in-out top-0 ${
+        scrolled ? "bg-Mbg/60 backdrop-blur-2xl border-b shadow-sm" : "bg-Mbg"
       }`}
     >
-      <div className="max-w-7xl mx-auto py-[14px] px-5 md:px-10 text-white flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-5 md:px-10 text-white flex items-center justify-between">
         <div className="flex items-center">
           <Link href={"/"}>
             <span className="text-3xl font-semibold">LOGO</span>
           </Link>
 
           <ul className="md:flex hidden items-center ml-7">
-            <div className="group relative py-2">
-              <Link href={"/allservices"}>
-                <div className="flex items-center gap-2">
-                  <LaptopMinimal
-                    className={`w-5 pl-2 h-5 ${
-                      pathname === "/allservices"
-                        ? "font-semibold text-Stext"
-                        : ""
-                    }`}
-                  />
-                  <li
-                    className={`capitalize border-r-2 pr-2 border-white text-sm ${
-                      pathname === "/allservices"
-                        ? "font-semibold text-Stext"
-                        : ""
-                    }`}
-                  >
-                    All Services
-                  </li>
+            <div className="group  relative">
+              <Link href={"/services"}>
+                <div className="py-2">
+                  <div className="flex items-center gap-2">
+                    <LaptopMinimal
+                      strokeWidth={`${pathname === "/services" ? 3 : 2}`}
+                      className={`w-5 pl-2 h-5`}
+                    />
+
+                    <li
+                      className={`capitalize  nav-option py-1.5  px-1 text-sm ${
+                        pathname === "/services" ? "active-link" : ""
+                      }`}
+                    >
+                      All Services
+                    </li>
+                  </div>
                 </div>
               </Link>
 
               {/* Dropdown menu */}
-              <div className="absolute top-[35px] left-0 w-60 hidden group-hover:block py-3 bg-white flex-col space-y-2 rounded-md">
+              <div className="absolute scale-90 top-full left-0 w-60 opacity-0 invisible group-hover:visible group-hover:opacity-100 group-hover:scale-100 py-3 bg-white flex flex-col space-y-2 rounded-md shadow-md transition-all duration-200 ease-in-out">
                 {subItems.map((subItem, index) => (
                   <Link href={subItem.href} key={index}>
                     <div
@@ -92,7 +88,7 @@ const MainNavbar: React.FC = () => {
 
             <Link href={"/about"}>
               <li
-                className={`capitalize text-sm ml-3 ${
+                className={`capitalize text-sm py-1.5 px-1 nav-option ml-3 ${
                   pathname === "/about" ? "text-Stext font-semibold" : ""
                 }`}
               >
@@ -101,8 +97,8 @@ const MainNavbar: React.FC = () => {
             </Link>
             <Link href={"/contact"}>
               <li
-                className={`capitalize text-sm ml-3 ${
-                  pathname === "/contact" ? "font-semibold text-Stext" : ""
+                className={`capitalize py-1.5 px-1 nav-option text-sm ml-3 ${
+                  pathname === "/contact" ? "" : ""
                 }`}
               >
                 Contact

@@ -7,6 +7,12 @@ export const services = [
         href: '/allservices/web-development'
     },
     {
+        name: 'NDIS Complete Solutions',
+        imageSrc: '/web-development.jpg',
+        description: 'Build a unique online presence with a fully customized website tailored to your business needs. From simple landing pages to complex web applications, we create scalable solutions that grow with your business.',
+        href: '/allservices/web-development'
+    },
+    {
         name: 'Web Design',
         imageSrc: '/web-design.jpg',
         description: 'Create visually stunning websites with a seamless user experience. Our team designs responsive and user-centric websites to engage visitors and convert them into loyal customers.',
@@ -43,18 +49,6 @@ export const services = [
         description: 'Increase your website’s visibility with our comprehensive SEO strategies. We help you rank higher on search engines, drive organic traffic, and improve your online presence.',
         href: '/allservices/seo-service'
     },
-    {
-        name: 'E-Commerce Solutions',
-        imageSrc: '/brand-strategy.jpg',
-        description: 'Set up a seamless online store with robust e-commerce solutions. We design and develop e-commerce platforms that make it easy for you to sell products and manage inventory.',
-        href: '/allservices/e-commerce-solutions'
-    },
-    {
-        name: 'Web Hosting & Maintenance',
-        imageSrc: '/web-hosting.jpg',
-        description: 'Ensure your website runs smoothly with our reliable web hosting and maintenance services. We offer secure hosting and regular updates, backups, and security monitoring.',
-        href: '/allservices/web-hosting'
-    }
 
 ];
 
