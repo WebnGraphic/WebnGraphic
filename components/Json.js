@@ -51,6 +51,29 @@ export const services = [
     },
 
 ];
+export const service1 = [
+    {
+        title: "Web Development",
+        points: ["Custom website development", "Responsive design", "E-commerce solutions", "Performance optimization"],
+        imageSrc: '/seo.jpg',
+        imageAlt: "Web Development Service",
+        href: "/services/development",
+    },
+    {
+        title: "Consulting",
+        points: ["Technology strategy", "Digital transformation", "Software architecture", "Technical assessment"],
+        imageSrc: '/app-development.jpg',
+        imageAlt: "Consulting Service",
+        href: "/services/consulting",
+    },
+    {
+        title: "Technical Support",
+        points: ["24/7 technical assistance", "Issue troubleshooting", "System maintenance", "Security monitoring"],
+        imageSrc: '/video-production.jpg',
+        imageAlt: "Technical Support Service",
+        href: "/services/support",
+    },
+]
 
 export const HowWeDifferentPoints = [
     {

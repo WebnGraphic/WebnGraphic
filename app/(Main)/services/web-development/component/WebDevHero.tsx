@@ -1,9 +1,9 @@
+import ResponseForm from "@/components/manual/form/ResponseForm";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import ResponseForm from "../../form/ResponseForm";
 
-export default function ServicesHero() {
+export default function WebDevHero() {
   return (
     <div className="bg-Mbg section-background">
       <section className="w-full md:px-16 px-5 max-w-7xl mx-auto py-12 md:py-20">
@@ -12,7 +12,7 @@ export default function ServicesHero() {
             {/* Title and Breadcrumb */}
             <div className="space-y-4">
               <h1 className="text-3xl font-bold text-white tracking-tighter sm:text-4xl md:text-5xl lg:text-7xl">
-                Our Services
+                Web Development
               </h1>
               <nav className="flex items-center text-sm text-[#A0AEC0]">
                 <Link
@@ -22,7 +22,14 @@ export default function ServicesHero() {
                   Home
                 </Link>
                 <ChevronRight className="w-4 h-4 mx-2" />
-                <span className="text-[#18B3C7]">Services</span>
+                <Link
+                  href="/services"
+                  className="hover:text-[#18B3C7] transition-colors"
+                >
+                  Services
+                </Link>
+                <ChevronRight className="w-4 h-4 mx-2" />
+                <span className="text-[#18B3C7]">web-development</span>
               </nav>
             </div>
 

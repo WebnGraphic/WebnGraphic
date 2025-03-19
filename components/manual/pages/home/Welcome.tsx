@@ -3,7 +3,7 @@ export default function Welcome() {
   return (
     <div className="bg-white">
       <div className="max-w-7xl w-full mx-auto px-5 md:px-12 py-20">
-        <div className="flex flex-col items-center md:flex-row gap-10">
+        <div className="flex flex-col-reverse items-center md:flex-row gap-10">
           <div className="basis-[50%] space-y-4 md:space-y-5">
             <h2 className="text-black font-bold text-3xl md:text-4xl lg:text-5xl">
               Welcome to WebnGraphic

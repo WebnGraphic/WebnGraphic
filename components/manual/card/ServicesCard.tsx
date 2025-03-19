@@ -1,37 +1,76 @@
-import { Service } from "@/types/type";
-import { MousePointerClick } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
-type ServicesCardProps = {
-  service: Service;
-};
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-const ServicesCard: React.FC<ServicesCardProps> = ({ service }) => {
+interface ServiceCardProps {
+  title: string;
+  points: string[];
+  imageSrc: string;
+  imageAlt: string;
+  href: string;
+  className?: string;
+}
+
+export default function ServiceCard({
+  title,
+  points,
+  imageSrc,
+  imageAlt,
+  href,
+  className,
+}: ServiceCardProps) {
   return (
-    <div className="group rounded-md shadow-md cursor-pointer border-[#98A2B3] border-[0.5px] bg-gray-100 overflow-hidden flex flex-col">
-      <div className="relative overflow-hidden w-full">
+    <div
+      className={cn(
+        "overflow-hidden rounded-lg border border-[#E2E8F0] bg-white shadow-lg transition-all hover:shadow-xl dark:border-[#2D3748] dark:bg-[#1E1D3A]",
+        className
+      )}
+    >
+      {/* Image */}
+      <div className="relative aspect-[16/9] w-full">
         <Image
-          className="object-contain group-hover:scale-110 transition duration-300 ease-in-out w-full h-auto"
-          src={service.imageSrc}
-          alt={service.name}
-          width={1200}
-          height={800}
+          src={imageSrc || "/placeholder.svg"}
+          alt={imageAlt}
+          fill
+          className="object-cover"
         />
       </div>
-      <div className="p-5 text-black flex flex-col flex-grow">
-        <h3 className="md:text-xl text-lg font-semibold">{service.name}</h3>
-        <p className="pb-3 md:text-base text-gray-700 text-sm pt-1">
-          {service.description}
-        </p>
-        <div className="mt-auto inline-flex">
-          <div className="flex items-center text-sm md:text-base px-2 hover:scale-105 active:scale-95 duration-200 transition-all py-1 rounded-md gap-1 text-white bg-Redish">
-            <span>Learn More</span>
-            <MousePointerClick className="w-5 h-5" />
-          </div>
+
+      {/* Content */}
+      <div className="p-6">
+        <h3 className="text-xl font-semibold text-[#16152F] dark:text-white">
+          {title}
+        </h3>
+
+        <ul className="mt-3 space-y-2">
+          {points.map((point, index) => (
+            <li
+              key={index}
+              className="flex items-start text-sm text-[#4A5568] dark:text-[#A0AEC0]"
+            >
+              <span className="mr-2 text-[#18B3C7]">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-4 pt-4 border-t border-[#E2E8F0] dark:border-[#2D3748]">
+          <Button
+            asChild
+            variant="default"
+            size="sm"
+            className="bg-[#18B3C7] hover:bg-[#14A0B2] text-white"
+          >
+            <Link href={href}>
+              Learn More
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </div>
     </div>
   );
-};
-
-export default ServicesCard;
+}

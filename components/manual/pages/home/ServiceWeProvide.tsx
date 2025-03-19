@@ -1,29 +1,32 @@
-import { services } from "@/components/Json";
-import { Service } from "@/types/type";
-import ServicesCard from "../../card/ServicesCard";
+import { service1 } from "@/components/Json";
+import ServiceCard from "../../card/ServicesCard";
 
 const ServiceWeProvide: React.FC = () => {
   return (
-    <div className="py-16 px-5 md:px-16">
-      <div className="max-w-5xl mx-auto text-center px-6">
-        <h2 className="text-3xl md:text-5xl font-bold text-gray-100">
-          Our <span className="text-Ttext">Services</span>
+    <div className="py-16 bg-background px-5 md:px-12">
+      <div className="relative z-10 text-center mb-16 max-w-3xl mx-auto">
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+          Our Services
         </h2>
-        <p className="text-gray-200 mt-4 md:text-lg">
+        <div className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
           Tailored solutions designed to meet your unique needs and accelerate
           your business success.
-        </p>
+        </div>
+        <div className="mt-6 w-20 h-1 bg-primary mx-auto rounded-full" />
       </div>
-      <div className="grid mt-8 gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {services.slice(0, 6).map((service: Service, index) => (
-          <ServicesCard key={index} service={service} />
-        ))}
-      </div>
-
-      <div className="text-center">
-        <button className="text-Redish mt-5 md:mt-6 text-lg md:text-xl hover:underline text-center">
-          View All Services
-        </button>
+      <div className="max-w-7xl mx-auto">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {service1.map((service) => (
+            <ServiceCard
+              key={service.title}
+              title={service.title}
+              points={service.points}
+              imageSrc={service.imageSrc}
+              imageAlt={service.imageAlt}
+              href={service.href}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

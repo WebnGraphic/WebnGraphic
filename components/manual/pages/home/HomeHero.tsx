@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function HomeHero() {
   return (
-    <div>
+    <div className="">
       <div className="relative hidden md:block z-10 ">
         <div className="flex  flex-col items-center md:items-start text-center md:text-left max-w-4xl mx-auto">
           <TwHomeHero />

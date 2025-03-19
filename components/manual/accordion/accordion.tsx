@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
+import { MoveUpRight } from "lucide-react";
 import { useRef, useState } from "react";
 
 type AccordionItem = {
@@ -30,7 +30,7 @@ export default function Accordion({ items }: AccordionProps) {
             className="flex w-full items-center justify-between py-4 text-base font-medium text-left hover:underline"
           >
             {item.question}
-            <ChevronDown
+            <MoveUpRight
               className={`h-5 w-5 text-gray-500 transition-transform duration-300 ${
                 openIndex === index ? "rotate-180" : ""
               }`}

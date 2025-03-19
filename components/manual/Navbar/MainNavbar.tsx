@@ -23,7 +23,7 @@ const MainNavbar: React.FC = () => {
   const pathname = usePathname();
 
   const subItems: SubItem[] = [
-    { label: "Web Development", href: "/web-development" },
+    { label: "Web Development", href: "/services/web-development" },
     { label: "Graphics Design", href: "/graphics-design" },
     { label: "SEO", href: "/seo" },
     { label: "Digital Marketing", href: "/digital-marketing" },
@@ -31,7 +31,7 @@ const MainNavbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 5);
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -40,7 +40,7 @@ const MainNavbar: React.FC = () => {
 
   return (
     <div
-      className={`fixed w-full transition-colors border-Sbg duration-500 z-50 ease-in-out top-0 ${
+      className={`sticky py-2 bg-Mbg w-full transition-colors border-Sbg duration-500 z-50 ease-in-out top-0 ${
         scrolled ? "bg-Mbg/60 backdrop-blur-2xl border-b shadow-sm" : "bg-Mbg"
       }`}
     >
@@ -123,7 +123,6 @@ const MainNavbar: React.FC = () => {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         />
       </div>
-
       {/* Mobile Menu */}
       <div
         className={`absolute md:hidden text-white transition-all duration-200 ease-in-out block bg-Mbg w-full top-16 z-[100] ${

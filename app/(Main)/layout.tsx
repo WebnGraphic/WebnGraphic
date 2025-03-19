@@ -1,5 +1,6 @@
 import MainNavbar from "@/components/manual/Navbar/MainNavbar";
 import { Toaster } from "@/components/ui/sonner";
+import { ResponseModalProvider } from "@/context/response-form-modal";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
@@ -27,12 +28,12 @@ export default function MainLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} bg-Mbg ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header>
-          <MainNavbar />
-        </header>
-        <div className="pt-16">{children}</div>
+        <MainNavbar />
+        <main>
+          <ResponseModalProvider>{children}</ResponseModalProvider>
+        </main>
         <Toaster />
       </body>
     </html>

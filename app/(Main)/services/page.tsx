@@ -1,4 +1,5 @@
 import FaqCommon from "@/components/manual/pages/common/FaqCommon";
+import HowItsWorks from "@/components/manual/pages/common/HowItsWorks";
 import StatsSection from "@/components/manual/pages/common/StatsSection";
 import TestimonialSection from "@/components/manual/pages/common/Testimonial-1";
 import HowWeWorks from "@/components/manual/pages/services/HowWeWorks";
@@ -26,6 +27,7 @@ export default function page() {
       <ServicesHero />
       <OurServices />
       <HowWeWorks />
+      <HowItsWorks />
       <WhyChooseOurService />
       <StatsSection />
       <TestimonialSection />
