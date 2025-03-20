@@ -24,9 +24,8 @@ const MainNavbar: React.FC = () => {
 
   const subItems: SubItem[] = [
     { label: "Web Development", href: "/services/web-development" },
+    { label: "Web Design", href: "/services/web-design" },
     { label: "Graphics Design", href: "/graphics-design" },
-    { label: "SEO", href: "/seo" },
-    { label: "Digital Marketing", href: "/digital-marketing" },
   ];
 
   useEffect(() => {
@@ -104,6 +103,15 @@ const MainNavbar: React.FC = () => {
                 Contact
               </li>
             </Link>
+            <Link href={"/blog"}>
+              <li
+                className={`capitalize py-1.5 px-1 nav-option text-sm ml-3 ${
+                  pathname === "/blog" ? "" : ""
+                }`}
+              >
+                Blog
+              </li>
+            </Link>
           </ul>
         </div>
         <div className="hidden md:flex gap-5 items-center">
@@ -125,7 +133,7 @@ const MainNavbar: React.FC = () => {
       </div>
       {/* Mobile Menu */}
       <div
-        className={`absolute md:hidden text-white transition-all duration-200 ease-in-out block bg-Mbg w-full top-16 z-[100] ${
+        className={`absolute md:hidden text-white transition-all duration-200 ease-in-out block bg-Mbg w-full top-12 z-[100] ${
           !isMenuOpen ? "h-0 overflow-hidden" : "h-[calc(100vh-64px)]"
         }`}
       >

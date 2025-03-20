@@ -3,7 +3,7 @@ import ServiceCard from "../../card/ServicesCard";
 
 const ServiceWeProvide: React.FC = () => {
   return (
-    <div className="py-16 bg-background px-5 md:px-12">
+    <div className="py-16 bg-gray-100 px-5 md:px-12">
       <div className="relative z-10 text-center mb-16 max-w-3xl mx-auto">
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
           Our Services

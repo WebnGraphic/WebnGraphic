@@ -1,6 +1,8 @@
+import ServiceCardNew from "@/components/manual/card/ServiceCardNew";
+import CTASectionAlternative from "@/components/manual/pages/common/cta-section2";
 import HowWeWork from "@/components/manual/pages/common/HowWeWork";
 import AboutWebDev from "./component/AboutWebDev";
-import WebDevFocus from "./component/WebDevFocus";
+import WebDevFeature from "./component/WebDevFeature";
 import WebDevHero from "./component/WebDevHero";
 import WebDevPricing from "./component/WebDevPricing";
 import WebDevService from "./component/WebDevService";
@@ -12,10 +14,12 @@ export default function page() {
         <WebDevHero />
         <AboutWebDev />
         <WebDevService />
+        <CTASectionAlternative />
+        <WebDevFeature />
         <WebDevTechnology />
-        <WebDevFocus />
         <HowWeWork />
         <WebDevPricing />
+        <ServiceCardNew />
       </div>
     </div>
   );

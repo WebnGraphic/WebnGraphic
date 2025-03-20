@@ -1,9 +1,10 @@
 import ResponseForm from "@/components/manual/form/ResponseForm";
+import CTASection from "@/components/manual/pages/common/cta-section";
 import HowWeDifferent from "@/components/manual/pages/common/HowWeDifferent";
+import Ourstrategy from "@/components/manual/pages/common/OurStrategy";
 import HomeHero from "@/components/manual/pages/home/HomeHero";
 import ServiceWeProvide from "@/components/manual/pages/home/ServiceWeProvide";
 import Welcome from "@/components/manual/pages/home/Welcome";
-
 export default async function Home() {
   return (
     <div className="bg-Mbg w-full  max-w-7xl mx-auto">
@@ -13,6 +14,8 @@ export default async function Home() {
       </div>
       <Welcome />
       <ServiceWeProvide />
+      <Ourstrategy />
+      <CTASection />
       <HowWeDifferent />
     </div>
   );

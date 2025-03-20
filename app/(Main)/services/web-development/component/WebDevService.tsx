@@ -1,126 +1,114 @@
+import { Card } from "@/components/ui/card";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  BarChart,
+  BookOpen,
   Briefcase,
-  Globe,
-  PenTool,
-  ShoppingCart,
-  Smartphone,
+  Heart,
+  Newspaper,
+  Palette,
+  ShieldCheck,
+  ShoppingBag,
+  Store,
+  Utensils,
 } from "lucide-react";
+
 export default function WebDevService() {
+  const websiteTypes = [
+    {
+      icon: <ShoppingBag className="h-10 w-10" />,
+      title: "E-Commerce",
+      description:
+        "Online stores with secure payment processing, product catalogs, and shopping carts.",
+    },
+    {
+      icon: <Briefcase className="h-10 w-10" />,
+      title: "Corporate",
+      description:
+        "Professional websites that showcase your business services, team, and company values.",
+    },
+    {
+      icon: <Store className="h-10 w-10" />,
+      title: "Small Business",
+      description:
+        "Affordable websites that help local businesses establish an online presence.",
+    },
+    {
+      icon: <Newspaper className="h-10 w-10" />,
+      title: "Blog & News",
+      description:
+        "Content-focused websites with easy-to-update articles and subscription options.",
+    },
+    {
+      icon: <Utensils className="h-10 w-10" />,
+      title: "Restaurant",
+      description:
+        "Showcase your menu, location, and allow customers to make reservations online.",
+    },
+    {
+      icon: <Palette className="h-10 w-10" />,
+      title: "Portfolio",
+      description:
+        "Creative showcases for artists, photographers, and designers to display their work.",
+    },
+    {
+      icon: <BookOpen className="h-10 w-10" />,
+      title: "Educational",
+      description:
+        "Learning platforms with course materials, student portals, and interactive content.",
+    },
+    {
+      icon: <Heart className="h-10 w-10" />,
+      title: "Non-Profit",
+      description:
+        "Mission-driven websites with donation capabilities and volunteer information.",
+    },
+    {
+      icon: <ShieldCheck className="h-10 w-10" />,
+      title: "Healthcare",
+      description:
+        "Patient-focused websites with appointment scheduling and health resources.",
+    },
+  ];
+
   return (
-    <div className="bg-muted">
-      <section id="services" className="w-full px-5 md:px-12 py-12 md:py-20">
-        <div className="max-w-7xl mx-auto ">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-primary-foreground">
-                Our Services
-              </div>
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-                Types of Websites We Create
-              </h2>
-              <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                We specialize in creating various types of websites tailored to
-                your specific business needs and goals.
-              </p>
-            </div>
-          </div>
-          <div className="mx-auto grid items-center gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Globe className="h-8 w-8 text-primary" />
-                <div className="grid gap-1">
-                  <CardTitle>Corporate Websites</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Professional websites that establish your brand identity and
-                  showcase your company&apos;s values, services, and
-                  achievements.
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <ShoppingCart className="h-8 w-8 text-primary" />
-                <div className="grid gap-1">
-                  <CardTitle>E-Commerce Stores</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Fully-featured online stores with secure payment gateways,
-                  inventory management, and seamless shopping experiences.
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Briefcase className="h-8 w-8 text-primary" />
-                <div className="grid gap-1">
-                  <CardTitle>Portfolio Websites</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Elegant showcases for creative professionals to display their
-                  work, skills, and services to potential clients.
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <PenTool className="h-8 w-8 text-primary" />
-                <div className="grid gap-1">
-                  <CardTitle>Blog & Content Sites</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Content-focused websites with optimized layouts for
-                  readability, engagement, and content discovery.
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <BarChart className="h-8 w-8 text-primary" />
-                <div className="grid gap-1">
-                  <CardTitle>Web Applications</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Custom web applications with complex functionality, user
-                  authentication, and data management capabilities.
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center gap-4">
-                <Smartphone className="h-8 w-8 text-primary" />
-                <div className="grid gap-1">
-                  <CardTitle>Progressive Web Apps</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Mobile-first applications that work offline, load instantly,
-                  and provide app-like experiences on any device.
-                </CardDescription>
-              </CardContent>
-            </Card>
-          </div>
+    <section className="py-16 px-4 md:px-6 lg:px-8 bg-Mbg">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl text-white font-bold mb-4 bg-clip-text ">
+            Types of Websites We Create
+          </h2>
+          <p className="text-slate-300 max-w-2xl mx-auto">
+            Our expert team designs and develops custom websites tailored to
+            your specific industry and needs.
+          </p>
         </div>
-      </section>
-    </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {websiteTypes.map((type, index) => (
+            <Card
+              key={index}
+              className="p-6 transition-all duration-300 hover:shadow-xl group relative overflow-hidden border-[#e5e7eb] hover:border-[#64b5f6] bg-white"
+            >
+              <div className="absolute inset-0 bg-[#64b5f6]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" />
+
+              <div className="relative z-10">
+                <div className="mb-4 text-[#0a192f] transition-transform duration-300 group-hover:scale-110 group-hover:text-[#64b5f6]">
+                  {type.icon}
+                </div>
+
+                <h3 className="text-xl font-semibold mb-2 text-[#0a192f] transition-colors duration-300 group-hover:text-[#64b5f6]">
+                  {type.title}
+                </h3>
+
+                <p className="text-[#64748b] group-hover:text-[#0a192f] transition-colors duration-300">
+                  {type.description}
+                </p>
+              </div>
+
+              <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-[#0a192f] to-[#64b5f6] w-0 group-hover:w-full transition-all duration-500" />
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

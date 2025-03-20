@@ -55,23 +55,23 @@ export const service1 = [
     {
         title: "Web Development",
         points: ["Custom website development", "Responsive design", "E-commerce solutions", "Performance optimization"],
-        imageSrc: '/seo.jpg',
+        imageSrc: '/web-development.jpg',
         imageAlt: "Web Development Service",
-        href: "/services/development",
+        href: "/services/web-development",
     },
     {
-        title: "Consulting",
+        title: "Web Design",
         points: ["Technology strategy", "Digital transformation", "Software architecture", "Technical assessment"],
-        imageSrc: '/app-development.jpg',
+        imageSrc: '/web-design.jpg',
         imageAlt: "Consulting Service",
-        href: "/services/consulting",
+        href: "/services/web-design",
     },
     {
-        title: "Technical Support",
+        title: "Graphic Design",
         points: ["24/7 technical assistance", "Issue troubleshooting", "System maintenance", "Security monitoring"],
-        imageSrc: '/video-production.jpg',
+        imageSrc: '/graphic-design.jpg',
         imageAlt: "Technical Support Service",
-        href: "/services/support",
+        href: "/services/graphic-design",
     },
 ]
 

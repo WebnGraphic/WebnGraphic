@@ -1,85 +1,82 @@
-import { HowWeDifferentPoints } from "@/components/Json";
+import NormalButton from "@/components/manual/button/NormalButton";
 import { Check } from "lucide-react";
 import Image from "next/image";
 
-// Define the type for each item in HowWeDifferentPoints
-interface HowWeDifferentPoint {
-  title: string;
-  text: string;
-  img?: string;
-}
+const points = [
+  "Custom, Template-Free Solutions",
+  "Fast, SEO-Ready Websites",
+  "User-Centric, Stunning Designs",
+  "Integrated Brand Experience",
+  "Scalable Development & Support",
+  "Innovative Designs that Stand Out",
+];
 
-const HowWeDifferent = () => {
+export default function HowWeDifferent() {
   return (
-    <div className="md:px-16 py-16 px-10 bg-white text-gray-900 md:text-white">
-      <div className="max-w-5xl mx-auto text-center px-6">
-        <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
-          How <span className="text-Ttext">WebnGraphic</span> Different
-        </h2>
-        <p className="text-gray-600 mt-4 md:text-lg">
-          Innovative solutions and expert craftsmanship that set you apart in
-          the digital world
-        </p>
-      </div>
-
-      <div className="hidden lg:flex justify-between items-center gap-10 mt-8">
-        {/* Image Section */}
-        <div className="relative h-[580px] flex-1 ">
-          <Image
-            src="/hwdimage.jpg"
-            alt="hwdimage"
-            fill
-            className="object-cover w-full h-auto rounded-md"
-          />
-        </div>
-
-        {/* Text Section */}
-        <div className="w-[510px] bg-Sbg py-12 px-10 rounded-md">
-          {HowWeDifferentPoints.map(
-            (item: HowWeDifferentPoint, index: number) => (
-              <div key={index} className="mb-6">
-                <div className="flex gap-2 items-center">
-                  <div className="bg-Ttext rounded-full p-1">
-                    <Check strokeWidth={2.75} className="w-6 h-6" />
-                  </div>
-                  <h4 className="text-xl font-semibold">{item.title}</h4>
+    <div className="bg-white">
+      <div className="max-w-7xl w-full mx-auto md:px-12 px-5 py-16">
+        <div className="flex gap-12 lg:flex-row lg:items-start items-center flex-col w-full">
+          <div className="lg:w-1/2 max-w-2xl w-full ">
+            <div className="md:h-[510px] h-[400px] relative">
+              <div className="absolute z-11 top-0 left-0">
+                <div className="md:w-[340px] md:h-[320px] w-[250px] h-[230px] overflow-hidden rounded-md relative ">
+                  <Image
+                    src="/hwdimage.jpg"
+                    fill
+                    priority
+                    className="object-cover w-full h-full"
+                    alt="web dev"
+                  />
                 </div>
-                <p className="text-gray-300 mt-3">{item.text}</p>
               </div>
-            )
-          )}
-          <button className="bg-Ttext py-2 w-full text-center rounded-md hover:bg-TtextH transition-all duration-200">
-            Get Started
-          </button>
-        </div>
-      </div>
 
-      <div className="lg:hidden">
-        <div className="grid mt-10 md:grid-cols-3 gap-10">
-          {HowWeDifferentPoints.map(
-            (item: HowWeDifferentPoint, index: number) => (
-              <div key={index} className="flex flex-col items-center">
-                {item.img && (
-                  <div className="w-24 h-24">
-                    <Image src={item.img} alt="pp" width={200} height={200} />
-                  </div>
-                )}
-                <h4 className="text-xl mt-6 text-center font-semibold">
-                  {item.title}
-                </h4>
-                <p className="text-gray-800 text-center mt-2">{item.text}</p>
+              <div className="md:w-[340px] animated-element md:h-[320px] w-[250px] h-[230px] border-Ttext border-4 overflow-hidden rounded-md absolute inset-0 z-10 m-auto"></div>
+
+              <div className="absolute z-12 bottom-0 right-0">
+                <div className="md:w-[340px] md:h-[320px] overflow-hidden rounded-md w-[250px] h-[230px] relative ">
+                  <Image
+                    src="/swda.jpg"
+                    fill
+                    priority
+                    className="object-cover w-full h-full"
+                    alt="web dev"
+                  />
+                </div>
               </div>
-            )
-          )}
-        </div>
-        <div className="flex justify-center w-full">
-          <button className="max-w-96 py-1 px-10 w-full text-center rounded-md mt-8 bg-Ttext hover:bg-TtextH">
-            Get Started
-          </button>
+            </div>
+          </div>
+          <div className="lg:w-1/2 w-full ">
+            <div className="space-y-3">
+              <h3 className="text-Ttext text-lg font-semibold ">
+                WHAT WE OFFER
+              </h3>
+              <h2 className="text-4xl capitalize font-bold text-Mbg">
+                Tailored Web & Design Solutions to Boost Your Brand
+              </h2>
+
+              <div className="grid grid-cols-2 gap-4">
+                {points.map((item, index) => (
+                  <div key={index} className="relative group">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-500 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                    <div className="relative p-5 bg-white  rounded-lg shadow-xl h-full flex flex-col transform transition-all duration-500 group-hover:-translate-y-2">
+                      <div>
+                        <Check />
+                        <h4 className="text-xl font-semibold">{item}</h4>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8">
+                <NormalButton className="bg-Ttext py-3 px-5 rounded-md text-xl text-white cursor-pointer hover:bg-TtextH ">
+                  Learn More
+                </NormalButton>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
-};
-
-export default HowWeDifferent;
+}
