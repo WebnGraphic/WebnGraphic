@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/sidebar";
 import {
   BarChart3,
+  Briefcase,
   LayoutDashboard,
   LifeBuoy,
   Mail,
@@ -81,12 +82,24 @@ export function DashboardSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  isActive={pathname === "/admin/blog"}
-                  tooltip="Response"
+                  isActive={pathname === "/admin/blogs"}
+                  tooltip="Blogs"
                 >
-                  <Link href="/admin/blog">
+                  <Link href="/admin/blogs">
                     <NotebookPen className="h-4 w-4" />
-                    <span>Blog</span>
+                    <span>Blogs</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname === "/admin/portfolio"}
+                  tooltip="Portfolio"
+                >
+                  <Link href="/admin/portfolio">
+                    <Briefcase className="h-4 w-4" />
+                    <span>Portfolio</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

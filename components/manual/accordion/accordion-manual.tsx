@@ -30,8 +30,8 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({ items }) => {
         >
           <button
             onClick={() => toggleAccordion(index)}
-            className={`flex justify-between items-center group w-full px-5 text-Mbg py-5 text-2xl font-semibold cursor-pointer hover:bg-Ttext duration-300 rounded-t-lg transition-all ${
-              openIndex === index ? "bg-Ttext" : "bg-gray-100"
+            className={`flex justify-between items-center hover:text-white group w-full px-5 text-Mbg py-5 text-2xl font-semibold cursor-pointer hover:bg-Ttext duration-300 rounded-t-lg transition-all ${
+              openIndex === index ? "bg-Ttext text-white" : "bg-gray-100"
             } `}
           >
             <div>
@@ -46,8 +46,8 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({ items }) => {
               <MoveUpRight
                 className={`w-10 transition-all duration-300 ease-in-out p-2 rounded-full h-10 ${
                   openIndex === index
-                    ? "bg-Mbg text-Ttext"
-                    : "bg-Ttext group-hover:bg-Mbg group-hover:text-Ttext text-gray-100"
+                    ? "bg-Mbg text-White"
+                    : "bg-Ttext group-hover:bg-Mbg group-hover:text-white text-gray-100"
                 }`}
               />
             </motion.div>

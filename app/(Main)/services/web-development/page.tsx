@@ -2,6 +2,8 @@ import ServiceCardNew from "@/components/manual/card/ServiceCardNew";
 import CTASectionAlternative from "@/components/manual/pages/common/cta-section2";
 import HowWeWork from "@/components/manual/pages/common/HowWeWork";
 import AboutWebDev from "./component/AboutWebDev";
+import Hero2 from "./component/Hero2";
+import WebDevFAQ from "./component/web-dev-faq";
 import WebDevFeature from "./component/WebDevFeature";
 import WebDevHero from "./component/WebDevHero";
 import WebDevPricing from "./component/WebDevPricing";
@@ -12,6 +14,7 @@ export default function page() {
     <div>
       <div>
         <WebDevHero />
+        <Hero2 />
         <AboutWebDev />
         <WebDevService />
         <CTASectionAlternative />
@@ -19,6 +22,7 @@ export default function page() {
         <WebDevTechnology />
         <HowWeWork />
         <WebDevPricing />
+        <WebDevFAQ />
         <ServiceCardNew />
       </div>
     </div>
