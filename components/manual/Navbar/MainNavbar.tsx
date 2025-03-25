@@ -46,7 +46,7 @@ const MainNavbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-5 md:px-10 text-white flex items-center justify-between">
         <div className="flex items-center">
           <Link href={"/"}>
-            <span className="text-3xl font-semibold">LOGO</span>
+            <span className="text-3xl text-Ttext font-semibold">LOGO</span>
           </Link>
 
           <ul className="md:flex hidden items-center ml-7">

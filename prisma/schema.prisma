@@ -114,3 +114,22 @@ model Portfolio {
   createdAt DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
+
+model Project {
+  id           String   @id @default(cuid())
+  title        String
+  mission      String
+  category     String
+  client       String
+  completeDate DateTime
+  demoUrl      String
+  overView     String   @db.Text
+  features     String[] @default([])
+  technologies String[] @default([])
+  testimonial  Json     // Single { quote: string, author: string } object
+  images       Json[]   // Array of { url: string, publicId: string }
+  featured     Boolean  @default(false)
+  published    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

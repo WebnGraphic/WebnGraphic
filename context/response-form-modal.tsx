@@ -39,7 +39,7 @@ export function ResponseModalProvider({ children }: { children: ReactNode }) {
       {children}
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="lg:min-w-3xl max-h-screen overflow-y-auto w-full">
+        <DialogContent className="lg:min-w-3xl max-h-[90vh] overflow-y-auto w-full">
           <GetStartedForm presetValues={preData} />
         </DialogContent>
       </Dialog>

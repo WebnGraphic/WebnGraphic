@@ -51,6 +51,45 @@ export const services = [
     },
 
 ];
+
+export const service2 = [
+    {
+        title: "Web Development",
+        points: [
+            { name: "Business Websites", link: "/services/web-development/business" },
+            { name: "E-commerce Platforms", link: "/services/web-development/ecommerce" },
+            { name: "Portfolio Websites", link: "/services/web-development/portfolio" },
+            { name: "Landing Pages", link: "/services/web-development/landing-page" }
+        ],
+        imageSrc: '/web-development.jpg',
+        imageAlt: "Web Development Service",
+        href: "/services/web-development",
+    },
+    {
+        title: "Web Design",
+        points: [
+            { name: "UI/UX Design", link: "/services/web-design/ui-ux" },
+            { name: "Wireframing & Prototyping", link: "/services/web-design/wireframing" },
+            { name: "Branding & Identity", link: "/services/web-design/branding" },
+            { name: "Mobile-First Design", link: "/services/web-design/mobile-first" }
+        ],
+        imageSrc: '/web-design.jpg',
+        imageAlt: "Web Design Service",
+        href: "/services/web-design",
+    },
+    {
+        title: "Graphic Design",
+        points: [
+            { name: "Logo Design", link: "/services/graphic-design/logo" },
+            { name: "Marketing Materials", link: "/services/graphic-design/marketing" },
+            { name: "Social Media Graphics", link: "/services/graphic-design/social-media" },
+            { name: "Print Design", link: "/services/graphic-design/print" }
+        ],
+        imageSrc: '/graphic-design.jpg',
+        imageAlt: "Graphic Design Service",
+        href: "/services/graphic-design",
+    },
+];
 export const service1 = [
     {
         title: "Web Development",

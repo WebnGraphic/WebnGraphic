@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 interface ServiceCardProps {
   title: string;
-  points: string[];
+  points: Array<{ name: string; link: string }>;
   imageSrc: string;
   imageAlt: string;
   href: string;
@@ -52,7 +52,7 @@ export default function ServiceCard({
               className="flex items-start text-sm text-[#4A5568] dark:text-[#A0AEC0]"
             >
               <span className="mr-2 text-[#18B3C7]">•</span>
-              <span>{point}</span>
+              <span>{point.name}</span>
             </li>
           ))}
         </ul>

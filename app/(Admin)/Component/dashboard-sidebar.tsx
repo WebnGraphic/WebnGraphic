@@ -10,11 +10,17 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
 import {
   BarChart3,
   Briefcase,
+  ChevronDown,
+  Code,
+  FileCode,
   LayoutDashboard,
   LifeBuoy,
   Mail,
@@ -24,11 +30,87 @@ import {
   Users,
 } from "lucide-react";
 
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export function DashboardSidebar() {
   const pathname = usePathname();
+  const [projectsOpen, setProjectsOpen] = useState(false);
+
+  // Check if any project route is active
+  const isProjectActive = pathname.startsWith("/admin/projects");
+
+  // Regular menu items
+  const menuItems = [
+    {
+      title: "Dashboard",
+      icon: LayoutDashboard,
+      href: "/admin/user-dynamic",
+      isActive: pathname === "/admin",
+    },
+    {
+      title: "Analytics",
+      icon: BarChart3,
+      href: "/admin/user-static",
+      isActive: pathname === "/admin/Analytics",
+    },
+    {
+      title: "Response",
+      icon: Mail,
+      href: "/admin/response",
+      isActive: pathname === "/admin/response",
+    },
+    {
+      title: "Blogs",
+      icon: NotebookPen,
+      href: "/admin/blogs",
+      isActive: pathname === "/admin/blogs",
+    },
+    {
+      title: "Users",
+      icon: Users,
+      href: "/admin/users",
+      isActive: pathname === "/admin/users",
+    },
+  ];
+
+  // Project sub-items
+  const projectSubItems = [
+    {
+      title: "Web Development",
+      icon: Code,
+      href: "/admin/projects/web-development",
+      isActive: pathname === "/admin/projects/web-development",
+    },
+    {
+      title: "Mobile Projects",
+      icon: FileCode,
+      href: "/admin/projects/mobile",
+      isActive: pathname === "/admin/projects/mobile",
+    },
+  ];
+
+  // Settings menu items
+  const settingsItems = [
+    {
+      title: "Settings",
+      icon: Settings,
+      href: "#",
+      isActive: false,
+    },
+    {
+      title: "Help",
+      icon: LifeBuoy,
+      href: "#",
+      isActive: false,
+    },
+  ];
 
   return (
     <Sidebar variant="inset" collapsible="icon">
@@ -43,78 +125,74 @@ export function DashboardSidebar() {
           <SidebarGroupLabel>Menu</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  isActive={pathname === "/admin"}
-                  tooltip="Dashboard"
-                >
-                  <Link href="/admin/user-dynamic">
-                    <LayoutDashboard className="h-4 w-4" />
-                    <span>Dashboard</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  isActive={pathname === "/admin/Analytics"}
-                  tooltip="Analytics"
-                >
-                  <Link href="/admin/user-static">
-                    <BarChart3 className="h-4 w-4" />
-                    <span>Analytics</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  isActive={pathname === "/admin/response"}
-                  tooltip="Response"
-                >
-                  <Link href="/admin/response">
-                    <Mail className="h-4 w-4" />
-                    <span>Response</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  isActive={pathname === "/admin/blogs"}
-                  tooltip="Blogs"
-                >
-                  <Link href="/admin/blogs">
-                    <NotebookPen className="h-4 w-4" />
-                    <span>Blogs</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  isActive={pathname === "/admin/portfolio"}
-                  tooltip="Portfolio"
-                >
-                  <Link href="/admin/portfolio">
-                    <Briefcase className="h-4 w-4" />
-                    <span>Portfolio</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  isActive={pathname === "/admin/users"}
-                  tooltip="Users"
-                >
-                  <Link href="/admin/users">
-                    <Users className="h-4 w-4" />
-                    <span>Users</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
+              {/* Regular menu items */}
+              {menuItems.slice(0, 4).map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={item.isActive}
+                    tooltip={item.title}
+                  >
+                    <Link href={item.href}>
+                      <item.icon className="h-4 w-4" />
+                      <span>{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+
+              {/* Collapsible Projects Menu */}
+              <Collapsible
+                open={projectsOpen}
+                onOpenChange={setProjectsOpen}
+                className="group/collapsible"
+              >
+                <SidebarMenuItem>
+                  <CollapsibleTrigger asChild>
+                    <SidebarMenuButton
+                      isActive={isProjectActive}
+                      tooltip="Projects"
+                    >
+                      <Briefcase className="h-4 w-4" />
+                      <span>Projects</span>
+                      <ChevronDown className="ml-auto h-4 w-4 transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                    </SidebarMenuButton>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      {projectSubItems.map((subItem) => (
+                        <SidebarMenuSubItem key={subItem.title}>
+                          <SidebarMenuSubButton
+                            asChild
+                            isActive={subItem.isActive}
+                          >
+                            <Link href={subItem.href}>
+                              <subItem.icon className="h-3.5 w-3.5 mr-1" />
+                              {subItem.title}
+                            </Link>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                      ))}
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </SidebarMenuItem>
+              </Collapsible>
+
+              {/* Remaining regular menu items */}
+              {menuItems.slice(4).map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={item.isActive}
+                    tooltip={item.title}
+                  >
+                    <Link href={item.href}>
+                      <item.icon className="h-4 w-4" />
+                      <span>{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -122,22 +200,16 @@ export function DashboardSidebar() {
           <SidebarGroupLabel>Settings</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Settings">
-                  <Link href="#">
-                    <Settings className="h-4 w-4" />
-                    <span>Settings</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip="Help">
-                  <Link href="#">
-                    <LifeBuoy className="h-4 w-4" />
-                    <span>Help</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
+              {settingsItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild tooltip={item.title}>
+                    <Link href={item.href}>
+                      <item.icon className="h-4 w-4" />
+                      <span>{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -147,7 +219,8 @@ export function DashboardSidebar() {
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
             A
           </div>
-          <div className="flex flex-col">
+          {/* Add group-data-[collapsible=icon]:hidden to hide text in collapsed mode */}
+          <div className="flex flex-col group-data-[collapsible=icon]:hidden">
             <span className="font-medium">Admin User</span>
             <span className="text-xs text-muted-foreground">
               admin@example.com

@@ -15,7 +15,7 @@ interface AccordionGroupProps {
 }
 
 const AccordionGroup: React.FC<AccordionGroupProps> = ({ items }) => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -30,13 +30,13 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({ items }) => {
         >
           <button
             onClick={() => toggleAccordion(index)}
-            className={`flex justify-between items-center hover:text-white group w-full px-5 text-Mbg py-5 text-2xl font-semibold cursor-pointer hover:bg-Ttext duration-300 rounded-t-lg transition-all ${
+            className={`flex justify-between items-center hover:text-white group w-full px-3 md:px-5 text-Mbg py-5 text-lg md:text-xl font-semibold cursor-pointer hover:bg-Ttext duration-300 rounded-t-lg transition-all ${
               openIndex === index ? "bg-Ttext text-white" : "bg-gray-100"
             } `}
           >
-            <div>
-              <span className="italic mr-5">0{index + 1}</span>
-              <span>{title}</span>
+            <div className="text-left">
+              <span className=" mr-3">0{index + 1}</span>
+              {title}
             </div>
 
             <motion.div
@@ -44,7 +44,7 @@ const AccordionGroup: React.FC<AccordionGroupProps> = ({ items }) => {
               transition={{ duration: 0.2 }}
             >
               <MoveUpRight
-                className={`w-10 transition-all duration-300 ease-in-out p-2 rounded-full h-10 ${
+                className={`md:w-10 w-8 transition-all duration-300 ease-in-out p-2 rounded-full h-8 md:h-10 ${
                   openIndex === index
                     ? "bg-Mbg text-White"
                     : "bg-Ttext group-hover:bg-Mbg group-hover:text-white text-gray-100"

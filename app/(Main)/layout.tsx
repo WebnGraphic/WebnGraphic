@@ -29,7 +29,7 @@ export default function MainLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} bg-Mbg ${geistMono.variable} antialiased`}
       >
         <ResponseModalProvider>
           <MainNavbar />

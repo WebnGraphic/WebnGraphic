@@ -110,7 +110,7 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
                       <FormLabel>Name</FormLabel>
                       <FormControl>
                         <Input
-                          className="w-full border-gray-300 focus:ring-2 focus:ring-blue-400"
+                          className="w-full "
                           type="text"
                           placeholder="Enter your name"
                           {...field}
@@ -128,7 +128,7 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
                       <FormLabel>Email</FormLabel>
                       <FormControl>
                         <Input
-                          className="w-full border-gray-300 focus:ring-2 focus:ring-blue-400"
+                          className="w-full"
                           type="email"
                           placeholder="Enter your email"
                           {...field}
@@ -150,7 +150,7 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
                       <FormLabel>Phone</FormLabel>
                       <FormControl>
                         <Input
-                          className="w-full border-gray-300 focus:ring-2 focus:ring-blue-400"
+                          className="w-full"
                           type="text"
                           placeholder="Enter your phone number"
                           {...field}
@@ -171,7 +171,7 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
                         defaultValue={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger className="w-full border-gray-300 focus:ring-2 focus:ring-blue-400">
+                          <SelectTrigger className="w-full border-gray-300 focus:ring-2 focus:ring-Ttext">
                             <SelectValue placeholder="Select a service" />
                           </SelectTrigger>
                         </FormControl>
@@ -201,7 +201,7 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
                       <FormLabel>Budget</FormLabel>
                       <FormControl>
                         <Input
-                          className="w-full border-gray-300 focus:ring-2 focus:ring-blue-400"
+                          className="w-full"
                           type="text"
                           placeholder="Enter your budget"
                           {...field}
@@ -222,7 +222,7 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
                         defaultValue={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger className="w-full border-gray-300 focus:ring-2 focus:ring-blue-400">
+                          <SelectTrigger className="w-full border-gray-300 focus:ring-2 focus:ring-Ttext">
                             <SelectValue placeholder="Select a plan" />
                           </SelectTrigger>
                         </FormControl>
@@ -248,7 +248,7 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
                     <FormControl>
                       <Textarea
                         placeholder="Tell us a little bit about yourself"
-                        className="w-full min-h-24 border-gray-300 focus:ring-2 focus:ring-blue-400 resize-none"
+                        className="w-full min-h-24 resize-none"
                         {...field}
                       />
                     </FormControl>
