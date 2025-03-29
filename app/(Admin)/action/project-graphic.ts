@@ -118,7 +118,7 @@ export async function updateGraphicProject(id: string, data: ProjectData) {
       };
     }
 
-    await prisma.webdesign.update({
+    await prisma.graphicdesign.update({
       where: { id: id },
       data: {
         ...data,
