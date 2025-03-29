@@ -16,18 +16,20 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import {
-  BarChart3,
-  Briefcase,
+  Award,
   ChevronDown,
   Code,
   FileCode,
+  FileText,
   LayoutDashboard,
   LifeBuoy,
   Mail,
   NotebookPen,
   Package,
+  Send,
   Settings,
   Users,
+  Video,
 } from "lucide-react";
 
 import {
@@ -51,20 +53,33 @@ export function DashboardSidebar() {
     {
       title: "Dashboard",
       icon: LayoutDashboard,
-      href: "/admin/user-dynamic",
-      isActive: pathname === "/admin",
+      href: "/admin",
+      isActive: pathname === "/",
     },
-    {
-      title: "Analytics",
-      icon: BarChart3,
-      href: "/admin/user-static",
-      isActive: pathname === "/admin/Analytics",
-    },
+
     {
       title: "Response",
       icon: Mail,
       href: "/admin/response",
       isActive: pathname === "/admin/response",
+    },
+    {
+      title: "Get Started",
+      icon: Send,
+      href: "/admin/get-started",
+      isActive: pathname === "/admin/get-started",
+    },
+    {
+      title: "Meeting",
+      icon: Video,
+      href: "/admin/meetings",
+      isActive: pathname === "/admin/meetings",
+    },
+    {
+      title: "Testimonials",
+      icon: Award,
+      href: "/admin/testimonials",
+      isActive: pathname === "/admin/testimonials",
     },
     {
       title: "Blogs",
@@ -89,10 +104,10 @@ export function DashboardSidebar() {
       isActive: pathname === "/admin/projects/web-development",
     },
     {
-      title: "Mobile Projects",
+      title: "Graphic Design",
       icon: FileCode,
-      href: "/admin/projects/mobile",
-      isActive: pathname === "/admin/projects/mobile",
+      href: "/admin/projects/graphic-design",
+      isActive: pathname === "/admin/projects/graphic-design",
     },
   ];
 
@@ -153,7 +168,7 @@ export function DashboardSidebar() {
                       isActive={isProjectActive}
                       tooltip="Projects"
                     >
-                      <Briefcase className="h-4 w-4" />
+                      <FileText className="h-4 w-4" />
                       <span>Projects</span>
                       <ChevronDown className="ml-auto h-4 w-4 transition-transform group-data-[state=open]/collapsible:rotate-180" />
                     </SidebarMenuButton>

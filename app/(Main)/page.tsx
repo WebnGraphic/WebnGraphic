@@ -1,11 +1,13 @@
 import BookMeeting from "@/components/manual/book-meeting/book-meeting";
-import HowWeDifferent from "@/components/manual/pages/common/HowWeDifferent";
-import Ourstrategy from "@/components/manual/pages/common/OurStrategy";
-import Welcome from "@/components/manual/pages/home/Welcome";
+import BlogCommon from "./components/blog-common";
 import CTASection1 from "./components/cta-section-1";
+import FaqMain from "./components/faq-main";
 import HomeHero from "./components/home-hero";
 import HowWeWork from "./components/how-we-work";
 import OurServices from "./components/our-service";
+import PortfolioSection from "./components/portfolio";
+import Testimonial from "./components/testimonial";
+import WhyChooseUs from "./components/why-choose-us";
 const creativeProcess = [
   {
     title: "Discovery & Strategy",
@@ -34,18 +36,24 @@ export default async function Home() {
     <div>
       <HomeHero />
       <OurServices />
+      <WhyChooseUs />
       <HowWeWork
         process={creativeProcess}
         title="Our Streamlined Process – From Vision to Completion"
       />
-      <BookMeeting />
+      <div className="bg-muted">
+        <BookMeeting />
+      </div>
+
+      <PortfolioSection />
+      <Testimonial />
+
       <CTASection1
         first="Ready to Work With Us?"
         second="Get the Best for Your Business"
       />
-      <Welcome />
-      <Ourstrategy />
-      <HowWeDifferent />
+      <BlogCommon />
+      <FaqMain />
     </div>
   );
 }

@@ -18,13 +18,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
@@ -208,26 +201,11 @@ export function WebDevProjectForm({ closeForm, project }: ProjectFormProps) {
             name="category"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Category</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select a category" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="web-development">
-                      Web Development
-                    </SelectItem>
-                    <SelectItem value="web-design">Web Design</SelectItem>
-                    <SelectItem value="graphic-design">
-                      Graphic Design
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
+                <FormLabel>Website Type</FormLabel>
+                <FormControl>
+                  <Input placeholder="E-Commerce Industry" {...field} />
+                </FormControl>
+                <FormMessage />
                 <FormMessage />
               </FormItem>
             )}

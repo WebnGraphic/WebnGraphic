@@ -1,5 +1,7 @@
 "use client";
 
+import { saveGetStarted } from "@/app/action/action";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -19,12 +21,11 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
-import { CircleCheckBig } from "lucide-react";
+import { CircleCheckBig, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-import NormalButton from "../button/NormalButton";
 
 // Define form validation schema
 const FormSchema = z.object({
@@ -34,13 +35,10 @@ const FormSchema = z.object({
     .string()
     .min(10, "Phone number must be at least 10 digits.")
     .max(15, "Phone number must not exceed 15 digits."),
-  service: z.string().min(2, "Please select a service."),
-  plan: z.string().min(2, "Please select a plan."),
-  budget: z.string().min(1, "Budget is required."),
-  message: z
-    .string()
-    .min(10, "Message must be at least 10 characters.")
-    .max(160, "Message must not exceed 160 characters."),
+  service: z.string().optional(),
+  plan: z.string().optional(),
+  budget: z.string().optional(),
+  message: z.string().optional(),
 });
 
 // Define props for preset values
@@ -66,15 +64,18 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast("You submitted the following values:", {
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-    setIsSubmitted(true);
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    try {
+      await saveGetStarted(data);
+      toast.success("Success!", {
+        description: "Your form has been submitted successfully.",
+      });
+      setIsSubmitted(true);
+    } catch {
+      toast.error("Error", {
+        description: "Something went wrong. Please try again.",
+      });
+    }
   }
 
   return (
@@ -101,13 +102,13 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               {/* Name & Email */}
-              <div className="flex flex-col md:flex-row gap-6">
+              <div className="flex flex-col md:items-start md:flex-row gap-6">
                 <FormField
                   control={form.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel>Name *</FormLabel>
                       <FormControl>
                         <Input
                           className="w-full "
@@ -125,7 +126,7 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
                   name="email"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>Email *</FormLabel>
                       <FormControl>
                         <Input
                           className="w-full"
@@ -141,13 +142,13 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
               </div>
 
               {/* Phone & Service */}
-              <div className="flex flex-col md:flex-row gap-6">
+              <div className="flex flex-col md:items-start md:flex-row gap-6">
                 <FormField
                   control={form.control}
                   name="phone"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Phone</FormLabel>
+                      <FormLabel>Phone *</FormLabel>
                       <FormControl>
                         <Input
                           className="w-full"
@@ -165,7 +166,7 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
                   name="service"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Service</FormLabel>
+                      <FormLabel>Service (optional)</FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
@@ -192,13 +193,13 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
               </div>
 
               {/* Budget & Plan */}
-              <div className="flex flex-col md:flex-row gap-6">
+              <div className="flex flex-col md:items-start md:flex-row gap-6">
                 <FormField
                   control={form.control}
                   name="budget"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Budget</FormLabel>
+                      <FormLabel>Budget (opitonal)</FormLabel>
                       <FormControl>
                         <Input
                           className="w-full"
@@ -216,7 +217,7 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
                   name="plan"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Plan</FormLabel>
+                      <FormLabel>Plan (optional)</FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
@@ -244,7 +245,7 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
                 name="message"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel>Message</FormLabel>
+                    <FormLabel>Message(optional)</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Tell us a little bit about yourself"
@@ -259,7 +260,16 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
 
               {/* Submit Button */}
               <div className="text-center">
-                <NormalButton>Here We Go</NormalButton>
+                <Button
+                  className="bg-Ttext hover:bg-TtextH active:bg-TtextA transition-all duration-200 text-white w-full"
+                  type="submit"
+                  disabled={form.formState.isSubmitting}
+                >
+                  {form.formState.isSubmitting && (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  )}
+                  Here We Go
+                </Button>
               </div>
             </form>
           </Form>

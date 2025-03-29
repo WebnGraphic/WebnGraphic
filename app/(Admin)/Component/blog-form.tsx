@@ -187,6 +187,7 @@ export default function BlogForm({ closeForm, blog }: BlogFormProps) {
                       initialImage={blog?.imageLink}
                       initialPublicId={blog?.imagePublicID}
                       onImageUploaded={handleImageUpload}
+                      aspectRatio={4 / 3}
                     />
                   </FormControl>
                   <FormMessage />

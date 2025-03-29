@@ -65,55 +65,39 @@ model Response {
   name      String
   phone     String
   email     String   
-  message   String
-  interest  String
+  message   String?
+  interest  String?
   createdAt DateTime @default(now())
 }
 
-
-model Review {
+model GetStarted {
   id        String   @id @default(uuid())
   name      String
-  email     String   @unique
-  rating    Int    
-  comment   String
-  approved  Boolean  @default(false) 
+  phone     String
+  email     String   
+  message   String?
+  service   String?
+  budget    String?
+  plan      String?
   createdAt DateTime @default(now())
 }
 
 model Testimonial {
-  id        String   @id @default(uuid())
-  name      String
-  role      String
-  company   String?  
-  content   String
-  service   String
-  image     String?  
-  published     Boolean  @default(false)
+  id          String   @id @default(uuid())
+  name        String
+  role        String
+  company     String
+  rating      Int    
+  comment     String
+  service     String
+  avatar      String?
+  avatarID    String?  
+  published   Boolean  @default(false)
 
-  createdAt DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
-
-model Portfolio {
-  id            String   @id @default(cuid())
-  title         String
-  category      String
-  images        Json
-  client        String
-  completeDate  DateTime
-  featured      Boolean  @default(false)
-  descriptions  String
-  challenge     String
-  solution      String
-  result        String
-  technologies  String [] 
-  published     Boolean  @default(false)
-
-  createdAt DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-}
 
 model Project {
   id           String   @id @default(cuid())
@@ -132,4 +116,35 @@ model Project {
   published    Boolean  @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+}
+
+ model Meeting {
+  id          String   @id @default(uuid())  
+  name        String  
+  email       String  
+  phone       String  
+  service     String  
+  message     String?  
+  bookingDate DateTime  
+  bookingTime String  
+  timezone    String  
+  status      String  @default("pending")  
+  createdAt   DateTime @default(now())  
+  updatedAt   DateTime @updatedAt 
+ }
+
+
+model Graphicdesign {
+  id              String   @id @default(uuid()) 
+  title           String
+  description    String 
+  category        String
+  imageLink       String
+  imagePublicID   String
+  completeDate    DateTime
+  featured        Boolean  @default(false)
+  published       Boolean  @default(false)
+
+  createdAt   DateTime @default(now())  
+  updatedAt   DateTime @updatedAt 
 }

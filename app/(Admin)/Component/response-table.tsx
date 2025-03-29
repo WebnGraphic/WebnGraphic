@@ -8,6 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+import { Badge } from "@/components/ui/badge";
 import { deleteResponse, getAllResponses } from "../action/response";
 import DeleteButton from "./delete-button";
 import PaginationControl from "./pagination";
@@ -38,37 +39,46 @@ export default async function ResponseTable({
   }
   return (
     <div>
-      <Table>
-        <TableCaption>A list of your recent users.</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Name</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Phone</TableHead>
-            <TableHead>Interest</TableHead>
-            <TableHead>Message</TableHead>
-            <TableHead>Action</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {responses.map((response, index) => (
-            <TableRow key={index}>
-              <TableCell>{response.name}</TableCell>
-              <TableCell>{response.email}</TableCell>
-              <TableCell>{response.phone}</TableCell>
-              <TableCell>{response.interest}</TableCell>
-              <TableCell>{response.message}</TableCell>
-              <TableCell>
-                <DeleteButton
-                  id={response.id}
-                  deleteToDo={deleteResponse}
-                  message="Response deleted successfully!"
-                />
-              </TableCell>
+      <div className=" overflow-auto">
+        <Table>
+          <TableCaption>A list of your recent users.</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead className="hidden md:table-cell">Phone</TableHead>
+              <TableHead className="hidden md:table-cell">Interest</TableHead>
+              <TableHead className="hidden lg:table-cell">Message</TableHead>
+              <TableHead>Action</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {responses.map((response, index) => (
+              <TableRow key={index}>
+                <TableCell className="font-medium">{response.name}</TableCell>
+                <TableCell>{response.email}</TableCell>
+                <TableCell className="hidden md:table-cell">
+                  {response.phone}
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                  <Badge variant="outline">{response.interest}</Badge>
+                </TableCell>
+                <TableCell className="hidden lg:table-cell max-w-xs truncate">
+                  {response.message}
+                </TableCell>
+                <TableCell>
+                  <DeleteButton
+                    id={response.id}
+                    deleteToDo={deleteResponse}
+                    message="Response deleted successfully!"
+                  />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+
       <div>
         <PaginationControl
           currentPage={pagination.currentPage}

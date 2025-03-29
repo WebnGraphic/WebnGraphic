@@ -16,7 +16,7 @@ interface ServiceCardProps {
 
 export default function ServiceCard({ service }: ServiceCardProps) {
   return (
-    <div className="bg-white mb-6 relative shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 group">
+    <div className="bg-white mb-6 relative shadow-lg rounded-xl max-w-[450px] w-full overflow-hidden hover:shadow-xl transition-all duration-300 group">
       {/* Card with image on top for all screen sizes */}
       <Link href={service.href}>
         <div className="relative h-52 w-full overflow-hidden">

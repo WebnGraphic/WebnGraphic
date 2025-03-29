@@ -8,16 +8,7 @@ export type FaqCommon = {
   question: string;
   answer: string;
 };
-export type Testimonial = {
-  id: number;
-  name: string;
-  role: string;
-  service: string;
-  company: string;
-  content: string;
-  avatar: string;
-  rating: number;
-};
+
 export type User = {
   name: string;
   id: string;
@@ -37,3 +28,18 @@ export type Response = {
   interest: string;
   createdAt: Date;
 };
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  company: string;
+  rating: number;
+  comment: string;
+  service: string;
+  avatar?: string | null;
+  avatarID?: string | null;
+  published: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}

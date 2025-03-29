@@ -51,7 +51,19 @@ export async function createResponse(formData: FormData) {
   }
 }
 
-import { revalidatePath } from "next/cache";
+import { z } from "zod";
+
+// Define the schema using zod
+const bookingSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email format"),
+  phone: z.string().min(1, "Phone is required"),
+  service: z.string().min(1, "Service is required"),
+  message: z.string().optional(),
+  date: z.string().min(1, "Date is required"),
+  time: z.string().min(1, "Time is required"),
+  timezone: z.string().min(1, "Timezone is required"),
+});
 
 interface BookingData {
   name: string;
@@ -65,42 +77,26 @@ interface BookingData {
 }
 
 export async function saveBooking(data: BookingData) {
-  // Validate the data
-  if (
-    !data.name ||
-    !data.email ||
-    !data.phone ||
-    !data.date ||
-    !data.time ||
-    !data.service
-  ) {
-    throw new Error("Missing required fields");
+  // Validate the input data
+  const parsedData = bookingSchema.safeParse(data);
+  if (!parsedData.success) {
+    throw new Error(parsedData.error.errors.map((e) => e.message).join(", "));
   }
 
   try {
-    // In a real application, you would save this data to your database
-    // For example, using Prisma:
-    //
-    // await prisma.booking.create({
-    //   data: {
-    //     name: data.name,
-    //     email: data.email,
-    //     phone: data.phone,
-    //     service: data.service,
-    //     message: data.message || "",
-    //     bookingDate: new Date(`${data.date}T00:00:00`),
-    //     bookingTime: data.time,
-    //     timezone: data.timezone,
-    //     status: "pending"
-    //   }
-    // });
-
-    // For this example, we'll just log the data and simulate a delay
-    console.log("Booking saved:", data);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // Revalidate the bookings page to show the new booking
-    revalidatePath("/book-meeting");
+    await prisma.meeting.create({
+      data: {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        service: data.service,
+        message: data.message || "",
+        bookingDate: new Date(`${data.date}T00:00:00`),
+        bookingTime: data.time,
+        timezone: data.timezone,
+        status: "pending",
+      },
+    });
 
     return { success: true };
   } catch (error) {
@@ -108,3 +104,186 @@ export async function saveBooking(data: BookingData) {
     throw new Error("Failed to save booking");
   }
 }
+
+interface StartedData {
+  name: string;
+  email: string;
+  phone: string;
+  service?: string | null;
+  message?: string | null;
+  plan?: string | null;
+  budget?: string | null;
+}
+
+const StartedSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email format"),
+  phone: z.string().min(1, "Phone is required"),
+  service: z.string().optional(),
+  message: z.string().optional(),
+  plan: z.string().optional(),
+  budget: z.string().optional(),
+});
+
+export async function saveGetStarted(data: StartedData) {
+  // Validate the input data
+  const parsedData = StartedSchema.safeParse(data);
+  if (!parsedData.success) {
+    throw new Error(parsedData.error.errors.map((e) => e.message).join(", "));
+  }
+
+  try {
+    await prisma.getStarted.create({
+      data: {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        service: data.service,
+        message: data.message,
+        plan: data.plan,
+        budget: data.budget,
+      },
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error saving booking:", error);
+    throw new Error("Failed to save booking");
+  }
+}
+
+const ResponseSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email format"),
+  phone: z.string().min(1, "Phone is required"),
+  interest: z.string().optional(),
+  message: z.string().optional(),
+});
+interface ResponseData {
+  name: string;
+  email: string;
+  phone: string;
+  interest?: string | null;
+  message?: string | null;
+}
+
+export async function saveResponseFromContact(data: ResponseData) {
+  // Validate the input data
+  const parsedData = ResponseSchema.safeParse(data);
+  if (!parsedData.success) {
+    throw new Error(parsedData.error.errors.map((e) => e.message).join(", "));
+  }
+
+  try {
+    await prisma.response.create({
+      data: {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        interest: data.interest,
+        message: data.message,
+      },
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error saving response:", error);
+    throw new Error("Failed to save response");
+  }
+}
+
+export const getAllWebDevProjects = async () => {
+  try {
+    const webDevProjects = await prisma.project.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+
+    // Cast the JSON data to the expected types
+    const typedProjects = webDevProjects.map((project) => ({
+      ...project,
+      testimonial: project.testimonial as { quote: string; author: string },
+      images: project.images as { url: string; publicId: string }[],
+    }));
+
+    return typedProjects;
+  } catch (err) {
+    console.error("Failed to fetch projects by search:", err);
+    return null;
+  }
+};
+export const getAllTestimonial = async () => {
+  try {
+    const testimonials = await prisma.testimonial.findMany({
+      where: { published: true },
+      orderBy: { createdAt: "desc" },
+    });
+
+    return testimonials;
+  } catch (err) {
+    console.error("Failed to fetch Testimonials:", err);
+    return null;
+  }
+};
+
+export const getAllBlogs = async (
+  search: string = "",
+  page: number = 1,
+  pageSize: number = 3
+) => {
+  type SearchCondition = {
+    OR?: {
+      title?: { contains: string; mode: "insensitive" };
+      content?: { contains: string; mode: "insensitive" };
+    }[];
+    published: boolean;
+  };
+
+  const whereCondition: SearchCondition = { published: true };
+
+  if (search) {
+    whereCondition.OR = [
+      { title: { contains: search, mode: "insensitive" } },
+      { content: { contains: search, mode: "insensitive" } },
+    ];
+  }
+  try {
+    const skip = (page - 1) * pageSize;
+
+    const [blogs, totalItems] = await Promise.all([
+      prisma.blog.findMany({
+        where: whereCondition,
+        orderBy: { createdAt: "desc" },
+        skip,
+        take: pageSize,
+        include: {
+          author: {
+            select: {
+              name: true,
+            },
+          },
+        },
+      }),
+
+      prisma.blog.count({ where: whereCondition }),
+    ]);
+
+    return {
+      blogs,
+      pagination: {
+        currentPage: page,
+        totalPages: Math.ceil(totalItems / pageSize),
+        totalItems,
+      },
+    };
+  } catch (err) {
+    console.error("Failed to fetch users by search:", err);
+    return {
+      blogs: [],
+      pagination: {
+        currentPage: 1,
+        totalPages: 1,
+        totalItems: 0,
+      },
+    };
+  }
+};

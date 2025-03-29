@@ -227,7 +227,7 @@ export default function BookingForm({
         {/* Submit Button */}
         <Button
           type="submit"
-          className="w-full h-10 sm:h-12 text-sm sm:text-base mt-6"
+          className="w-full h-10 bg-Ttext hover:bg-TtextH sm:h-12 text-sm sm:text-base mt-6"
           disabled={isSubmitting}
           size="lg"
         >

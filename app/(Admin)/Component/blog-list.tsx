@@ -9,7 +9,7 @@ export default async function AdminBlogList({
   search: string;
   page: number;
 }) {
-  const pageSize = 10;
+  const pageSize = 12;
   const { blogs, pagination } = await getAllBlogs(search, page, pageSize);
 
   if (blogs.length === 0) {

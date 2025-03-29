@@ -1,6 +1,3 @@
-import { FaqData } from "@/components/Json";
-import Accordion from "../../accordion/accordion";
-
 export default function FaqCommon() {
   return (
     <div className=" px-5 max-w-5xl w-full mx-auto md:px-16 py-16 text-white">
@@ -12,7 +9,6 @@ export default function FaqCommon() {
         </span>
         <div className="md:w-10 w-7 h-1 bg-Ttext"></div>
       </div>
-      <Accordion items={FaqData} />
     </div>
   );
 }

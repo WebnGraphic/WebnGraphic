@@ -7,6 +7,7 @@ import {
   Mail,
   Phone,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -45,8 +46,14 @@ const MainNavbar: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-5 md:px-10 text-white flex items-center justify-between">
         <div className="flex items-center">
-          <Link href={"/"}>
-            <span className="text-3xl text-Ttext font-semibold">LOGO</span>
+          <Link className="relative  h-10" href={"/"}>
+            <Image
+              alt="logo"
+              src="/mainlogo.png"
+              width={500}
+              height={500}
+              className="h-full w-auto"
+            />
           </Link>
 
           <ul className="md:flex hidden items-center ml-7">

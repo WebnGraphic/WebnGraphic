@@ -65,18 +65,7 @@ export const service2 = [
         imageAlt: "Web Development Service",
         href: "/services/web-development",
     },
-    {
-        title: "Web Design",
-        points: [
-            { name: "UI/UX Design", link: "/services/web-design/ui-ux" },
-            { name: "Wireframing & Prototyping", link: "/services/web-design/wireframing" },
-            { name: "Branding & Identity", link: "/services/web-design/branding" },
-            { name: "Mobile-First Design", link: "/services/web-design/mobile-first" }
-        ],
-        imageSrc: '/web-design.jpg',
-        imageAlt: "Web Design Service",
-        href: "/services/web-design",
-    },
+
     {
         title: "Graphic Design",
         points: [

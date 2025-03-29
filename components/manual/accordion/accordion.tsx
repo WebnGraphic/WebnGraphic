@@ -1,58 +1,56 @@
 "use client";
+import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 
-import { MoveUpRight } from "lucide-react";
-import { useRef, useState } from "react";
-
-type AccordionItem = {
-  question: string;
-  answer: string;
-};
-
-type AccordionProps = {
-  items: AccordionItem[];
-};
+interface AccordionProps {
+  items: { question: string; answer: string }[];
+}
 
 export default function Accordion({ items }: AccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const toggleAccordion = (index: number) => {
-    setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="w-full space-y-2">
-      {items.map((item, index) => (
-        <div key={index} className="border-b border-gray-200">
-          {/* Question Section */}
+    <div className="w-full space-y-4">
+      {items.map(({ question, answer }, index) => (
+        <div
+          key={index}
+          className="border overflow-hidden rounded-lg shadow-sm"
+        >
+          {/* Accordion Header */}
           <button
             onClick={() => toggleAccordion(index)}
-            className="flex w-full items-center justify-between py-4 text-base font-medium text-left hover:underline"
+            className={`flex justify-between overflow-hidden cursor-pointer items-center w-full p-4 text-lg font-medium transition-all rounded-t-lg ${
+              openIndex === index
+                ? "bg-Ttext text-white"
+                : "bg-gray-100 text-gray-800"
+            }`}
           >
-            {item.question}
-            <MoveUpRight
-              className={`h-5 w-5 text-gray-500 transition-transform duration-300 ${
-                openIndex === index ? "rotate-180" : ""
-              }`}
-            />
+            <span className="text-left flex-1">{question}</span>
+            <motion.div
+              animate={{ rotate: openIndex === index ? 180 : 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ChevronDown
+                className={`w-6 h-6 transition-all duration-300 rounded-full ${
+                  openIndex === index ? "text-white" : "text-gray-600"
+                }`}
+              />
+            </motion.div>
           </button>
 
-          {/* Answer Section */}
-          <div
-            ref={(el) => {
-              if (el) contentRefs.current[0] = el;
-            }}
-            className="overflow-hidden transition-all duration-300"
-            style={{
-              maxHeight:
-                openIndex === index
-                  ? `${contentRefs.current[index]?.scrollHeight}px`
-                  : "0px",
-              opacity: openIndex === index ? 1 : 0,
-            }}
+          {/* Accordion Content */}
+          <motion.div
+            initial={false}
+            animate={{ height: openIndex === index ? "auto" : 0 }}
+            className="overflow-hidden"
           >
-            <div className="pb-4 text-sm text-gray-600">{item.answer}</div>
-          </div>
+            <div className="p-4 text-gray-700 bg-gray-50">{answer}</div>
+          </motion.div>
         </div>
       ))}
     </div>

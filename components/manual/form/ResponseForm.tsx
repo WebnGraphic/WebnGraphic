@@ -48,7 +48,7 @@ const ResponseForm: React.FC<ResponseFormProps> = ({ interest }) => {
       const result = await createResponse(formDataObj);
 
       if (result.success) {
-        toast("Success!", {
+        toast.success("Success!", {
           description: "Your form has been submitted successfully.",
         });
         // Reset form after successful submission
@@ -62,7 +62,7 @@ const ResponseForm: React.FC<ResponseFormProps> = ({ interest }) => {
 
         setFormState({ success: true, message: result.message });
       } else {
-        toast("Error", {
+        toast.error("Error", {
           description:
             result.message || "Something went wrong. Please try again.",
         });

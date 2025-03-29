@@ -3,7 +3,6 @@ import HowItsWorks from "@/components/manual/pages/common/HowItsWorks";
 import StatsSection from "@/components/manual/pages/common/StatsSection";
 import TestimonialSection from "@/components/manual/pages/common/Testimonial-1";
 import HowWeWorks from "@/components/manual/pages/services/HowWeWorks";
-import OurServices from "@/components/manual/pages/services/OurServices";
 import ServicesHero from "@/components/manual/pages/services/ServicesHero";
 import ServicesSlider from "@/components/manual/pages/services/ServicesSlider";
 import WhyChooseOurService from "@/components/manual/pages/services/WhyChooseOurService";
@@ -25,7 +24,6 @@ export default function page() {
   return (
     <div>
       <ServicesHero />
-      <OurServices />
       <HowWeWorks />
       <HowItsWorks />
       <WhyChooseOurService />

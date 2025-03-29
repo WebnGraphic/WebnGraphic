@@ -86,6 +86,10 @@ export const getAllWebDevProjects = async (
 
 export async function createWebDevProject(data: ProjectData) {
   try {
+    const author = await checkAdmin();
+    if (!author || !author.id) {
+      return { success: false, error: "Unauthorized" };
+    }
     const project = await prisma.project.create({
       data: {
         title: data.title,
@@ -113,27 +117,31 @@ export async function createWebDevProject(data: ProjectData) {
 }
 
 export async function updateWebDevProject(id: string, data: ProjectData) {
-  const author = await checkAdmin();
+  try {
+    const author = await checkAdmin();
 
-  if (!author || !author.id) {
-    return {
-      error: {
-        _form: ["You must be an admin to update a portfolio."],
+    if (!author || !author.id) {
+      return {
+        error: {
+          _form: ["You must be an admin to update a portfolio."],
+        },
+        data: null,
+      };
+    }
+
+    await prisma.project.update({
+      where: { id: id },
+      data: {
+        ...data,
       },
-      data: null,
-    };
+    });
+
+    revalidatePath("admin/project/web-development");
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to update project:", error);
+    return { success: false, error: "Failed to update project" };
   }
-
-  await prisma.project.update({
-    where: { id: id },
-    data: {
-      ...data,
-    },
-  });
-
-  revalidatePath("admin/project/web-development");
-
-  return { success: true };
 }
 
 export async function deleteWebDevProject(

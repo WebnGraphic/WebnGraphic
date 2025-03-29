@@ -13,14 +13,16 @@ import { useDropzone } from "react-dropzone";
 
 interface ImageUploaderProps {
   onImageUploaded: (imageUrl: string, publicId: string) => void;
-  initialImage?: string;
-  initialPublicId?: string;
+  initialImage?: string | null;
+  initialPublicId?: string | null;
   uploadPreset: string;
+  aspectRatio: number;
 }
 
 export function ImageUploaderClient({
   onImageUploaded,
   initialImage,
+  aspectRatio,
   initialPublicId,
   uploadPreset,
 }: ImageUploaderProps) {
@@ -155,7 +157,7 @@ export function ImageUploaderClient({
           <Cropper
             src={cropperImage}
             className="h-[300px] rounded border"
-            stencilProps={{ aspectRatio: 16 / 9 }}
+            stencilProps={{ aspectRatio: aspectRatio }}
             ref={cropperRef}
           />
           <div className="mt-4 flex justify-end">

@@ -35,7 +35,7 @@ export default function MainLayout({
         <SidebarProvider>
           <div className="flex min-h-screen w-full flex-col">
             <DashboardHeader />
-            <div className="flex flex-1">
+            <div className="flex relative flex-1">
               <DashboardSidebar />
               <DashboardShell>{children}</DashboardShell>
             </div>
