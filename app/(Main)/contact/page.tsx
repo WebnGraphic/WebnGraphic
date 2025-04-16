@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     url: "https://webngraphic.com/contact",
     images: [
       {
-        url: "/opengraph/contact.jpg", // Replace with your actual graphic design OG image
+        url: "opengraph/contact.jpg", // Replace with your actual graphic design OG image
         width: 1200,
         height: 630,
         alt: "WebNGraphic Graphic Design Services",

@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     url: "https://webngraphic.com/web-development",
     images: [
       {
-        url: "/public/opengraph/web-dev.jpg",
+        url: "opengraph/web-dev.jpg",
         width: 1200,
         height: 630,
         alt: "WebNGraphic Web Development Services",

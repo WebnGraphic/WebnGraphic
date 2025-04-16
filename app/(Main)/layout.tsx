@@ -61,7 +61,7 @@ export const metadata: Metadata = {
       "Custom web development and graphic design solutions to help your business stand out online with responsive websites and eye-catching visuals.",
     images: [
       {
-        url: "/opengraph/home.jpg",
+        url: "opengraph/home.jpg",
         width: 1200,
         height: 630,
         alt: "WebNGraphic - Web Development & Graphic Design Services",
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     title: "WebNGraphic - Web Development & Graphic Design Services",
     description:
       "Custom web development and graphic design solutions to help your business stand out online.",
-    images: ["/opengraph/home.jpg"],
+    images: ["opengraph/home.jpg"],
     creator: "@webngraphic",
   },
 };

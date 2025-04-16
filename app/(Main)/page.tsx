@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "/opengraph/home.jpg",
+        url: "opengraph/home.jpg",
         width: 1200,
         height: 630,
         alt: "WebNGraphic Homepage",
