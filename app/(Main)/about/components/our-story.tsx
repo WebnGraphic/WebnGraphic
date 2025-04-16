@@ -24,7 +24,7 @@ export default function OurStory() {
             <div className="relative z-10 group rounded-2xl image-anime overflow-hidden shadow-xl">
               <div className="absolute top-0  left-0 w-full h-full bg-gradient-to-r from-[#16152f]/50 to-transparent z-10"></div>
               <Image
-                src="/assets/Ourlegacy.png"
+                src="/about.jpg"
                 alt="Our team working together"
                 width={600}
                 height={400}

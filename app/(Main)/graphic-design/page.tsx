@@ -1,12 +1,12 @@
 import BookMeeting from "@/components/manual/book-meeting/book-meeting";
 import BlogCommon from "../components/blog-common";
 import Pricing from "../components/pricing";
+import TestimonialSection from "../components/testimonial-section";
 import GraphicFAQ from "./components/graphic-faq";
 import GraphicHero from "./components/graphic-hero";
 import GraphicPortfolioSection from "./components/graphic-portfolio-section";
 import GraphicService from "./components/graphic-service";
 import GraphicTechnology from "./components/graphic-technology";
-import GraphicTestimonial from "./components/graphic-testimonial";
 import HowItsWork from "./components/how-its-work";
 const pricingPlans = [
   {
@@ -74,7 +74,7 @@ export default function page() {
       </div>
       <GraphicTechnology />
       <GraphicPortfolioSection />
-      <GraphicTestimonial />
+      <TestimonialSection />
       <GraphicFAQ />
       <BlogCommon />
     </div>
