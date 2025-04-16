@@ -1,11 +1,11 @@
-import { getAllWebDevProjects } from "@/app/action/action";
+import { getCommonWebDevProjects } from "@/app/action/action";
 import NormalButton from "@/components/manual/button/NormalButton";
 import WebDevPortfolio from "@/components/manual/content/web-dev-portfolio";
 import SectionHeader from "@/components/manual/header/section-header";
 import Link from "next/link";
 
 export default async function PortfolioSection() {
-  const projectsData = await getAllWebDevProjects();
+  const projectsData = await getCommonWebDevProjects();
   return (
     projectsData && (
       <section className="bg-white ">

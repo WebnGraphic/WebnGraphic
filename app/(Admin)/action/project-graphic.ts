@@ -96,7 +96,8 @@ export async function createGraphicProject(data: ProjectData) {
         published: data.published,
       },
     });
-
+    revalidatePath("graphic-project:common");
+    revalidatePath("graphic-project:all");
     revalidatePath("/admin/projects");
     return project;
   } catch (error) {
@@ -124,7 +125,8 @@ export async function updateGraphicProject(id: string, data: ProjectData) {
         ...data,
       },
     });
-
+    revalidatePath("graphic-project:common");
+    revalidatePath("graphic-project:all");
     revalidatePath("admin/project/graphic-design");
     return { success: true };
   } catch (error) {
@@ -149,6 +151,8 @@ export async function deleteGraphicProject(
     });
 
     revalidatePath("admin/project/graphic-design");
+    revalidatePath("graphic-project:common");
+    revalidatePath("graphic-project:all");
 
     return { success: true };
   } catch (error) {

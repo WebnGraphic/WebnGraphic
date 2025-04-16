@@ -1,11 +1,11 @@
-import { getAllGraphicProjects } from "@/app/action/action";
+import { getCommonGraphicProjects } from "@/app/action/action";
 import NormalButton from "@/components/manual/button/NormalButton";
 import GraphicPortfolio from "@/components/manual/content/graphic-portfolio";
 import SectionHeader from "@/components/manual/header/section-header";
 import Link from "next/link";
 
 export default async function GraphicPortfolioSection() {
-  const projects = await getAllGraphicProjects();
+  const projects = await getCommonGraphicProjects();
   return (
     projects && (
       <section className=" bg-white">

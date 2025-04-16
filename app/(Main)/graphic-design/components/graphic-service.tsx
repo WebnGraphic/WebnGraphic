@@ -1,3 +1,4 @@
+import SectionHeader from "@/components/manual/header/section-header";
 import {
   Card,
   CardContent,
@@ -25,17 +26,13 @@ type ServiceCardProps = {
 export default function GraphicService() {
   return (
     <div>
-      <section className="bg-muted py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Our Graphic Design Services
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              From brand identity to marketing materials, we create designs that
-              resonate with your audience
-            </p>
-          </div>
+      <section className="bg-muted ">
+        <div className="max-w-7xl w-full mx-auto px-5 md:px-12 py-16 md:py-24">
+          <SectionHeader
+            heading="Our Graphic Design Services"
+            subHeading="From brand identity to marketing materials, we create designs that
+              resonate with your audience"
+          />
 
           <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             <ServiceCard

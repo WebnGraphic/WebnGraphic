@@ -1,6 +1,6 @@
 "use server";
 import { prisma } from "@/lib/prisma";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { checkAccess } from "../helper/check-admin";
 
 type ProjectData = {
@@ -109,6 +109,8 @@ export async function createWebDevProject(data: ProjectData) {
     });
 
     revalidatePath("/admin/projects");
+    revalidateTag("web-dev-project:all");
+    revalidateTag("web-dev-project:common");
     return project;
   } catch (error) {
     console.error("Error creating project:", error);
@@ -137,6 +139,8 @@ export async function updateWebDevProject(id: string, data: ProjectData) {
     });
 
     revalidatePath("admin/project/web-development");
+    revalidateTag("web-dev-project:all");
+    revalidateTag("web-dev-project:common");
     return { success: true };
   } catch (error) {
     console.error("Failed to update project:", error);
@@ -160,6 +164,8 @@ export async function deleteWebDevProject(
     });
 
     revalidatePath("admin/project/web-development");
+    revalidateTag("web-dev-project:all");
+    revalidateTag("web-dev-project:common");
 
     return { success: true };
   } catch (error) {

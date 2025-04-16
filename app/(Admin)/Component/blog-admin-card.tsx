@@ -159,9 +159,11 @@ export function BlogCard({ blog }: BlogCardProps) {
           </div>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground line-clamp-2">
-            {blog.content}
-          </p>
+          <div
+            dangerouslySetInnerHTML={{ __html: blog.content }}
+            className="text-sm text-muted-foreground line-clamp-2"
+          />
+
           <div className="mt-4 flex flex-col gap-3">
             <div className="flex items-center justify-between">
               <span className="text-sm">Published</span>

@@ -1,4 +1,4 @@
-import { getAllBlogs } from "@/app/action/action";
+import { getAllBlog } from "@/app/action/action";
 import NormalButton from "@/components/manual/button/NormalButton";
 import SectionHeader from "@/components/manual/header/section-header";
 import {
@@ -14,7 +14,7 @@ import Link from "next/link";
 
 export default async function BlogCommon() {
   // Sample blog posts data - in a real application, you would fetch this from an API or CMS
-  const { blogs } = await getAllBlogs();
+  const { blogs } = await getAllBlog();
 
   if (!blogs) return <p>Not found</p>;
   return (
@@ -43,7 +43,7 @@ export default async function BlogCommon() {
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-muted-foreground">
-                      {format(post.createdAt, "MMMM d, yyyy")}
+                      {format(new Date(post.createdAt), "MMMM d, yyyy")}
                     </span>
                     <span className="text-xs px-2 py-1 bg-muted rounded-full">
                       {post.category}
@@ -57,9 +57,10 @@ export default async function BlogCommon() {
                 </div>
               </CardHeader>
               <CardContent className="px-4 pb-2 pt-0 flex-grow">
-                <p className="text-muted-foreground line-clamp-2">
-                  {post.content}
-                </p>
+                <div
+                  dangerouslySetInnerHTML={{ __html: post.content }}
+                  className="text-muted-foreground line-clamp-2"
+                />
               </CardContent>
               <CardFooter className="px-4 pt-0">
                 <div className="border-t border-gray-100 pt-3 w-full flex ">

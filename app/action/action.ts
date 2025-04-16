@@ -193,101 +193,6 @@ export async function saveResponseFromContact(data: ResponseData) {
   }
 }
 
-export const getAllGraphicProjects = async () => {
-  try {
-    const graphicProject = await prisma.graphicdesign.findMany({
-      orderBy: { createdAt: "desc" },
-    });
-
-    return graphicProject;
-  } catch (err) {
-    console.error("Failed to fetch projects", err);
-    return null;
-  }
-};
-export const getAllWebDevProjects = async () => {
-  try {
-    const webDevProjects = await prisma.project.findMany({
-      orderBy: { createdAt: "desc" },
-    });
-
-    // Cast the JSON data to the expected types
-    const typedProjects = webDevProjects.map((project) => ({
-      ...project,
-      testimonial: project.testimonial as { quote: string; author: string },
-      images: project.images as { url: string; publicId: string }[],
-    }));
-
-    return typedProjects;
-  } catch (err) {
-    console.error("Failed to fetch projects by search:", err);
-    return null;
-  }
-};
-
-export const getAllBlogs = async (
-  search: string = "",
-  page: number = 1,
-  pageSize: number = 3
-) => {
-  type SearchCondition = {
-    OR?: {
-      title?: { contains: string; mode: "insensitive" };
-      content?: { contains: string; mode: "insensitive" };
-    }[];
-    published: boolean;
-  };
-
-  const whereCondition: SearchCondition = { published: true };
-
-  if (search) {
-    whereCondition.OR = [
-      { title: { contains: search, mode: "insensitive" } },
-      { content: { contains: search, mode: "insensitive" } },
-    ];
-  }
-  try {
-    const skip = (page - 1) * pageSize;
-
-    const [blogs, totalItems] = await Promise.all([
-      prisma.blog.findMany({
-        where: whereCondition,
-        orderBy: { createdAt: "desc" },
-        skip,
-        take: pageSize,
-        include: {
-          author: {
-            select: {
-              name: true,
-            },
-          },
-        },
-      }),
-
-      prisma.blog.count({ where: whereCondition }),
-    ]);
-
-    return {
-      blogs,
-      pagination: {
-        currentPage: page,
-        totalPages: Math.ceil(totalItems / pageSize),
-        totalItems,
-      },
-    };
-  } catch (err) {
-    console.error("Failed to fetch users by search:", err);
-    return {
-      blogs: [],
-      pagination: {
-        currentPage: 1,
-        totalPages: 1,
-        totalItems: 0,
-      },
-    };
-  }
-};
-
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
@@ -354,10 +259,14 @@ export async function submitContactForm(
   }
 }
 
+//blog
 const _getAllBlogs = async () => {
   try {
     const blogs = await prisma.blog.findMany({
       orderBy: { createdAt: "desc" },
+      where: {
+        published: true,
+      },
       include: {
         author: {
           select: {
@@ -377,7 +286,6 @@ const _getAllBlogs = async () => {
     };
   }
 };
-
 export const getAllBlog = unstable_cache(_getAllBlogs, ["get-all-blog"], {
   tags: ["blog:all"],
 });
@@ -387,8 +295,10 @@ const _getBlogForCommon = async () => {
     const blogs = await prisma.blog.findMany({
       where: {
         isPopular: true,
+        published: true,
       },
       orderBy: { createdAt: "desc" },
+      take: 3,
       include: {
         author: {
           select: {
@@ -408,8 +318,6 @@ const _getBlogForCommon = async () => {
     };
   }
 };
-
-// Wrap with unstable_cache and add a tag (no revalidate option needed)
 export const getBlogForCommon = unstable_cache(
   _getBlogForCommon,
   ["get-blog-for-common"],
@@ -438,6 +346,7 @@ export const getBlogById = async (id: string) => {
   }
 };
 
+// Testimonial
 const _getAllTestimonial = async () => {
   try {
     const testimonials = await prisma.testimonial.findMany({
@@ -459,5 +368,106 @@ export const getAllTestimonials = unstable_cache(
   ["get-all-testimonial"],
   {
     tags: ["testimonial:all"],
+  }
+);
+
+// Web Dev Project
+const _getAllWebDevProjects = async () => {
+  try {
+    const webDevProjects = await prisma.project.findMany({
+      orderBy: { createdAt: "desc" },
+      where: { published: true },
+    });
+
+    // Cast the JSON data to the expected types
+    const typedProjects = webDevProjects.map((project) => ({
+      ...project,
+      testimonial: project.testimonial as { quote: string; author: string },
+      images: project.images as { url: string; publicId: string }[],
+    }));
+
+    return typedProjects;
+  } catch (err) {
+    console.error("Failed to fetch projects by search:", err);
+    return null;
+  }
+};
+export const getAllWebDevProjects = unstable_cache(
+  _getAllWebDevProjects,
+  ["get-all-web-dev-project"],
+  {
+    tags: ["web-dev-project:all"],
+  }
+);
+
+const _getCommonWebDevProjects = async () => {
+  try {
+    const webDevProjects = await prisma.project.findMany({
+      orderBy: { createdAt: "desc" },
+      take: 3,
+      where: { published: true, featured: true },
+    });
+
+    // Cast the JSON data to the expected types
+    const typedProjects = webDevProjects.map((project) => ({
+      ...project,
+      testimonial: project.testimonial as { quote: string; author: string },
+      images: project.images as { url: string; publicId: string }[],
+    }));
+
+    return typedProjects;
+  } catch (err) {
+    console.error("Failed to fetch projects by search:", err);
+    return null;
+  }
+};
+export const getCommonWebDevProjects = unstable_cache(
+  _getCommonWebDevProjects,
+  ["get-common-web-dev-project"],
+  {
+    tags: ["web-dev-project:common"],
+  }
+);
+
+//Graphic Project
+const _getAllGraphicProjects = async () => {
+  try {
+    const graphicProject = await prisma.graphicdesign.findMany({
+      orderBy: { createdAt: "desc" },
+      where: { published: true },
+    });
+
+    return graphicProject;
+  } catch (err) {
+    console.error("Failed to fetch projects", err);
+    return null;
+  }
+};
+export const getAllGraphicProjects = unstable_cache(
+  _getAllGraphicProjects,
+  ["get-all-graphic-project"],
+  {
+    tags: ["graphic-project:all"],
+  }
+);
+
+const _getCommonGraphicProjects = async () => {
+  try {
+    const graphicProject = await prisma.graphicdesign.findMany({
+      orderBy: { createdAt: "desc" },
+      where: { published: true, featured: true },
+      take: 3,
+    });
+    return graphicProject;
+  } catch (err) {
+    console.error("Failed to fetch projects by search:", err);
+    return null;
+  }
+};
+export const getCommonGraphicProjects = unstable_cache(
+  _getCommonGraphicProjects,
+  ["get-common-graphic-project"],
+  {
+    tags: ["graphic-project:common"],
   }
 );

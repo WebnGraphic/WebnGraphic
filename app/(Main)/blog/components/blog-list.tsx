@@ -190,9 +190,10 @@ export default function BlogLists({ blogs }: BlogListsProps) {
                   </h3>
                 </CardHeader>
                 <CardContent className="p-0 pb-4">
-                  <p className="text-muted-foreground text-sm line-clamp-3">
-                    {item.content}
-                  </p>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: item.content }}
+                    className="text-muted-foreground text-sm line-clamp-3"
+                  />
                 </CardContent>
                 <CardFooter className="p-0">
                   <Link href={`/blog/${item.id}`}>

@@ -204,19 +204,19 @@ function PortfolioCard({ project, onViewDetails }: PortfolioCardProps) {
   return (
     <Card className="overflow-hidden relative group pb-6 transition-all hover:shadow-md">
       {project.featured && (
-        <div className="absolute top-2 left-2">
+        <div className="absolute z-[10] top-2 left-2">
           <span className="bg-Ttext text-white text-xs font-semibold py-1 px-3 rounded mb-2 inline-block">
             Featured
           </span>
         </div>
       )}
-      <div className="overflow-hidden">
+      <div className="overflow-hidden image-anime">
         <Image
           src={project.images[0].url}
           width={600}
           height={400}
           alt={project.title}
-          className="aspect-[3/2] w-full object-cover transition-transform duration-300 hover:scale-105"
+          className="aspect-[3/2] w-full object-cover"
         />
       </div>
       <CardHeader className="pt-3">
@@ -225,7 +225,7 @@ function PortfolioCard({ project, onViewDetails }: PortfolioCardProps) {
           {project.overView}
         </CardDescription>
       </CardHeader>
-      <CardContent className="pb-3">
+      <CardContent className="py-3">
         <div className="flex flex-wrap gap-2">
           {project.technologies.map((tag, index) => (
             <Badge key={index} variant="secondary" className="rounded-md">

@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { z } from "zod";
 import { checkAccess } from "../helper/check-admin";
 
@@ -84,6 +84,8 @@ export async function createBlog(data: {
 
     // Revalidate the path to update the list of blogs
     revalidatePath("admin/blogs");
+    revalidateTag("blog:common");
+    revalidateTag("blog:all");
 
     // Return the created blog
     return {
@@ -199,6 +201,9 @@ export async function updateBlog(
 
     // Revalidate paths to update cached blog data
     revalidatePath("admin/blogs");
+    revalidatePath(`/blog/${id}`);
+    revalidateTag("blog:common");
+    revalidateTag("blog:all");
 
     return { success: true };
   } catch (error) {
@@ -223,6 +228,9 @@ export async function deleteBlog(
     });
 
     revalidatePath("admin/blogs");
+    revalidatePath(`/blog/${id}`);
+    revalidateTag("blog:common");
+    revalidateTag("blog:all");
 
     return { success: true };
   } catch (error) {
