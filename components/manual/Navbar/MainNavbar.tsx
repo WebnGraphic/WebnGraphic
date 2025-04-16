@@ -37,22 +37,22 @@ const MainNavbar: React.FC = () => {
         scrolled ? "bg-Mbg/80 backdrop-blur-2xl border-b shadow-sm" : "bg-Mbg"
       }`}
     >
-      <div className="md:hidden px-5 py-1 w-full bg-white flex">
+      <div className="md:hidden px-5 text-white py-2 w-full bg-Sbg flex">
         <div className="flex w-full justify-between gap-5 items-center">
           <Link
             href={`mailto:${emailAddress}`}
-            className="flex gap-1 items-center"
+            className="flex gap-2 items-center"
           >
-            <Mail className="w-4 h-4" />
+            <Mail className="w-3 mt-1 text-Ttext h-3" />
             <span className="text-sm">{emailAddress}</span>
           </Link>
-          <Link href={`tel:${phoneNumber}`} className="flex gap-1 items-center">
-            <Phone className="w-4 h-4" />
+          <Link href={`tel:${phoneNumber}`} className="flex gap-2 items-center">
+            <Phone className="w-3 mt-1 h-3 text-Ttext" />
             <span className="text-sm">{phoneNumber}</span>
           </Link>
         </div>
       </div>
-      <div className="py-2">
+      <div className="py-3 md:py-2">
         <div className="max-w-7xl mx-auto px-5 md:px-10 text-white flex items-center justify-between">
           <div className="flex items-center">
             <Link href={"/"}>
@@ -154,56 +154,70 @@ const MainNavbar: React.FC = () => {
         </div>
         {/* Mobile Menu */}
         <div
-          className={`absolute md:hidden text-white transition-all duration-200 ease-in-out block bg-Mbg w-full top-[75px] z-[100] ${
+          className={`absolute md:hidden text-white transition-all duration-200 ease-in-out block bg-Mbg w-full top-[90px] z-[100] ${
             !isMenuOpen ? "h-0 overflow-hidden" : "h-[calc(100vh-64px)]"
           }`}
         >
           <ul className="flex flex-col">
             <Link
               href={"/"}
-              className=" px-5 py-1.5 hover:bg-indigo-950"
+              className={`px-5 py-1.5 hover:bg-indigo-950 ${
+                pathname === "/" && "bg-indigo-900"
+              }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               Home
             </Link>
             <Link
               href={"/web-development"}
-              className=" px-5 py-1.5 hover:bg-indigo-950"
+              className={`px-5 py-1.5 hover:bg-indigo-950 ${
+                pathname === "/web-development" && "bg-indigo-900"
+              }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               Web Development
             </Link>
             <Link
               href={"/graphic-design"}
-              className=" px-5 py-1.5 hover:bg-indigo-950"
+              className={`px-5 py-1.5 hover:bg-indigo-950 ${
+                pathname === "/graphic" && "bg-indigo-900"
+              }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               Graphic Design
             </Link>
             <Link
               href={"/about"}
-              className=" px-5 py-1.5 hover:bg-indigo-950"
+              className={`px-5 py-1.5 hover:bg-indigo-950 ${
+                pathname === "/about" && "bg-indigo-900"
+              }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               About
             </Link>
             <Link
               href={"/contact"}
-              className="px-5 py-1.5 hover:bg-indigo-950"
+              className={`px-5 py-1.5 hover:bg-indigo-950 ${
+                pathname === "/contact" && "bg-indigo-900"
+              }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               Contact
             </Link>
             <Link
               href={"/portfolio"}
-              className="px-5 py-1.5 hover:bg-indigo-950"
+              className={`px-5 py-1.5 hover:bg-indigo-950 ${
+                pathname === "/portfolio" && "bg-indigo-900"
+              }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               Portfolio
             </Link>
             <Link
               href={"/blog"}
-              className="px-5 py-1.5 hover:bg-indigo-950"
+              className={`px-5 py-1.5 hover:bg-indigo-950 ${
+                pathname === "/blog" && "bg-indigo-900"
+              }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               Blog

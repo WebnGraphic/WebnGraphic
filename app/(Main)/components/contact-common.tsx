@@ -1,6 +1,10 @@
 import { ContactCommonForm } from "@/components/manual/form/contact-common-form";
 import { Mail, MapPin, Phone } from "lucide-react";
 export default function ContactCommon() {
+  const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;
+  const emailAddress = process.env.NEXT_PUBLIC_EMAIL_ADDRESS;
+  const address = process.env.NEXT_PUBLIC_ADDRESS;
+
   return (
     <div id="contact-form" className="relative">
       <div
@@ -27,20 +31,30 @@ export default function ContactCommon() {
             <div className="text-white   rounded-full bg-Ttext">
               <Phone className="w-10 h-10 p-2" />
             </div>
-            <p className="text-gray-200">+1212121212</p>
+            <a
+              href={`tel:${phoneNumber}`}
+              className="text-sm text-gray-300 hover:text-white transition-colors"
+            >
+              {phoneNumber}
+            </a>
           </div>
           <div className="flex mb-3 items-center gap-3">
             <div className="text-white  rounded-full bg-Ttext">
               <Mail className="p-2 w-10 h-10" />
             </div>
 
-            <p className="text-gray-200">111111111@gmail.com</p>
+            <a
+              href={`mailto:${emailAddress}`}
+              className="text-sm text-gray-300 hover:text-white transition-colors"
+            >
+              {emailAddress}
+            </a>
           </div>
           <div className="flex  items-center gap-3">
             <div className="text-white  rounded-full bg-Ttext">
               <MapPin className=" w-10 h-10 p-2" />
             </div>
-            <p className="text-gray-200">Banani,Dhaka,Bangladesh</p>
+            <span className="text-sm text-gray-300">{address}</span>
           </div>
         </div>
       </div>

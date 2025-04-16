@@ -1,4 +1,5 @@
 import BookMeeting from "@/components/manual/book-meeting/book-meeting";
+import { Metadata } from "next";
 import BlogCommon from "./components/blog-common";
 import ContactCommon from "./components/contact-common";
 import CTASection1 from "./components/cta-section-1";
@@ -32,6 +33,24 @@ const creativeProcess = [
       "We refine the work based on feedback, ensuring everything is polished and ready for delivery, whether it's a launch or final design files.",
   },
 ];
+export const metadata: Metadata = {
+  title: "Professional Web Development & Graphic Design Services",
+  description:
+    "WebNGraphic provides custom web development and graphic design services to help businesses create stunning websites and visual identities that convert visitors into customers.",
+  alternates: {
+    canonical: "https://webngraphic.com",
+  },
+  openGraph: {
+    images: [
+      {
+        url: "/opengraph/home.jpg",
+        width: 1200,
+        height: 630,
+        alt: "WebNGraphic Homepage",
+      },
+    ],
+  },
+};
 
 export default async function Home() {
   return (

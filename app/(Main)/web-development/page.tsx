@@ -1,4 +1,5 @@
 import BookMeeting from "@/components/manual/book-meeting/book-meeting";
+import { Metadata } from "next";
 import BlogCommon from "../components/blog-common";
 import OurFeature from "../components/our-feature";
 import PortfolioSection from "../components/portfolio";
@@ -66,6 +67,39 @@ const pricingPlans = [
     ],
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Web Development Services | Custom Website Solutions",
+  description:
+    "Our web development services include responsive website design, NDIS Website, e-commerce solutions, CMS development, and web application development using the latest technologies like Next.js, React, and more.",
+  alternates: {
+    canonical: "https://webngraphic.com/web-development",
+  },
+  openGraph: {
+    title: "Expert Web Development Services | WebNGraphic",
+    description:
+      "From responsive websites to complex web applications, our web development team creates custom solutions that drive results for your business.",
+    url: "https://webngraphic.com/web-development",
+    images: [
+      {
+        url: "/public/opengraph/web-dev.jpg",
+        width: 1200,
+        height: 630,
+        alt: "WebNGraphic Web Development Services",
+      },
+    ],
+  },
+  keywords: [
+    "web development",
+    "website design",
+    "ndis website",
+    "responsive websites",
+    "e-commerce development",
+    "Next.js development",
+    "React development",
+    "custom website solutions",
+  ],
+};
 
 export default function page() {
   return (

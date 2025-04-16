@@ -114,13 +114,15 @@ export default function OurStory() {
                 </p>
                 <div className="mt-3 md:mt-4 flex items-center">
                   <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-[#00b1dc] flex items-center justify-center text-white font-bold text-xs md:text-sm">
-                    C
+                    M
                   </div>
                   <div className="ml-2 md:ml-3">
                     <p className="text-xs md:text-sm font-medium">
-                      Client Name
+                      Michel Clark
                     </p>
-                    <p className="text-xs text-gray-400">CEO, Company Inc.</p>
+                    <p className="text-xs text-gray-400">
+                      CEO, InfraRed Company.
+                    </p>
                   </div>
                 </div>
               </div>

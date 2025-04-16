@@ -40,7 +40,7 @@ export default function TopSectionStatic({
     });
   };
   return (
-    <div className="section-background">
+    <div className="section-background px-12">
       <section className="py-16 text-white text-center relative">
         <h1 className="text-4xl md:text-5xl font-bold  mb-4">{title}</h1>
 

@@ -1,4 +1,4 @@
-import { getAllBlog } from "@/app/action/action";
+import { getBlogForCommon } from "@/app/action/action";
 import NormalButton from "@/components/manual/button/NormalButton";
 import SectionHeader from "@/components/manual/header/section-header";
 import {
@@ -14,7 +14,7 @@ import Link from "next/link";
 
 export default async function BlogCommon() {
   // Sample blog posts data - in a real application, you would fetch this from an API or CMS
-  const { blogs } = await getAllBlog();
+  const { blogs } = await getBlogForCommon();
 
   if (!blogs) return <p>Not found</p>;
   return (

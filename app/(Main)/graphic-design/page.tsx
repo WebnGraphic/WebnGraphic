@@ -1,4 +1,5 @@
 import BookMeeting from "@/components/manual/book-meeting/book-meeting";
+import { Metadata } from "next";
 import BlogCommon from "../components/blog-common";
 import Pricing from "../components/pricing";
 import TestimonialSection from "../components/testimonial-section";
@@ -61,6 +62,38 @@ const pricingPlans = [
     ],
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Graphic Design Services | Brand Identity & Visual Design",
+  description:
+    "Our graphic design services include logo design, brand identity, print design, social media graphics, and UI/UX design to help your business create a cohesive and impactful visual presence.",
+  alternates: {
+    canonical: "https://webngraphic.com/graphic-design",
+  },
+  openGraph: {
+    title: "Creative Graphic Design Services | WebNGraphic",
+    description:
+      "Elevate your brand with our professional graphic design services including logo design, brand identity, and visual assets that capture your audience's attention.",
+    url: "https://webngraphic.com/graphic-design",
+    images: [
+      {
+        url: "/opengraph/graphic-design.jpg", // Replace with your actual graphic design OG image
+        width: 1200,
+        height: 630,
+        alt: "WebNGraphic Graphic Design Services",
+      },
+    ],
+  },
+  keywords: [
+    "graphic design",
+    "logo design",
+    "brand identity",
+    "visual design",
+    "UI/UX design",
+    "print design",
+    "social media graphics",
+  ],
+};
 
 export default function page() {
   return (

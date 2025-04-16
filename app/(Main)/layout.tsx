@@ -15,30 +15,31 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://webngraphic.com"),
   title: {
-    template: "%s | WebnGraphic - Web Development & Graphic Design Services",
+    template: "%s | WebNGraphic - Web Development & Graphic Design Services",
     default:
-      "WebnGraphic - Professional Web Development & Graphic Design Services",
+      "WebNGraphic - Professional Web Development & Graphic Design Services",
   },
   description:
-    "WebnGraphic offers professional web development and graphic design services to help businesses establish a strong online presence with custom websites and stunning visuals.",
+    "WebNGraphic offers professional web development and graphic design services to help businesses establish a strong online presence with custom websites and stunning visuals.",
   keywords: [
     "web development",
     "graphic design",
-    "web design",
+    "website design",
     "UI/UX design",
     "responsive websites",
-    "custom websites",
     "logo design",
-    "branding",
   ],
-  authors: [{ name: "WebnGraphic", url: "https://webngraphic.com" }],
-  creator: "WebnGraphic",
-  publisher: "WebnGraphic",
-
+  authors: [{ name: "WebNGraphic Team" }],
+  creator: "WebNGraphic",
+  publisher: "WebNGraphic",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   robots: {
     index: true,
     follow: true,
@@ -46,7 +47,6 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
       "max-image-preview": "large",
-      "max-video-preview": -1,
       "max-snippet": -1,
     },
   },
@@ -54,37 +54,29 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://webngraphic.com",
-    siteName: "WebnGraphic",
+    siteName: "WebNGraphic",
     title:
-      "WebnGraphic - Professional Web Development & Graphic Design Services",
+      "WebNGraphic - Professional Web Development & Graphic Design Services",
     description:
-      "WebnGraphic offers professional web development and graphic design services to help businesses establish a strong online presence with custom websites and stunning visuals.",
+      "Custom web development and graphic design solutions to help your business stand out online with responsive websites and eye-catching visuals.",
     images: [
       {
         url: "/opengraph/home.jpg",
         width: 1200,
         height: 630,
-        alt: "WebnGraphic - Web Development & Graphic Design Services",
+        alt: "WebNGraphic - Web Development & Graphic Design Services",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "WebnGraphic - Professional Web Development & Graphic Design Services",
+    title: "WebNGraphic - Web Development & Graphic Design Services",
     description:
-      "WebnGraphic offers professional web development and graphic design services to help businesses establish a strong online presence with custom websites and stunning visuals.",
-    creator: "@yourtwitter",
-    images: ["/opengraph//home.jpg"],
-  },
-  alternates: {
-    canonical: "https://webngraphic.com",
-    languages: {
-      "en-US": "https://webngraphic.com",
-    },
+      "Custom web development and graphic design solutions to help your business stand out online.",
+    images: ["/opengraph/home.jpg"],
+    creator: "@webngraphic",
   },
 };
-
 export default function MainLayout({
   children,
 }: Readonly<{
