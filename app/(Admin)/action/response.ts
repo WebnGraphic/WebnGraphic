@@ -1,8 +1,10 @@
 "use server";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { checkAccess } from "../helper/check-admin";
 
 export const deleteResponse = async (id: string): Promise<void> => {
+  await checkAccess();
   if (!id) {
     console.error("Invalid response ID");
     return;
@@ -52,6 +54,7 @@ export const getAllResponses = async (
       prisma.response.findMany({
         where: whereCondition,
         skip,
+        orderBy: { createdAt: "desc" },
         take: pageSize,
       }),
 

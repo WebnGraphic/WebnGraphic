@@ -1,7 +1,7 @@
 "use server";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { checkAdmin } from "../helper/check-admin";
+import { checkAccess } from "../helper/check-admin";
 
 type ProjectData = {
   title: string;
@@ -73,7 +73,7 @@ export const getAllGraphicProjects = async (
 };
 
 export async function createGraphicProject(data: ProjectData) {
-  const author = await checkAdmin();
+  const author = await checkAccess();
 
   if (!author || !author.id) {
     return {
@@ -107,7 +107,7 @@ export async function createGraphicProject(data: ProjectData) {
 
 export async function updateGraphicProject(id: string, data: ProjectData) {
   try {
-    const author = await checkAdmin();
+    const author = await checkAccess();
 
     if (!author || !author.id) {
       return {
@@ -138,7 +138,7 @@ export async function deleteGraphicProject(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     // Check if the user is an admin
-    const author = await checkAdmin();
+    const author = await checkAccess();
     if (!author || !author.id) {
       return { success: false, error: "Unauthorized" };
     }

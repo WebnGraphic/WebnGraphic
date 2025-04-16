@@ -177,11 +177,10 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="web-development">
+                          <SelectItem value="Web Development">
                             Web Development
                           </SelectItem>
-                          <SelectItem value="web-design">Web Design</SelectItem>
-                          <SelectItem value="graphic-design">
+                          <SelectItem value="Graphic Design">
                             Graphic Design
                           </SelectItem>
                         </SelectContent>
@@ -228,9 +227,9 @@ export function GetStartedForm({ presetValues = {} }: InputFormProps) {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="starter">Starter</SelectItem>
-                          <SelectItem value="premium">Premium</SelectItem>
-                          <SelectItem value="inclusive">Inclusive</SelectItem>
+                          <SelectItem value="Basic">Basic</SelectItem>
+                          <SelectItem value="Business">Business</SelectItem>
+                          <SelectItem value="Custom">Custom</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />

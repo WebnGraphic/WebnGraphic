@@ -1,5 +1,6 @@
 "use server";
 import { prisma } from "@/lib/prisma";
+import { unstable_cache } from "next/cache";
 
 export async function createResponse(formData: FormData) {
   try {
@@ -192,6 +193,18 @@ export async function saveResponseFromContact(data: ResponseData) {
   }
 }
 
+export const getAllGraphicProjects = async () => {
+  try {
+    const graphicProject = await prisma.graphicdesign.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+
+    return graphicProject;
+  } catch (err) {
+    console.error("Failed to fetch projects", err);
+    return null;
+  }
+};
 export const getAllWebDevProjects = async () => {
   try {
     const webDevProjects = await prisma.project.findMany({
@@ -208,19 +221,6 @@ export const getAllWebDevProjects = async () => {
     return typedProjects;
   } catch (err) {
     console.error("Failed to fetch projects by search:", err);
-    return null;
-  }
-};
-export const getAllTestimonial = async () => {
-  try {
-    const testimonials = await prisma.testimonial.findMany({
-      where: { published: true },
-      orderBy: { createdAt: "desc" },
-    });
-
-    return testimonials;
-  } catch (err) {
-    console.error("Failed to fetch Testimonials:", err);
     return null;
   }
 };
@@ -287,3 +287,177 @@ export const getAllBlogs = async (
     };
   }
 };
+
+const formSchema = z.object({
+  name: z.string().min(2, {
+    message: "Name must be at least 2 characters.",
+  }),
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+  phone: z.string().min(6, {
+    message: "Please enter a valid phone number.",
+  }),
+  message: z.string().optional(),
+});
+
+type FormState = {
+  success: boolean;
+  message: string;
+};
+
+export async function submitContactForm(
+  prevState: FormState,
+  formData: FormData
+): Promise<FormState> {
+  // Validate form data
+  const validatedFields = formSchema.safeParse({
+    name: formData.get("name"),
+    email: formData.get("email"),
+    phone: formData.get("phone"),
+    message: formData.get("message"),
+  });
+
+  // Return early if validation fails
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      message: "Please check your inputs and try again.",
+    };
+  }
+
+  try {
+    // Get the validated data
+    const { name, email, phone, message } = validatedFields.data;
+
+    await prisma.response.create({
+      data: {
+        name,
+        email,
+        phone,
+        message,
+      },
+    });
+
+    // Return success state
+    return {
+      success: true,
+      message: "Form submitted successfully!",
+    };
+  } catch (error) {
+    // Handle any errors
+    console.error("Error submitting contact form:", error);
+    return {
+      success: false,
+      message: "Something went wrong. Please try again later.",
+    };
+  }
+}
+
+const _getAllBlogs = async () => {
+  try {
+    const blogs = await prisma.blog.findMany({
+      orderBy: { createdAt: "desc" },
+      include: {
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
+
+    return {
+      blogs,
+    };
+  } catch (err) {
+    console.error("Failed to fetch blogs:", err);
+    return {
+      blogs: [],
+    };
+  }
+};
+
+export const getAllBlog = unstable_cache(_getAllBlogs, ["get-all-blog"], {
+  tags: ["blog:all"],
+});
+
+const _getBlogForCommon = async () => {
+  try {
+    const blogs = await prisma.blog.findMany({
+      where: {
+        isPopular: true,
+      },
+      orderBy: { createdAt: "desc" },
+      include: {
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
+
+    return {
+      blogs,
+    };
+  } catch (err) {
+    console.error("Failed to fetch blogs:", err);
+    return {
+      blogs: [],
+    };
+  }
+};
+
+// Wrap with unstable_cache and add a tag (no revalidate option needed)
+export const getBlogForCommon = unstable_cache(
+  _getBlogForCommon,
+  ["get-blog-for-common"],
+  {
+    tags: ["blog:common"],
+  }
+);
+
+export const getBlogById = async (id: string) => {
+  try {
+    const blog = await prisma.blog.findUnique({
+      where: { id },
+      include: {
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
+
+    return { blog };
+  } catch (err) {
+    console.error(`Failed to fetch blog with id ${id}:`, err);
+    return { blog: null };
+  }
+};
+
+const _getAllTestimonial = async () => {
+  try {
+    const testimonials = await prisma.testimonial.findMany({
+      where: { published: true },
+      orderBy: { createdAt: "desc" },
+    });
+    return {
+      testimonials,
+    };
+  } catch (err) {
+    console.error("Failed to fetch testimonials:", err);
+    return {
+      blogs: [],
+    };
+  }
+};
+export const getAllTestimonials = unstable_cache(
+  _getAllTestimonial,
+  ["get-all-testimonial"],
+  {
+    tags: ["testimonial:all"],
+  }
+);

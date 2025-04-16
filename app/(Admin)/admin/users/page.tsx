@@ -1,7 +1,8 @@
+import { auth } from "@/auth";
 import { Suspense } from "react";
 import SearchForm from "../../Component/search-form";
 import TableSkeleton from "../../Component/table-skeleton";
-import UserTable from "../../Component/user-table";
+import UserTable from "../../Component/user/user-table";
 
 export default async function Page({
   searchParams,
@@ -12,6 +13,9 @@ export default async function Page({
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
   const search = params.q || "";
+  const session = await auth();
+
+  if (!session?.user) return null;
 
   return (
     <div className="max-w-7xl w-full mx-auto px-5 py-10">
@@ -27,7 +31,11 @@ export default async function Page({
           fallback={<TableSkeleton length={10} />}
           key={`${search}-${currentPage}`}
         >
-          <UserTable search={search} page={currentPage} />
+          <UserTable
+            loggedInUser={session.user}
+            search={search}
+            page={currentPage}
+          />
         </Suspense>
       </div>
     </div>

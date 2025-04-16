@@ -30,3 +30,31 @@ export async function checkAdmin() {
     forbidden();
   }
 }
+export async function checkAccess() {
+  try {
+    const session = await auth();
+    const userId = session?.user?.id;
+
+    if (!userId) {
+      forbidden();
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { role: true },
+    });
+
+    if (!user) {
+      forbidden();
+    }
+
+    if (user.role === "admin" || user.role === "editor") {
+      return session.user;
+    } else {
+      forbidden();
+    }
+  } catch (error) {
+    console.error("Error while checking admin status:", error);
+    forbidden();
+  }
+}

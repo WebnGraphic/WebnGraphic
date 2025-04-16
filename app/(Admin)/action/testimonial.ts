@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { checkAdmin } from "../helper/check-admin";
+import { checkAccess } from "../helper/check-admin";
 
 type TestimonialData = {
   name: string;
@@ -18,7 +18,7 @@ type TestimonialData = {
 
 export async function createTestimonial(data: TestimonialData) {
   try {
-    const author = await checkAdmin();
+    const author = await checkAccess();
     if (!author || !author.id) {
       return { success: false, error: "Unauthorized" };
     }
@@ -46,7 +46,7 @@ export async function createTestimonial(data: TestimonialData) {
 
 export async function updateTestimonial(id: string, data: TestimonialData) {
   try {
-    const author = await checkAdmin();
+    const author = await checkAccess();
 
     if (!author || !author.id) {
       return {
@@ -109,6 +109,16 @@ export async function getAllTestimonial(page: number, pageSize: number) {
 
 export async function deleteTestimonial(id: string) {
   try {
+    const author = await checkAccess();
+
+    if (!author || !author.id) {
+      return {
+        error: {
+          _form: ["You must be an admin to update a portfolio."],
+        },
+        data: null,
+      };
+    }
     await prisma.testimonial.delete({
       where: { id },
     });
@@ -122,6 +132,16 @@ export async function deleteTestimonial(id: string) {
 }
 export async function toggleTestimonialPublish(id: string, published: boolean) {
   try {
+    const author = await checkAccess();
+
+    if (!author || !author.id) {
+      return {
+        error: {
+          _form: ["You must be an admin to update a portfolio."],
+        },
+        data: null,
+      };
+    }
     await prisma.testimonial.update({
       where: { id },
       data: { published: !published },

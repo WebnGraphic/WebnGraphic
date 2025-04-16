@@ -33,7 +33,7 @@ export default function TopSectionStatic({
               <span className="mx-2 text-gray-400">/</span>
             </>
           ) : (
-            <span className="text-[#18B3C7]">{title}</span>
+            <span className="text-[#18B3C7]">{item.label}</span>
           )}
         </span>
       );

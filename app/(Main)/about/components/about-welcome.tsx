@@ -1,3 +1,5 @@
+import NormalButton from "@/components/manual/button/NormalButton";
+import ResModTrigBtn from "@/components/manual/button/ResModTrigBtn";
 import Image from "next/image";
 export default function AboutWelcome() {
   return (
@@ -20,9 +22,11 @@ export default function AboutWelcome() {
               experience, we deliver high-quality designs that captivate and
               convert—helping your business stand out in the digital world.
             </p>
-            <button className="py-1.5 px-10 text-white rounded-md text-lg bg-Ttext">
-              Contact Us
-            </button>
+            <ResModTrigBtn>
+              <NormalButton className="py-2 px-5  text-white rounded-md text-lg bg-Ttext">
+                Contact Us
+              </NormalButton>
+            </ResModTrigBtn>
           </div>
 
           <div className=" basis-[50%]">

@@ -78,7 +78,7 @@ export function GraphicProjectCard({ project }: WebDevProjectCardProps) {
 
   return (
     <>
-      <Card key={project.id} className="overflow-hidden">
+      <Card key={project.id} className="pb-5 gap-5 overflow-hidden">
         <div className="relative h-48 overflow-hidden">
           <Image
             src={project.imageLink}

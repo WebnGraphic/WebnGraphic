@@ -144,11 +144,10 @@ export default function BlogForm({ closeForm, blog }: BlogFormProps) {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="web-development">
+                        <SelectItem value=" Web Development">
                           Web Development
                         </SelectItem>
-                        <SelectItem value="web-design">Web Design</SelectItem>
-                        <SelectItem value="graphic-design">
+                        <SelectItem value="Graphic Design">
                           Graphic Design
                         </SelectItem>
                       </SelectContent>

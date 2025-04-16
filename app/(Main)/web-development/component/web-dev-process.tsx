@@ -4,7 +4,7 @@ type ProcessCardProps = {
   description: string;
   isLeft: boolean;
 };
-export default function OurProcess() {
+export default function WebDevProcess() {
   return (
     <div>
       <section className="bg-white py-24">

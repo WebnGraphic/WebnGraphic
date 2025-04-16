@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { checkAdmin } from "../helper/check-admin";
+import { checkAccess } from "../helper/check-admin";
 
 export async function getMeetings(page: number, pageSize: number) {
   try {
@@ -41,7 +41,7 @@ export async function getMeetings(page: number, pageSize: number) {
 
 export async function approveMeeting(id: string) {
   try {
-    const author = await checkAdmin();
+    const author = await checkAccess();
 
     if (!author || !author.id) {
       return {
@@ -66,7 +66,7 @@ export async function approveMeeting(id: string) {
 
 export async function cancelMeeting(id: string) {
   try {
-    const author = await checkAdmin();
+    const author = await checkAccess();
 
     if (!author || !author.id) {
       return {
@@ -91,7 +91,7 @@ export async function cancelMeeting(id: string) {
 
 export async function deleteMeeting(id: string) {
   try {
-    const author = await checkAdmin();
+    const author = await checkAccess();
 
     if (!author || !author.id) {
       return {

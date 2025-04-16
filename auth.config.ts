@@ -14,16 +14,14 @@ export default {
         if (!isLoggedIn) {
           return Response.redirect(new URL("/sign-in-admin", nextUrl));
         }
-        if (userRole !== "admin") {
+
+        if (userRole !== "admin" && userRole !== "editor") {
           return Response.redirect(new URL("/403", nextUrl));
         }
-        return true; // Allow admins to access
+
+        return true; // Allow admins and editors to access
       }
 
-      // Prevent logged-in users from accessing authentication pages
-      if (isLoggedIn && ["/sign-in-admin"].includes(pathname)) {
-        return Response.redirect(new URL("/", nextUrl));
-      }
       return true; // Allow access to all other pages
     },
     jwt({ token, user, trigger, session }) {
@@ -44,6 +42,6 @@ export default {
   },
 
   pages: {
-    signIn: "/sign-in",
+    signIn: "/sign-in-admin",
   },
 } satisfies NextAuthConfig;

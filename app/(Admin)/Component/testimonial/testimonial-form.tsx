@@ -166,9 +166,8 @@ export function TestimonialForm({
                         Web Development
                       </SelectItem>
                       <SelectItem value="Graphic Design">
-                        Grapgic Design
+                        Graphic Design
                       </SelectItem>
-                      <SelectItem value="Web Design">Web Design</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />

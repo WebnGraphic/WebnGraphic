@@ -127,7 +127,7 @@ export function BlogCard({ blog }: BlogCardProps) {
 
   return (
     <>
-      <Card className=" overflow-hidden">
+      <Card className="gap-5 pb-6 overflow-hidden">
         <div className="relative w-full">
           <Image
             src={blog.imageLink}
@@ -144,7 +144,7 @@ export function BlogCard({ blog }: BlogCardProps) {
             {blog.isPopular && <Badge variant="secondary">Popular</Badge>}
           </div>
         </div>
-        <CardHeader className="pb-2">
+        <CardHeader className=" pb-2">
           <Badge variant="outline">{blog.category}</Badge>
           <h3 className="font-semibold text-lg line-clamp-2">{blog.title}</h3>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">

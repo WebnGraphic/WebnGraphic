@@ -3,7 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import { checkAdmin } from "../helper/check-admin";
+import { checkAccess } from "../helper/check-admin";
 
 // Define a schema for blog validation
 const BlogSchema = z.object({
@@ -29,7 +29,7 @@ export async function createBlog(data: {
   imageLink: string;
   imagePublicID: string;
 }) {
-  const author = await checkAdmin();
+  const author = await checkAccess();
 
   if (!author || !author.id) {
     return {
@@ -187,7 +187,7 @@ export async function updateBlog(
   updatedData: BlogUpdateData
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const author = await checkAdmin();
+    const author = await checkAccess();
     if (!author || !author.id) {
       return { success: false, error: "Unauthorized" };
     }
@@ -212,7 +212,7 @@ export async function deleteBlog(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     // Check if the user is an admin
-    const author = await checkAdmin();
+    const author = await checkAccess();
     if (!author || !author.id) {
       return { success: false, error: "Unauthorized" };
     }

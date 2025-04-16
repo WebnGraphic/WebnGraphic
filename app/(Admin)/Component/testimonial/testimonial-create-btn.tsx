@@ -20,15 +20,15 @@ export default function TestimonialCreateButton() {
         className="flex items-center gap-2"
       >
         <Plus size={18} />
-        Create Blog
+        Create Testimonial
       </Button>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="min-w-[calc(100%-100px)] ">
           <DialogHeader>
-            <DialogTitle>Create Blog Post</DialogTitle>
+            <DialogTitle>Create Testimonial </DialogTitle>
             <DialogDescription>
-              Write a new blog post and share your thoughts.
+              Write a new testimonial and share in website.
             </DialogDescription>
           </DialogHeader>
           <TestimonialForm closeForm={setIsDialogOpen} />

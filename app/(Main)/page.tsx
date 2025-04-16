@@ -1,13 +1,15 @@
 import BookMeeting from "@/components/manual/book-meeting/book-meeting";
 import BlogCommon from "./components/blog-common";
+import ContactCommon from "./components/contact-common";
 import CTASection1 from "./components/cta-section-1";
 import FaqMain from "./components/faq-main";
 import HomeHero from "./components/home-hero";
 import HowWeWork from "./components/how-we-work";
 import OurServices from "./components/our-service";
 import PortfolioSection from "./components/portfolio";
-import Testimonial from "./components/testimonial";
+import TestimonialSection from "./components/testimonial-section";
 import WhyChooseUs from "./components/why-choose-us";
+
 const creativeProcess = [
   {
     title: "Discovery & Strategy",
@@ -46,7 +48,7 @@ export default async function Home() {
       </div>
 
       <PortfolioSection />
-      <Testimonial />
+      <TestimonialSection />
 
       <CTASection1
         first="Ready to Work With Us?"
@@ -54,6 +56,7 @@ export default async function Home() {
       />
       <BlogCommon />
       <FaqMain />
+      <ContactCommon />
     </div>
   );
 }

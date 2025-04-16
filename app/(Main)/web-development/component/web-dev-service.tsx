@@ -24,84 +24,82 @@ type ServiceCardProps = {
 };
 export default function WebDevService() {
   return (
-    <div>
-      <section className="bg-muted py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Our Web Development Services
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              From simple websites to complex web applications, we have the
-              expertise to bring your vision to life
-            </p>
-          </div>
-
-          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <ServiceCard
-              icon={<Globe className="h-10 w-10 text-Ttext" />}
-              title="Custom Website Development"
-              description="Tailored websites designed to meet your specific business needs and goals."
-              features={[
-                "Responsive Design",
-                "SEO Optimization",
-                "Content Management",
-              ]}
-            />
-            <ServiceCard
-              icon={<Code className="h-10 w-10 text-Ttext" />}
-              title="Web Application Development"
-              description="Powerful, scalable web applications that solve complex business problems."
-              features={[
-                "User Authentication",
-                "Database Integration",
-                "API Development",
-              ]}
-            />
-            <ServiceCard
-              icon={<Smartphone className="h-10 w-10 text-Ttext" />}
-              title="Mobile-First Development"
-              description="Websites and applications optimized for the best mobile experience."
-              features={[
-                "Touch-Friendly UI",
-                "Fast Loading",
-                "Offline Capabilities",
-              ]}
-            />
-            <ServiceCard
-              icon={<Layers className="h-10 w-10 text-Ttext" />}
-              title="E-commerce Solutions"
-              description="Online stores that drive sales and provide a seamless shopping experience."
-              features={[
-                "Product Management",
-                "Secure Checkout",
-                "Inventory Integration",
-              ]}
-            />
-            <ServiceCard
-              icon={<Database className="h-10 w-10 text-Ttext" />}
-              title="CMS Development"
-              description="Custom content management systems that make updating your site easy."
-              features={[
-                "User-Friendly Interface",
-                "Content Workflows",
-                "Role-Based Access",
-              ]}
-            />
-            <ServiceCard
-              icon={<Zap className="h-10 w-10 text-Ttext" />}
-              title="Performance Optimization"
-              description="Speed up your existing website to improve user experience and SEO."
-              features={[
-                "Code Optimization",
-                "Image Compression",
-                "Caching Strategies",
-              ]}
-            />
-          </div>
+    <section className="bg-muted ">
+      <div className="max-w-7xl md:py-24 py-16 mx-auto px-5 md:px-12">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Our Web Development Services
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            From simple websites to complex web applications, we have the
+            expertise to bring your vision to life
+          </p>
         </div>
-      </section>
-    </div>
+
+        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <ServiceCard
+            icon={<Globe className="h-10 w-10 text-Ttext" />}
+            title="Custom Website Development"
+            description="Tailored websites designed to meet your specific business needs and goals."
+            features={[
+              "Responsive Design",
+              "SEO Optimization",
+              "Content Management",
+            ]}
+          />
+          <ServiceCard
+            icon={<Code className="h-10 w-10 text-Ttext" />}
+            title="Web Application Development"
+            description="Powerful, scalable web applications that solve complex business problems."
+            features={[
+              "User Authentication",
+              "Database Integration",
+              "API Development",
+            ]}
+          />
+          <ServiceCard
+            icon={<Smartphone className="h-10 w-10 text-Ttext" />}
+            title="Mobile-First Development"
+            description="Websites and applications optimized for the best mobile experience."
+            features={[
+              "Touch-Friendly UI",
+              "Fast Loading",
+              "Offline Capabilities",
+            ]}
+          />
+          <ServiceCard
+            icon={<Layers className="h-10 w-10 text-Ttext" />}
+            title="E-commerce Solutions"
+            description="Online stores that drive sales and provide a seamless shopping experience."
+            features={[
+              "Product Management",
+              "Secure Checkout",
+              "Inventory Integration",
+            ]}
+          />
+          <ServiceCard
+            icon={<Database className="h-10 w-10 text-Ttext" />}
+            title="CMS Development"
+            description="Custom content management systems that make updating your site easy."
+            features={[
+              "User-Friendly Interface",
+              "Content Workflows",
+              "Role-Based Access",
+            ]}
+          />
+          <ServiceCard
+            icon={<Zap className="h-10 w-10 text-Ttext" />}
+            title="Performance Optimization"
+            description="Speed up your existing website to improve user experience and SEO."
+            features={[
+              "Code Optimization",
+              "Image Compression",
+              "Caching Strategies",
+            ]}
+          />
+        </div>
+      </div>
+    </section>
   );
 }
 function ServiceCard({ icon, title, description, features }: ServiceCardProps) {

@@ -1,12 +1,35 @@
 "use client";
 
-import type React from "react";
-
 import { createResponse } from "@/app/action/action";
 import LoadingButton from "@/components/manual/button/LoadingButton";
+import { zodResolver } from "@hookform/resolvers/zod";
+import type React from "react";
 import { useState } from "react";
-import { useFormStatus } from "react-dom";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { z } from "zod";
+
+// Import shadcn components
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
+// Define Zod schema for form validation
+const formSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Please enter a valid email address"),
+  phone: z.string().min(6, "Phone number is required"),
+  message: z.string().optional(), // Message is optional
+  interest: z.string(),
+});
+
+type FormData = z.infer<typeof formSchema>;
 
 interface ResponseFormProps {
   interest: string;
@@ -18,31 +41,27 @@ const ResponseForm: React.FC<ResponseFormProps> = ({ interest }) => {
     message: string;
   } | null>(null);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-    interest: interest,
+  // Initialize react-hook-form with zod resolver
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+      interest: interest,
+    },
   });
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const onSubmit = async (data: FormData) => {
     try {
+      setLoading(true);
       const formDataObj = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
-        formDataObj.append(key, value);
+      Object.entries(data).forEach(([key, value]) => {
+        if (value !== undefined) {
+          formDataObj.append(key, value);
+        }
       });
 
       const result = await createResponse(formDataObj);
@@ -52,7 +71,7 @@ const ResponseForm: React.FC<ResponseFormProps> = ({ interest }) => {
           description: "Your form has been submitted successfully.",
         });
         // Reset form after successful submission
-        setFormData({
+        form.reset({
           name: "",
           email: "",
           phone: "",
@@ -69,13 +88,15 @@ const ResponseForm: React.FC<ResponseFormProps> = ({ interest }) => {
         setFormState({ success: false, message: result.message });
       }
     } catch {
-      toast("Error", {
+      toast.error("Error", {
         description: "An error occurred while submitting the form.",
       });
       setFormState({
         success: false,
         message: "An error occurred while submitting the form.",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -97,100 +118,104 @@ const ResponseForm: React.FC<ResponseFormProps> = ({ interest }) => {
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} noValidate>
-          <div className="mb-4">
-            <label htmlFor="name" className="sr-only">
-              Name
-            </label>
-            <input
-              id="name"
-              placeholder="Name"
-              className="response-form-input w-full"
-              type="text"
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            noValidate
+            className="space-y-4"
+          >
+            <FormField
+              control={form.control}
               name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              aria-required="true"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      placeholder="Name"
+                      className="response-form-input w-full"
+                      {...field}
+                      aria-required="true"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-xs mt-1" />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <div className="mb-4">
-            <label htmlFor="email" className="sr-only">
-              Email
-            </label>
-            <input
-              id="email"
-              placeholder="Email"
-              className="response-form-input w-full"
-              type="email"
+            <FormField
+              control={form.control}
               name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              aria-required="true"
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      placeholder="Email"
+                      type="email"
+                      className="response-form-input w-full"
+                      {...field}
+                      aria-required="true"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-xs mt-1" />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <div className="mb-4">
-            <label htmlFor="phone" className="sr-only">
-              Phone
-            </label>
-            <input
-              id="phone"
-              placeholder="Phone"
-              className="response-form-input w-full"
-              type="tel"
+            <FormField
+              control={form.control}
               name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-              aria-required="true"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      placeholder="Phone"
+                      type="tel"
+                      className="response-form-input w-full"
+                      {...field}
+                      aria-required="true"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-xs mt-1" />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <div className="mb-4">
-            <label htmlFor="message" className="sr-only">
-              Message
-            </label>
-            <textarea
-              id="message"
-              placeholder="Message"
-              className="response-form-input w-full !h-20"
+            <FormField
+              control={form.control}
               name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              aria-required="true"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Message (optional)"
+                      className="response-form-input w-full !h-20"
+                      {...field}
+                      value={field.value || ""}
+                      aria-required="false"
+                    />
+                  </FormControl>
+                  <FormMessage className="text-xs mt-1" />
+                </FormItem>
+              )}
             />
-          </div>
 
-          {formState?.message && !formState.success && (
-            <p className="text-red-500 text-sm mb-4" role="alert">
-              {formState.message}
-            </p>
-          )}
+            {formState?.message && !formState.success && (
+              <p className="text-red-500 text-sm" role="alert">
+                {formState.message}
+              </p>
+            )}
 
-          <SubmitButton />
-        </form>
+            <LoadingButton
+              defaultText="Submit"
+              loadingText="Submitting..."
+              isLoading={loading}
+              className="bg-Ttext cursor-pointer text-[#F1F1F1] hover:bg-TtextH active:bg-TtextA py-2 rounded-md w-full"
+            />
+          </form>
+        </Form>
       )}
     </div>
   );
 };
-
-// Separate button component to use the useFormStatus hook
-function SubmitButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <LoadingButton
-      defaultText="Submit"
-      loadingText="Submitting..."
-      isLoading={pending}
-      className="bg-Ttext text-[#F1F1F1] hover:bg-TtextH active:bg-TtextA py-2 rounded-md w-full"
-    />
-  );
-}
 
 export default ResponseForm;

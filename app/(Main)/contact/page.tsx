@@ -17,7 +17,7 @@ export default function ConatactPage() {
           <div className="flex justify-between flex-col md:flex-row gap-12">
             <div className="space-y-6 rounded-md pl-5 pr-5 md:pr-6 md:pl-12 pt-12 md:max-w-[450px] w-full bg-Ttext/20">
               <div className="space-y-10 pb-10">
-                <h2 className="text-3xl md:text-4xl font-semibold text-gray-900">
+                <h2 className="text-3xl font-semibold text-gray-900">
                   Get In Touch
                 </h2>
                 <div className="flex items-center gap-4">
@@ -25,10 +25,8 @@ export default function ConatactPage() {
                     <Phone className="text-white w-12 h-12 p-3" />
                   </div>
                   <div>
-                    <h3 className="text-lg md:text-xl font-semibold">
-                      Phone Number
-                    </h3>
-                    <span className="text-lg md:text-xl text-gray-800">
+                    <h3 className="text-lg font-semibold">Phone Number</h3>
+                    <span className="text-lg text-gray-800">
                       +1 (123) 456-7890
                     </span>
                   </div>
@@ -38,8 +36,8 @@ export default function ConatactPage() {
                     <Mail className="text-white w-12 h-12 p-3" />
                   </div>
                   <div>
-                    <h3 className="text-lg md:text-xl font-semibold">Email</h3>
-                    <span className="text-lg md:text-xl text-gray-800">
+                    <h3 className="text-lg font-semibold">Email</h3>
+                    <span className="text-lg  text-gray-800">
                       support@webngraphic.com
                     </span>
                   </div>
@@ -49,17 +47,15 @@ export default function ConatactPage() {
                     <MapPin className="text-white w-12 h-12 p-3" />
                   </div>
                   <div>
-                    <h3 className="text-lg md:text-xl font-semibold">
-                      Address
-                    </h3>
-                    <span className="text-lg md:text-xl text-gray-800">
+                    <h3 className="text-lg  font-semibold">Address</h3>
+                    <span className="text-lg  text-gray-800">
                       123 Design Street, New York, NY
                     </span>
                   </div>
                 </div>
               </div>
               <div className="flex justify-between border-t border-muted-foreground py-6 items-center">
-                <h2 className="text-xl md:text-2xl font-semibold text-gray-900">
+                <h2 className="text-xl font-semibold text-gray-900">
                   Connect With Us:
                 </h2>
                 <div className="flex gap-1 items-center">

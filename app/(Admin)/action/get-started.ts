@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { checkAdmin } from "../helper/check-admin";
+import { checkAccess } from "../helper/check-admin";
 
 export async function getAllStarted(page: number, pageSize: number) {
   try {
@@ -41,7 +41,7 @@ export async function getAllStarted(page: number, pageSize: number) {
 
 export async function deleteGetStarted(id: string) {
   try {
-    const author = await checkAdmin();
+    const author = await checkAccess();
 
     if (!author || !author.id) {
       return {

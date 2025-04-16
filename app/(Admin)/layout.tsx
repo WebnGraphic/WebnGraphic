@@ -1,9 +1,10 @@
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
+import Logo from "../(Main)/components/logo";
 import "../globals.css";
-import { DashboardHeader } from "./Component/dashboard-header";
 import { DashboardShell } from "./Component/dashboard-shell";
 import { DashboardSidebar } from "./Component/dashboard-sidebar";
 
@@ -34,7 +35,12 @@ export default function MainLayout({
       >
         <SidebarProvider>
           <div className="flex min-h-screen w-full flex-col">
-            <DashboardHeader />
+            <div className="sticky bg-sidebar px-[18px] z-[50] h-14 justify-between top-0 left-0 w-full items-center flex">
+              <SidebarTrigger />
+              <Link href="/">
+                <Logo />
+              </Link>
+            </div>
             <div className="flex relative flex-1">
               <DashboardSidebar />
               <DashboardShell>{children}</DashboardShell>

@@ -1,10 +1,10 @@
 import BookMeeting from "@/components/manual/book-meeting/book-meeting";
 import BlogCommon from "../components/blog-common";
 import OurFeature from "../components/our-feature";
-import OurProcess from "../components/our-process";
+import PortfolioSection from "../components/portfolio";
 import Pricing from "../components/pricing";
 import WebDevFAQ from "./component/web-dev-faq";
-import WebDevPortfolio from "./component/web-dev-portfolio";
+import WebDevProcess from "./component/web-dev-process";
 import WebDevService from "./component/web-dev-service";
 import WebDevTestimonial from "./component/web-dev-testimonial";
 import WebDevHero from "./component/WebDevHero";
@@ -72,14 +72,14 @@ export default function page() {
     <div>
       <WebDevHero />
       <WebDevService />
-      <OurProcess />
-      <Pricing pricing={pricingPlans} service="Web development" />
+      <WebDevProcess />
+      <Pricing pricing={pricingPlans} service="Web Development" />
       <div className="bg-white">
         <BookMeeting />
       </div>
       <WebDevTechnology />
       <OurFeature />
-      <WebDevPortfolio />
+      <PortfolioSection />
       <WebDevTestimonial />
       <WebDevFAQ />
       <BlogCommon />

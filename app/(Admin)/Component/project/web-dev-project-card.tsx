@@ -86,7 +86,7 @@ export function WebDevProjectCard({ project }: WebDevProjectCardProps) {
 
   return (
     <>
-      <Card key={project.id} className="overflow-hidden">
+      <Card key={project.id} className="gap-5 pb-5 overflow-hidden">
         <div className="relative h-48 overflow-hidden">
           {project.images.length > 0 && (
             <Image

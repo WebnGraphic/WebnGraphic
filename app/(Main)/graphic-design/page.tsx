@@ -3,7 +3,7 @@ import BlogCommon from "../components/blog-common";
 import Pricing from "../components/pricing";
 import GraphicFAQ from "./components/graphic-faq";
 import GraphicHero from "./components/graphic-hero";
-import GraphicPortfolio from "./components/graphic-portfolio";
+import GraphicPortfolioSection from "./components/graphic-portfolio-section";
 import GraphicService from "./components/graphic-service";
 import GraphicTechnology from "./components/graphic-technology";
 import GraphicTestimonial from "./components/graphic-testimonial";
@@ -73,7 +73,7 @@ export default function page() {
         <BookMeeting />
       </div>
       <GraphicTechnology />
-      <GraphicPortfolio />
+      <GraphicPortfolioSection />
       <GraphicTestimonial />
       <GraphicFAQ />
       <BlogCommon />

@@ -1,4 +1,4 @@
-import MainHeader from "@/components/manual/header/main-header";
+import SectionHeader from "@/components/manual/header/section-header";
 import {
   Card,
   CardContent,
@@ -24,9 +24,9 @@ export default function OurServices() {
   return (
     <div className="bg-white">
       <div className="max-w-7xl px-5 md:px-12 mx-auto py-16">
-        <MainHeader
-          small="OUR EXPERTISE"
-          big="Crafting Innovative Digital Solutions"
+        <SectionHeader
+          heading="Our Expertise"
+          subHeading="Crafting Innovative Digital Solutions"
         />
         <div className="mt-16 grid gap-8 ">
           <ServiceCard
@@ -95,7 +95,7 @@ function ServiceCard({ title, image, features, link }: ServiceCardProps) {
               href={link}
               className="flex w-full bg-Ttext hover:bg-TtextH rounded-md transition-all duration-200 py-2 px-4 justify-between items-center gap-1 text-sm font-semibold text-white "
             >
-              <button>Learn more</button>
+              <button className="cursor-pointer">Learn more</button>
 
               <ArrowRight
                 size={20}

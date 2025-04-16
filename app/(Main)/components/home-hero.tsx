@@ -2,6 +2,7 @@ import NormalButton from "@/components/manual/button/NormalButton";
 import ResModTrigBtn from "@/components/manual/button/ResModTrigBtn";
 import ResponseForm from "@/components/manual/form/ResponseForm";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomeHero() {
   return (
@@ -23,7 +24,7 @@ export default function HomeHero() {
               </ResModTrigBtn>
 
               <NormalButton className="bg-transparent border-White hover:shadow-lg active:scale-95 active:bg-white hover:shadow-white hover:bg-white hover:text-black border-[2px]">
-                View Our Works
+                <Link href="/portfolio">View Our Works</Link>
               </NormalButton>
             </div>
           </div>
