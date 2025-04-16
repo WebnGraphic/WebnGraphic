@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import BlogPost from "./blog-post";
 import BlogSidebar from "./blog-sidebar";
 
@@ -27,8 +28,10 @@ export default function IndividualBlogPage({ blogs, blog }: BlogPageProps) {
   return (
     <section className="bg-white">
       <div className="flex flex-col lg:flex-row px-5 md:px-12 py-12 md:py-20 max-w-7xl w-full mx-auto gap-10">
-        <BlogPost blog={blog} />
-        <BlogSidebar blogs={blogs} />
+        <Suspense fallback={<div>Loading ...</div>}>
+          <BlogPost blog={blog} />
+          <BlogSidebar blogs={blogs} />
+        </Suspense>
       </div>
     </section>
   );
