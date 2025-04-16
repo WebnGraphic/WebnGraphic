@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { checkAccess } from "../helper/check-admin";
 
 type TestimonialData = {
@@ -37,6 +37,7 @@ export async function createTestimonial(data: TestimonialData) {
     });
 
     revalidatePath("/admin/testimonial");
+    revalidateTag("testimonial:all");
     return testimonial;
   } catch (error) {
     console.error("Error creating project:", error);
@@ -65,6 +66,7 @@ export async function updateTestimonial(id: string, data: TestimonialData) {
     });
 
     revalidatePath("admin/testimonial");
+    revalidateTag("testimonial:all");
     return { success: true };
   } catch (error) {
     console.error("Failed to update testimonial:", error);
@@ -124,6 +126,7 @@ export async function deleteTestimonial(id: string) {
     });
 
     revalidatePath("/admin/testimonial");
+    revalidateTag("testimonial:all");
     return { success: true };
   } catch (error) {
     console.error("Failed to delete testimonial:", error);
@@ -148,6 +151,7 @@ export async function toggleTestimonialPublish(id: string, published: boolean) {
     });
 
     revalidatePath("/admin/testimonial");
+    revalidateTag("testimonial:all");
     return { success: true };
   } catch (error) {
     console.error("Failed to toggle testimonial publish status:", error);
