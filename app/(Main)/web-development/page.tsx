@@ -3,10 +3,10 @@ import BlogCommon from "../components/blog-common";
 import OurFeature from "../components/our-feature";
 import PortfolioSection from "../components/portfolio";
 import Pricing from "../components/pricing";
+import TestimonialSection from "../components/testimonial-section";
 import WebDevFAQ from "./component/web-dev-faq";
 import WebDevProcess from "./component/web-dev-process";
 import WebDevService from "./component/web-dev-service";
-import WebDevTestimonial from "./component/web-dev-testimonial";
 import WebDevHero from "./component/WebDevHero";
 import WebDevTechnology from "./component/WebDevTechnology";
 const pricingPlans = [
@@ -80,7 +80,7 @@ export default function page() {
       <WebDevTechnology />
       <OurFeature />
       <PortfolioSection />
-      <WebDevTestimonial />
+      <TestimonialSection />
       <WebDevFAQ />
       <BlogCommon />
     </div>
