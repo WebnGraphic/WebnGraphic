@@ -224,9 +224,13 @@ export default function BlogSidebar({ blogs }: BlogSidebarProps) {
                           <h4 className="font-medium text-sm line-clamp-1">
                             {result.title}
                           </h4>
-                          <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
-                            {result.content.substring(0, 100)}...
-                          </p>
+                          <div
+                            className="text-xs text-muted-foreground mt-1 line-clamp-2"
+                            dangerouslySetInnerHTML={{
+                              __html: result.content.substring(0, 100) + "...",
+                            }}
+                          ></div>
+
                           <Badge className="mt-1" variant="secondary">
                             {result.category}
                           </Badge>
