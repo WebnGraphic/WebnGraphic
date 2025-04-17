@@ -227,7 +227,7 @@ export default function BlogSidebar({ blogs }: BlogSidebarProps) {
                           <div
                             className="text-xs text-muted-foreground mt-1 line-clamp-2"
                             dangerouslySetInnerHTML={{
-                              __html: result.content.substring(0, 100) + "...",
+                              __html: result.content,
                             }}
                           ></div>
 
