@@ -150,13 +150,13 @@ export default function BlogLists({ blogs }: BlogListsProps) {
                 key={i}
                 className="overflow-hidden p-6 border-none shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
-                <div className="w-full h-[220px] rounded-xl overflow-hidden relative mb-4">
+                <div className="w-full group h-[220px] image-anime rounded-xl overflow-hidden mb-4">
                   <Image
                     src={item.imageLink || "/placeholder.svg"}
                     alt={item.title}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover"
+                    className="object-cover group-hover:scale-105 relative transition-all duration-300"
                   />
                 </div>
                 <CardHeader className="p-0 pb-3">

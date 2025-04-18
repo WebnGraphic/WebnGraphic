@@ -108,12 +108,13 @@ export default function page() {
       <WebDevService />
       <WebDevProcess />
       <Pricing pricing={pricingPlans} service="Web Development" />
-      <div className="bg-white">
+      <div className="bg-blue-50">
         <BookMeeting />
       </div>
+      <PortfolioSection />
       <WebDevTechnology />
       <OurFeature />
-      <PortfolioSection />
+
       <TestimonialSection />
       <WebDevFAQ />
       <BlogCommon />

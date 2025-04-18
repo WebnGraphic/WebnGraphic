@@ -210,16 +210,15 @@ function PortfolioCard({ project, onViewDetails }: PortfolioCardProps) {
           </span>
         </div>
       )}
-      <div className="relative">
-        <div className="overflow-hidden image-anime">
-          <Image
-            src={project.images[0].url}
-            width={600}
-            height={400}
-            alt={project.title}
-            className="aspect-[3/2] relative w-full object-cover"
-          />
-        </div>
+
+      <div className="overflow-hidden image-anime">
+        <Image
+          src={project.images[0].url}
+          width={600}
+          height={400}
+          alt={project.title}
+          className="aspect-[3/2] transition-all duration-300 group-hover:scale-105 relative w-full object-cover"
+        />
       </div>
 
       <CardHeader className="pt-3">

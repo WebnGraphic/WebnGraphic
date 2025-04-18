@@ -1,5 +1,6 @@
 "use server";
 import { prisma } from "@/lib/prisma";
+import { sendEmail } from "@/lib/sendEmail";
 import { unstable_cache } from "next/cache";
 
 export async function createResponse(formData: FormData) {
@@ -37,6 +38,18 @@ export async function createResponse(formData: FormData) {
         message,
         interest,
       },
+    });
+
+    await sendEmail({
+      subject: "New Form Submission Received",
+      html: `
+        <h2>New Response Submitted</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Interest:</strong> ${interest}</p>
+        <p><strong>Message:</strong><br>${message || "No message provided."}</p>
+      `,
     });
 
     return {
@@ -99,6 +112,22 @@ export async function saveBooking(data: BookingData) {
       },
     });
 
+    await sendEmail({
+      subject: "New Meeting Submission Received",
+      html: `
+        <h2>New Response Submitted</h2>
+        <p><strong>Name:</strong> ${data.name}</p>
+        <p><strong>Email:</strong> ${data.email}</p>
+        <p><strong>Phone:</strong> ${data.phone}</p>
+        <p><strong>Date:</strong> ${data.date}</p>
+        <p><strong>Time:</strong> ${data.time}</p>
+        <p><strong>Timezone:</strong> ${data.timezone}</p>
+        <p><strong>Message:</strong><br>${
+          data.message || "No message provided."
+        }</p>
+      `,
+    });
+
     return { success: true };
   } catch (error) {
     console.error("Error saving booking:", error);
@@ -146,6 +175,24 @@ export async function saveGetStarted(data: StartedData) {
       },
     });
 
+    await sendEmail({
+      subject: "New Form Submission Received",
+      html: `
+        <h2>New Response Submitted</h2>
+        <p><strong>Name:</strong> ${data.name}</p>
+        <p><strong>Email:</strong> ${data.email}</p>
+        <p><strong>Phone:</strong> ${data.phone}</p>
+        <p><strong>Interest:</strong> ${
+          data.service || "No interst provided."
+        }</p>
+        <p><strong>Plan:</strong> ${data.plan || "No plan provided."}</p>
+        <p><strong>Budget:</strong> ${data.budget || "No budget provided."}</p>
+        <p><strong>Message:</strong><br>${
+          data.message || "No message provided."
+        }</p>
+      `,
+    });
+
     return { success: true };
   } catch (error) {
     console.error("Error saving booking:", error);
@@ -184,6 +231,21 @@ export async function saveResponseFromContact(data: ResponseData) {
         interest: data.interest,
         message: data.message,
       },
+    });
+    await sendEmail({
+      subject: "New Form Submission Received",
+      html: `
+        <h2>New Response Submitted</h2>
+        <p><strong>Name:</strong> ${data.name}</p>
+        <p><strong>Email:</strong> ${data.email}</p>
+        <p><strong>Phone:</strong> ${data.phone}</p>
+        <p><strong>Interest:</strong> ${
+          data.interest || "No interest provided."
+        }</p>
+        <p><strong>Message:</strong><br>${
+          data.message || "No message provided."
+        }</p>
+      `,
     });
 
     return { success: true };
@@ -242,6 +304,16 @@ export async function submitContactForm(
         phone,
         message,
       },
+    });
+    await sendEmail({
+      subject: "New Form Submission Received",
+      html: `
+        <h2>New Response Submitted</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Message:</strong><br>${message || "No message provided."}</p>
+      `,
     });
 
     // Return success state

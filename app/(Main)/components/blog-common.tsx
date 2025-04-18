@@ -31,7 +31,7 @@ export default async function BlogCommon() {
               key={post.id}
               className="flex relative group gap-2 py-0 pb-6 flex-col overflow-hidden transition-all hover:shadow-lg"
             >
-              <div className="relative aspect-video overflow-hidden">
+              <div className="image-anime  aspect-video overflow-hidden">
                 <Image
                   src={post.imageLink}
                   alt={post.title}

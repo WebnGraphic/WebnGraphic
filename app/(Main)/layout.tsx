@@ -1,3 +1,4 @@
+import { WhatsAppChatButton } from "@/components/manual/button/whatsapp-chat-button";
 import MainNavbar from "@/components/manual/Navbar/MainNavbar";
 import { Toaster } from "@/components/ui/sonner";
 import { ResponseModalProvider } from "@/context/response-form-modal";
@@ -82,6 +83,7 @@ export default function MainLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
   return (
     <html lang="en">
       <body
@@ -90,6 +92,12 @@ export default function MainLayout({
         <ResponseModalProvider>
           <MainNavbar />
           <main>{children}</main>
+          {whatsappNumber && (
+            <WhatsAppChatButton
+              phoneNumber={whatsappNumber}
+              message="Hi there! I'm interested in your services."
+            />
+          )}
           <Footer />
           <Toaster />
         </ResponseModalProvider>

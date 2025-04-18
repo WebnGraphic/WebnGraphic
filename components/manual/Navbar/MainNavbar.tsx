@@ -43,11 +43,11 @@ const MainNavbar: React.FC = () => {
             href={`mailto:${emailAddress}`}
             className="flex gap-2 items-center"
           >
-            <Mail className="w-3 mt-1 text-Ttext h-3" />
+            <Mail className="w-3 text-Ttext h-3" />
             <span className="text-sm">{emailAddress}</span>
           </Link>
           <Link href={`tel:${phoneNumber}`} className="flex gap-2 items-center">
-            <Phone className="w-3 mt-1 h-3 text-Ttext" />
+            <Phone className="w-3 h-3 text-Ttext" />
             <span className="text-sm">{phoneNumber}</span>
           </Link>
         </div>
@@ -67,9 +67,13 @@ const MainNavbar: React.FC = () => {
                       strokeWidth={`${pathname === "/services" ? 3 : 2}`}
                       className={`w-5 pl-2 h-5`}
                     />
-
                     <li
-                      className={`capitalize  nav-option py-1.5  px-1 text-sm`}
+                      className={`capitalize ${
+                        pathname === "/web-development" ||
+                        pathname === "/graphic-design"
+                          ? "actived"
+                          : ""
+                      } nav-option py-1.5 px-1 text-sm`}
                     >
                       Services
                     </li>
@@ -94,7 +98,7 @@ const MainNavbar: React.FC = () => {
               <Link href={"/about"}>
                 <li
                   className={`capitalize text-sm py-1.5 px-1 nav-option ml-3 ${
-                    pathname === "/about" ? "text-Stext font-semibold" : ""
+                    pathname === "/about" && "actived"
                   }`}
                 >
                   About
@@ -103,7 +107,7 @@ const MainNavbar: React.FC = () => {
               <Link href={"/contact"}>
                 <li
                   className={`capitalize py-1.5 px-1 nav-option text-sm ml-3 ${
-                    pathname === "/contact" ? "" : ""
+                    pathname === "/contact" && "actived"
                   }`}
                 >
                   Contact
@@ -112,7 +116,7 @@ const MainNavbar: React.FC = () => {
               <Link href={"/portfolio"}>
                 <li
                   className={`capitalize py-1.5 px-1 nav-option text-sm ml-3 ${
-                    pathname === "/portfolio" ? "" : ""
+                    pathname === "/portfolio" && "actived"
                   }`}
                 >
                   Portfolio
@@ -121,7 +125,7 @@ const MainNavbar: React.FC = () => {
               <Link href={"/blog"}>
                 <li
                   className={`capitalize py-1.5 px-1 nav-option text-sm ml-3 ${
-                    pathname === "/blog" ? "" : ""
+                    pathname === "/blog" && "actived"
                   }`}
                 >
                   Blog
@@ -223,7 +227,7 @@ const MainNavbar: React.FC = () => {
               Blog
             </Link>
           </ul>
-          <hr className="text-muted mt-1"></hr>
+          <hr className="text-muted"></hr>
         </div>
       </div>
     </div>

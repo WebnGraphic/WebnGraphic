@@ -30,10 +30,10 @@ export default function HomeHero() {
           </div>
         </div>
         <div className="relative md:hidden z-10 pb-20 px-6">
-          <div className="max-w-5xl mx-auto flex flex-col items-center md:items-start text-center md:text-left">
-            <div className="h-[350px] mb-10 w-full relative">
+          <div className="max-w-[270px] mx-auto flex flex-col items-center md:items-start text-center md:text-left">
+            <div className="h-[250px] mb-10 w-full relative">
               <div className="absolute z-11 top-0 left-0">
-                <div className="w-[230px] h-[210px] overflow-hidden rounded-md relative ">
+                <div className="w-[170px] h-[150px] overflow-hidden rounded-md relative ">
                   <Image
                     src="/hwdimage.jpg"
                     fill
@@ -44,10 +44,10 @@ export default function HomeHero() {
                 </div>
               </div>
 
-              <div className=" w-[230px] h-[210px] animated-element border-Ttext border-4 overflow-hidden rounded-md absolute inset-0 z-10 m-auto"></div>
+              <div className=" w-[170px] h-[150px] animated-element border-Ttext border-4 overflow-hidden rounded-md absolute inset-0 z-10 m-auto"></div>
 
               <div className="absolute z-12 bottom-0 right-0">
-                <div className="overflow-hidden rounded-md w-[230px] h-[210px] relative ">
+                <div className="overflow-hidden rounded-md w-[170px] h-[150px] relative ">
                   <Image
                     src="/swda.jpg"
                     fill
@@ -81,7 +81,7 @@ export default function HomeHero() {
               </ResModTrigBtn>
 
               <NormalButton className="bg-transparent border-White hover:shadow-lg active:scale-95 active:bg-white hover:shadow-white hover:bg-white hover:text-black border-[2px]">
-                View Our Works
+                <Link href="/portfolio">View Our Works</Link>
               </NormalButton>
             </div>
           </div>

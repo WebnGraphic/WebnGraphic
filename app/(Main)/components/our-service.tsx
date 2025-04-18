@@ -67,13 +67,13 @@ function ServiceCard({ title, image, features, link }: ServiceCardProps) {
   return (
     <Card className="overflow-hidden relative group transition-all hover:shadow-md">
       <div className="flex lg:flex-row flex-col">
-        <div className="relative h-60 lg:h-auto">
+        <div className="image-anime group overflow-hidden h-60 lg:h-auto">
           <Image
             src={image}
             alt="Image"
             width={720}
             height={720}
-            className="h-full lg:w-auto w-full "
+            className="h-full group-hover:scale-105 duration-300 transition-all lg:w-auto w-full "
           />
         </div>
         <div className="lg:w-[60%] w-full shrink-0">

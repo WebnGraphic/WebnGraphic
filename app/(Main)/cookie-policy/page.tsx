@@ -1,6 +1,9 @@
 import Link from "next/link";
 
 export default function CookiePolicyPage() {
+  const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;
+  const emailAddress = process.env.NEXT_PUBLIC_EMAIL_ADDRESS;
+  const address = process.env.NEXT_PUBLIC_ADDRESS;
   return (
     <div className="bg-white">
       <div className="max-w-7xl mx-auto px-5 py-12 md:py-24">
@@ -140,10 +143,9 @@ export default function CookiePolicyPage() {
               us through one of our preferred contact methods:
             </p>
             <div className="mt-4">
-              <p className="text-muted-foreground">
-                Email: privacy@webngraphics.com
-              </p>
-              <p className="text-muted-foreground">Phone: +1 (234) 567-890</p>
+              <p className="text-muted-foreground">Email: {emailAddress}</p>
+              <p className="text-muted-foreground">Phone: {phoneNumber}</p>
+              <p className="text-muted-foreground">Address: {address}</p>
             </div>
           </section>
 

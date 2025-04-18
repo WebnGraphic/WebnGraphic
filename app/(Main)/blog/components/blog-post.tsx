@@ -27,12 +27,12 @@ export default function BlogPost({ blog }: Blog) {
     <div className="w-full lg:w-2/3">
       <div className="bg-white rounded-xl shadow-sm overflow-hidden">
         {/* Featured Image */}
-        <div className="relative h-[400px] w-full">
+        <div className="group overflow-hidden image-anime h-[400px] w-full">
           <Image
             src={blog.imageLink}
             alt={blog.title}
             fill
-            className="object-cover"
+            className="object-cover group-hover:scale-105 duration-300 transition-all"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
             priority
           />

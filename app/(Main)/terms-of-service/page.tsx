@@ -2,6 +2,10 @@
 import Link from "next/link";
 
 export default function TermsOfServicePage() {
+  const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;
+  const emailAddress = process.env.NEXT_PUBLIC_EMAIL_ADDRESS;
+  const address = process.env.NEXT_PUBLIC_ADDRESS;
+
   return (
     <div className="bg-white">
       <div className="max-w-7xl mx-auto px-4 py-12 md:py-24">
@@ -172,13 +176,9 @@ export default function TermsOfServicePage() {
               If you have any questions about these Terms, please contact us at:
             </p>
             <div className="mt-4">
-              <p className="text-muted-foreground">
-                Email: legal@webngraphics.com
-              </p>
-              <p className="text-muted-foreground">Phone: +1 (234) 567-890</p>
-              <p className="text-muted-foreground">
-                Address: 123 Design Street, Creative City, 12345
-              </p>
+              <p className="text-muted-foreground">Email: {emailAddress}</p>
+              <p className="text-muted-foreground">Phone: {phoneNumber}</p>
+              <p className="text-muted-foreground">Address: {address}</p>
             </div>
           </section>
 
