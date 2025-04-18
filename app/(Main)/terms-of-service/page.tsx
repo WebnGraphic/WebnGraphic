@@ -14,7 +14,7 @@ export default function TermsOfServicePage() {
             Terms of Service
           </h1>
           <p className="mx-auto max-w-3xl text-lg text-muted-foreground md:text-xl">
-            Last updated: March 29, 2024
+            Last updated: March 1, 2025
           </p>
         </div>
 

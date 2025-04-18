@@ -1,6 +1,6 @@
 "use server";
 import { prisma } from "@/lib/prisma";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { checkAccess } from "../helper/check-admin";
 
 type ProjectData = {
@@ -96,8 +96,8 @@ export async function createGraphicProject(data: ProjectData) {
         published: data.published,
       },
     });
-    revalidatePath("graphic-project:common");
-    revalidatePath("graphic-project:all");
+    revalidateTag("graphic-project:common");
+    revalidateTag("graphic-project:all");
     revalidatePath("/admin/projects");
     return project;
   } catch (error) {
@@ -125,8 +125,8 @@ export async function updateGraphicProject(id: string, data: ProjectData) {
         ...data,
       },
     });
-    revalidatePath("graphic-project:common");
-    revalidatePath("graphic-project:all");
+    revalidateTag("graphic-project:common");
+    revalidateTag("graphic-project:all");
     revalidatePath("admin/project/graphic-design");
     return { success: true };
   } catch (error) {
@@ -151,8 +151,8 @@ export async function deleteGraphicProject(
     });
 
     revalidatePath("admin/project/graphic-design");
-    revalidatePath("graphic-project:common");
-    revalidatePath("graphic-project:all");
+    revalidateTag("graphic-project:common");
+    revalidateTag("graphic-project:all");
 
     return { success: true };
   } catch (error) {
