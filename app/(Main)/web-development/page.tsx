@@ -1,6 +1,7 @@
 import BookMeeting from "@/components/manual/book-meeting/book-meeting";
 import { Metadata } from "next";
 import BlogCommon from "../components/blog-common";
+import ContactCommon from "../components/contact-common";
 import OurFeature from "../components/our-feature";
 import PortfolioSection from "../components/portfolio";
 import Pricing from "../components/pricing";
@@ -118,6 +119,7 @@ export default function page() {
       <TestimonialSection />
       <WebDevFAQ />
       <BlogCommon />
+      <ContactCommon />
     </div>
   );
 }

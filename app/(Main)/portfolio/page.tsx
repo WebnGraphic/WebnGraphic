@@ -31,7 +31,7 @@ export default function Page() {
   return (
     <div>
       <TopSectionStatic
-        title="Testimonial"
+        title="Portfolio"
         description="A curated collection of web and graphic design work that blends strategy, aesthetics, and functionality."
         breadcrumb={[{ label: "portfolio", link: "/portfolio" }]}
       />

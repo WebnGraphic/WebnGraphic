@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sidebar";
 import {
   Award,
+  ChartNoAxesCombined,
   ChevronDown,
   Code,
   FileCode,
@@ -50,6 +51,12 @@ export default function SidebarNav() {
       icon: LayoutDashboard,
       href: "/admin",
       isActive: pathname === "/admin",
+    },
+    {
+      title: "Analytics",
+      icon: ChartNoAxesCombined,
+      href: "/admin/analytics",
+      isActive: pathname === "/analytics",
     },
 
     {

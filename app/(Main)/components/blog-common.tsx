@@ -19,7 +19,7 @@ export default async function BlogCommon() {
   if (!blogs) return <p>Not found</p>;
   return (
     <section className="w-full bg-gray-100">
-      <div className="max-w-7xl py-16 md:py-24 px-5 md:px-12">
+      <div className="max-w-7xl mx-auto py-16 md:py-24 px-5 md:px-12">
         <SectionHeader
           heading="Latest from our blog"
           subHeading="Discover insights, tips, and the latest updates from our team."

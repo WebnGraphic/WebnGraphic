@@ -6,7 +6,7 @@ export default function ContactCommon() {
   const address = process.env.NEXT_PUBLIC_ADDRESS;
 
   return (
-    <div id="contact-form" className="relative">
+    <div className="relative">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
@@ -15,7 +15,7 @@ export default function ContactCommon() {
       >
         <div className="absolute inset-0 bg-black/85"></div>
       </div>
-      <div className="flex relative z-10  md:mx-16 mx-5 py-16 gap-10 justify-between flex-col-reverse md:flex-row ">
+      <div className="flex relative z-10  max-w-7xl px-5 md:px-12 mx-auto py-16 gap-10 justify-between flex-col-reverse md:flex-row ">
         <div className="md:w-1/2 w-full">
           <ContactCommonForm />
         </div>
