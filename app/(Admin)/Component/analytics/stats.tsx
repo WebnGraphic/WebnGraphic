@@ -10,12 +10,11 @@ interface StatsProps {
 }
 
 export function Stats({ data, days }: StatsProps) {
-  // Calculate totals from the data
   const totals = data?.rows?.reduce(
     (acc: any, row: any) => {
-      acc.sessions += Number.parseInt(row.metrics[0].values[0]);
-      acc.users += Number.parseInt(row.metrics[0].values[1]);
-      acc.pageviews += Number.parseInt(row.metrics[0].values[2]);
+      acc.sessions += Number.parseInt(row.metricValues[0].value);
+      acc.users += Number.parseInt(row.metricValues[1].value);
+      acc.pageviews += Number.parseInt(row.metricValues[2].value);
       return acc;
     },
     { sessions: 0, users: 0, pageviews: 0 }
@@ -24,11 +23,11 @@ export function Stats({ data, days }: StatsProps) {
   // Calculate average bounce rate
   const avgBounceRate =
     data?.rows?.reduce((acc: number, row: any, index: number, array: any[]) => {
-      return acc + Number.parseFloat(row.metrics[0].values[3]);
+      return acc + Number.parseInt(row.metricValues[3].value);
     }, 0) / (data?.rows?.length || 1);
 
   // Format the bounce rate as a percentage
-  const formattedBounceRate = avgBounceRate.toFixed(2) + "%";
+  const formattedBounceRate = (avgBounceRate * 100).toFixed(2) + "%";
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

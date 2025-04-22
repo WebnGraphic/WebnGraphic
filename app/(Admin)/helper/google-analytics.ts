@@ -51,7 +51,7 @@ export async function getAnalyticsData(days = 30) {
       "totalUsers",
       "screenPageViews",
       "bounceRate",
-      "averageSessionDuration",
+      "userEngagementDuration",
     ],
     days
   );

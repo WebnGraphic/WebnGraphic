@@ -23,8 +23,8 @@ interface TopReferrersProps {
 export function TopReferrers({ data, days }: TopReferrersProps) {
   const referrers =
     data?.rows?.map((row: any) => ({
-      source: row.dimensions[0],
-      sessions: Number.parseInt(row.metrics[0].values[0]),
+      source: row?.dimensionValues?.[0]?.value,
+      sessions: Number.parseInt(row.metricValues[0].value, 10),
     })) || [];
 
   return (
@@ -35,7 +35,7 @@ export function TopReferrers({ data, days }: TopReferrersProps) {
           Sources driving traffic to your website in the last {days} days
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pt-6">
         <Table>
           <TableHeader>
             <TableRow>

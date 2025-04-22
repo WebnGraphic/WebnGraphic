@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 "use client";
 
 import {
@@ -25,17 +25,15 @@ interface OverviewProps {
 }
 
 export function Overview({ data, days }: OverviewProps) {
-  // Format data for the chart
   const chartData =
-    data?.rows?.map((row: any, index: number) => {
-      const date = row.dimensions[0];
-      // Format date from YYYYMMDD to MM/DD
+    data?.rows?.map((row: any) => {
+      const date = row?.dimensionValues?.[0]?.value;
       const formattedDate = `${date.slice(4, 6)}/${date.slice(6, 8)}`;
 
       return {
         name: formattedDate,
-        users: Number.parseInt(row.metrics[0].values[1]),
-        pageviews: Number.parseInt(row.metrics[0].values[2]),
+        users: Number.parseInt(row.metricValues[0].value, 10),
+        pageviews: Number.parseInt(row.metricValues[1].value),
       };
     }) || [];
 
@@ -47,7 +45,7 @@ export function Overview({ data, days }: OverviewProps) {
           User visits and page views over the last {days} days
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pt-6">
         <div className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
