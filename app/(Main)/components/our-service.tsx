@@ -35,11 +35,11 @@ export default function OurServices() {
             title="Web Development"
             description="Custom websites and web applications built with cutting-edge technologies to deliver exceptional user experiences."
             features={[
-              "NDIS Website Development",
-              "Responsive Website Design",
-              "Web Application Development",
-              "E-commerce Solutions",
-              "Performance Optimization",
+              "Business Website",
+              "NDIS Website",
+              "E-commerce Website",
+              "Educational Website",
+              "Portfolio Website",
             ]}
             link="/web-development"
           />
@@ -49,11 +49,11 @@ export default function OurServices() {
             title="Graphic Design"
             description="Eye-catching visual designs that communicate your brand message effectively and leave a lasting impression."
             features={[
-              "Brand Identity Design",
-              "Print & Digital Media",
+              "Logo Design",
+              "Poster Design",
               "UI/UX Design",
-              "Illustration & Iconography",
-              "Marketing Materials",
+              "T-shirt Design",
+              "Banner Design",
             ]}
             link="/graphic-design"
           />
@@ -83,10 +83,14 @@ function ServiceCard({ title, image, features, link }: ServiceCardProps) {
           <CardContent className="pb-3">
             <ul className="space-y-2">
               {features.map((feature, index) => (
-                <li key={index} className="flex items-center gap-2">
+                <Link
+                  href={link}
+                  key={index}
+                  className="flex hover:text-Ttext cursor-pointer duration-200 transition-all items-center gap-2"
+                >
                   <CheckCircle className="h-5 w-5 text-Ttext" />
                   <span>{feature}</span>
-                </li>
+                </Link>
               ))}
             </ul>
           </CardContent>

@@ -36,8 +36,10 @@ export const metadata: Metadata = {
 
 export default function ConatactPage() {
   const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;
+  const phoneNumber2 = process.env.NEXT_PUBLIC_PHONE_NUMBER2;
   const emailAddress = process.env.NEXT_PUBLIC_EMAIL_ADDRESS;
   const address = process.env.NEXT_PUBLIC_ADDRESS;
+  const address2 = process.env.NEXT_PUBLIC_ADDRESS2;
   const facebookUrl = process.env.NEXT_PUBLIC_FACEBOOK_PAGE;
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
   return (
@@ -51,29 +53,46 @@ export default function ConatactPage() {
         <div className=" mx-auto py-16 max-w-7xl">
           <div className="flex justify-between flex-col md:flex-row gap-12">
             <div className="space-y-6 rounded-md pl-5 pr-5 md:pr-6 md:pl-12 pt-12 md:max-w-[450px] w-full bg-Ttext/10">
-              <div className="space-y-10 pb-10">
+              <div className="space-y-5 pb-10">
                 <h2 className="text-3xl font-semibold text-gray-900">
                   Get In Touch
                 </h2>
-                <div className="flex items-center gap-4">
+                <div className="flex p-4 rounded-md shadow-md bg-white items-center gap-4">
                   <div className="bg-Ttext rounded-full">
                     <Phone className="text-white w-12 h-12 p-3" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold">Phone Number</h3>
-                    <Link href={`tel:${phoneNumber}`}>
-                      <span className="text-lg hover:underline text-gray-800">
-                        {phoneNumber}
-                      </span>
-                    </Link>
+                    <h3 className="font-semibold">Phone Number (Australia)</h3>
+                    <div className="flex flex-col">
+                      <Link href={`tel:${phoneNumber2}`}>
+                        <span className="text-lg hover:underline text-gray-800">
+                          {phoneNumber2}
+                        </span>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex p-4 rounded-md shadow-md bg-white items-center gap-4">
+                  <div className="bg-Ttext rounded-full">
+                    <Phone className="text-white w-12 h-12 p-3" />
+                  </div>
+                  <div>
+                    <h3 className=" font-semibold">Phone Number (Global)</h3>
+                    <div className="flex flex-col">
+                      <Link href={`tel:${phoneNumber}`}>
+                        <span className="text-lg hover:underline text-gray-800">
+                          {phoneNumber}
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex p-4 bg-white shadow-md rounded-md items-center gap-4">
                   <div className="bg-Ttext rounded-full">
                     <Mail className="text-white w-12 h-12 p-3" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold">Email</h3>
+                    <h3 className=" font-semibold">Email</h3>
                     <Link href={`mailto:${emailAddress}`}>
                       <span className="text-lg hover:underline text-gray-800">
                         {emailAddress}
@@ -81,13 +100,22 @@ export default function ConatactPage() {
                     </Link>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex p-4 rounded-md shadow-md bg-white items-center gap-4">
                   <div className="bg-Ttext rounded-full">
                     <MapPin className="text-white w-12 h-12 p-3" />
                   </div>
                   <div>
-                    <h3 className="text-lg  font-semibold">Address</h3>
+                    <h3 className="font-semibold">Address (Bangladesh)</h3>
                     <span className="text-lg  text-gray-800">{address}</span>
+                  </div>
+                </div>
+                <div className="flex p-4 rounded-md shadow-md bg-white items-center gap-4">
+                  <div className="bg-Ttext rounded-full">
+                    <MapPin className="text-white w-12 h-12 p-3" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold">Address (Australia)</h3>
+                    <span className="text-lg  text-gray-800">{address2}</span>
                   </div>
                 </div>
               </div>

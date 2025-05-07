@@ -1,9 +1,12 @@
 import { ContactCommonForm } from "@/components/manual/form/contact-common-form";
 import { Mail, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
 export default function ContactCommon() {
   const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;
+  const phoneNumber2 = process.env.NEXT_PUBLIC_PHONE_NUMBER2;
   const emailAddress = process.env.NEXT_PUBLIC_EMAIL_ADDRESS;
   const address = process.env.NEXT_PUBLIC_ADDRESS;
+  const address2 = process.env.NEXT_PUBLIC_ADDRESS2;
 
   return (
     <div className="relative">
@@ -31,12 +34,20 @@ export default function ContactCommon() {
             <div className="text-white   rounded-full bg-Ttext">
               <Phone className="w-10 h-10 p-2" />
             </div>
-            <a
-              href={`tel:${phoneNumber}`}
-              className="text-sm text-gray-300 hover:text-white transition-colors"
-            >
-              {phoneNumber}
-            </a>
+            <div className="flex flex-col">
+              <Link
+                href={`tel:${phoneNumber2}`}
+                className="text-sm text-gray-300 hover:text-white transition-colors"
+              >
+                {phoneNumber2}
+              </Link>
+              <Link
+                href={`tel:${phoneNumber}`}
+                className="text-sm text-gray-300 hover:text-white transition-colors"
+              >
+                {phoneNumber}
+              </Link>
+            </div>
           </div>
           <div className="flex mb-3 items-center gap-3">
             <div className="text-white  rounded-full bg-Ttext">
@@ -50,11 +61,17 @@ export default function ContactCommon() {
               {emailAddress}
             </a>
           </div>
-          <div className="flex  items-center gap-3">
+          <div className="flex mb-3 items-center gap-3">
             <div className="text-white  rounded-full bg-Ttext">
               <MapPin className=" w-10 h-10 p-2" />
             </div>
             <span className="text-sm text-gray-300">{address}</span>
+          </div>
+          <div className="flex  items-center gap-3">
+            <div className="text-white  rounded-full bg-Ttext">
+              <MapPin className=" w-10 h-10 p-2" />
+            </div>
+            <span className="text-sm text-gray-300">{address2}</span>
           </div>
         </div>
       </div>

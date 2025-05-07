@@ -1,6 +1,6 @@
 "use client";
 import Logo from "@/app/(Main)/components/logo";
-import { AlignRight, LaptopMinimal, Mail, Phone } from "lucide-react";
+import { AlignRight, LaptopMinimal, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -15,7 +15,10 @@ const MainNavbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const pathname = usePathname();
   const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;
+  const phoneNumber2 = process.env.NEXT_PUBLIC_PHONE_NUMBER2;
   const emailAddress = process.env.NEXT_PUBLIC_EMAIL_ADDRESS;
+  const address = process.env.NEXT_PUBLIC_ADDRESS;
+  const address2 = process.env.NEXT_PUBLIC_ADDRESS2;
 
   const subItems: SubItem[] = [
     { label: "Web Development", href: "/web-development" },
@@ -46,10 +49,22 @@ const MainNavbar: React.FC = () => {
             <Mail className="w-3 text-Ttext h-3" />
             <span className="text-sm">{emailAddress}</span>
           </Link>
-          <Link href={`tel:${phoneNumber}`} className="flex gap-2 items-center">
-            <Phone className="w-3 h-3 text-Ttext" />
-            <span className="text-sm">{phoneNumber}</span>
-          </Link>
+          <div>
+            <Link
+              href={`tel:${phoneNumber2}`}
+              className="flex gap-2 items-center"
+            >
+              <Phone className="w-3 h-3 text-Ttext" />
+              <span className="text-sm">{phoneNumber2}</span>
+            </Link>
+            <Link
+              href={`tel:${phoneNumber}`}
+              className="flex gap-2 items-center"
+            >
+              <Phone className="w-3 h-3 text-Ttext" />
+              <span className="text-sm">{phoneNumber}</span>
+            </Link>
+          </div>
         </div>
       </div>
       <div className="py-3 md:py-2">
@@ -141,13 +156,22 @@ const MainNavbar: React.FC = () => {
               <Mail className="w-4 h-4" />
               <span className="text-sm">{emailAddress}</span>
             </Link>
-            <Link
-              href={`tel:${phoneNumber}`}
-              className="flex gap-1 items-center"
-            >
-              <Phone className="w-4 h-4" />
-              <span className="text-sm">{phoneNumber}</span>
-            </Link>
+            <div>
+              <Link
+                href={`tel:${phoneNumber2}`}
+                className="flex gap-1 items-center"
+              >
+                <Phone className="w-4 h-4" />
+                <span className="text-sm">{phoneNumber2}</span>
+              </Link>
+              <Link
+                href={`tel:${phoneNumber}`}
+                className="flex gap-1 items-center"
+              >
+                <Phone className="w-4 h-4" />
+                <span className="text-sm">{phoneNumber}</span>
+              </Link>
+            </div>
           </div>
           <AlignRight
             className={`md:hidden block transition-all duration-100 ease-in-out cursor-pointer border-white w-8 h-8 ${
@@ -158,11 +182,13 @@ const MainNavbar: React.FC = () => {
         </div>
         {/* Mobile Menu */}
         <div
-          className={`absolute md:hidden text-white transition-all duration-200 ease-in-out block bg-Mbg w-full top-[90px] z-[100] ${
-            !isMenuOpen ? "h-0 overflow-hidden" : "h-[calc(100vh-64px)]"
+          className={`absolute md:hidden text-white transition-all duration-200 ease-in-out block bg-Mbg w-full top-[110px] z-[100] ${
+            !isMenuOpen
+              ? "h-0 overflow-hidden"
+              : "h-[calc(100vh-120px)] overflow-y-auto"
           }`}
         >
-          <ul className="flex flex-col">
+          <ul className="flex gap-1 flex-col">
             <Link
               href={"/"}
               className={`px-5 py-1.5 hover:bg-indigo-950 ${
@@ -227,7 +253,51 @@ const MainNavbar: React.FC = () => {
               Blog
             </Link>
           </ul>
-          <hr className="text-muted"></hr>
+          <hr className="text-muted my-2"></hr>
+          <div className="px-5 space-y-2">
+            <div>
+              <h3 className="font-semibold text-sm text-white">
+                Phone Number (Global)
+              </h3>
+              <div className="flex flex-col">
+                <Link href={`tel:${phoneNumber}`}>
+                  <span className=" hover:underline text-Ttext">
+                    {phoneNumber}
+                  </span>
+                </Link>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-semibold text-sm text-white">
+                Phone Number (Australia)
+              </h3>
+              <div className="flex flex-col">
+                <Link href={`tel:${phoneNumber2}`}>
+                  <span className=" hover:underline text-Ttext">
+                    {phoneNumber2}
+                  </span>
+                </Link>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-semibold text-sm text-white">Email</h3>
+              <div className="flex flex-col">
+                <Link href={`mailto:${emailAddress}`}>
+                  <span className=" hover:underline text-Ttext">
+                    {emailAddress}
+                  </span>
+                </Link>
+              </div>
+            </div>
+            <div className="flex items-start">
+              <MapPin className="h-5 w-5 rounded-full bg-white text-black p-0.5 mr-2 mt-0.5" />
+              <span className=" text-gray-300">{address}</span>
+            </div>
+            <div className="flex items-start">
+              <MapPin className="h-5 w-5 rounded-full bg-white text-black p-0.5 mr-2 mt-0.5" />
+              <span className=" text-gray-300">{address2}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

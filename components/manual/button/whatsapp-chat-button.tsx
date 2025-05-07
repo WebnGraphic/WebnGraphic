@@ -23,11 +23,8 @@ export function WhatsAppChatButton({
 }: WhatsAppChatButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Format phone number (remove any non-digit characters)
-  const formattedPhone = phoneNumber.replace(/\D/g, "");
-
   // Create WhatsApp URL
-  const whatsappUrl = `https://wa.me/${formattedPhone}?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     message
   )}`;
 
