@@ -1,7 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
+import {
+  Cell,
+  Legend,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts";
 
 import {
   Card,
@@ -28,7 +35,19 @@ export function DeviceCategories({ data, days }: DeviceCategoriesProps) {
       };
     }) || [];
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  // Define colors for the pie chart
+  const COLORS = [
+    "#0088FE",
+    "#00C49F",
+    "#FFBB28",
+    "#FF8042",
+    "#FF6347",
+    "#6A5ACD",
+    "#FFD700",
+    "#32CD32",
+    "#FF4500",
+    "#2E8B57",
+  ];
 
   return (
     <Card className="py-6">
@@ -48,12 +67,15 @@ export function DeviceCategories({ data, days }: DeviceCategoriesProps) {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  outerRadius={80}
+                  outerRadius={100}
                   fill="#8884d8"
                   dataKey="value"
                   label={({ name, percent }: any) =>
                     `${name}: ${(percent * 100).toFixed(0)}%`
                   }
+                  animationBegin={0}
+                  animationDuration={800}
+                  animationEasing="ease-out"
                 >
                   {devices.map((_: any, index: number) => (
                     <Cell
@@ -63,8 +85,12 @@ export function DeviceCategories({ data, days }: DeviceCategoriesProps) {
                   ))}
                 </Pie>
                 <Tooltip
-                  formatter={(value: number) => value.toLocaleString()}
+                  formatter={(value: number, name: string) => [
+                    `${name}: ${value.toLocaleString()}`,
+                    "Sessions",
+                  ]}
                 />
+                <Legend verticalAlign="bottom" height={36} />
               </PieChart>
             </ResponsiveContainer>
           </div>

@@ -33,7 +33,7 @@ export function Overview({ data, days }: OverviewProps) {
       return {
         name: formattedDate,
         users: Number.parseInt(row.metricValues[0].value, 10),
-        pageviews: Number.parseInt(row.metricValues[1].value),
+        pageviews: Number.parseInt(row.metricValues[2].value),
       };
     }) || [];
 

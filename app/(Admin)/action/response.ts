@@ -1,29 +1,15 @@
 "use server";
 import { prisma } from "@/lib/prisma";
+import { ResponseStage } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { checkAccess } from "../helper/check-admin";
-
-export const deleteResponse = async (id: string): Promise<void> => {
-  await checkAccess();
-  if (!id) {
-    console.error("Invalid response ID");
-    return;
-  }
-  try {
-    await prisma.response.delete({
-      where: { id },
-    });
-  } catch (err) {
-    console.error("Failed to delete Response:", err);
-  }
-  revalidatePath("/admin/response");
-};
 
 export const getAllResponses = async (
   search: string,
   page: number,
   pageSize: number
 ) => {
+  await checkAccess();
   type SearchCondition = {
     OR: {
       name?: { contains: string; mode: "insensitive" };
@@ -54,8 +40,27 @@ export const getAllResponses = async (
       prisma.response.findMany({
         where: whereCondition,
         skip,
-        orderBy: { createdAt: "desc" },
         take: pageSize,
+        orderBy: { createdAt: "desc" },
+        select: {
+          id: true,
+          name: true,
+          phone: true,
+          email: true,
+          stage: true,
+          message: true,
+          interest: true,
+          createdAt: true,
+          notes: {
+            orderBy: { createdAt: "desc" },
+            select: {
+              id: true,
+              content: true,
+              createdAt: true,
+              responseId: true,
+            },
+          },
+        },
       }),
 
       prisma.response.count({ where: whereCondition }),
@@ -81,3 +86,91 @@ export const getAllResponses = async (
     };
   }
 };
+
+export async function addNote(responseId: string, content: string) {
+  const author = await checkAccess();
+  if (!author || !author.id) {
+    return { success: false, error: "Unauthorized" };
+  }
+  if (!content.trim()) {
+    return { success: false, error: "Note content is required" };
+  }
+
+  try {
+    const addedNote = await prisma.note.create({
+      data: {
+        content,
+        responseId,
+        noteType: "RESPONSE",
+      },
+    });
+
+    revalidatePath("/admin/response");
+    return { success: true, addedNote };
+  } catch (error) {
+    console.error("Failed to add note:", error);
+    return { success: false, error: "Failed to add note" };
+  }
+}
+
+export async function deleteNote(responseId: string, noteId: string) {
+  const author = await checkAccess();
+  if (!author || !author.id) {
+    return { success: false, error: "Unauthorized" };
+  }
+  try {
+    await prisma.note.delete({
+      where: {
+        id: noteId,
+        responseId,
+      },
+    });
+
+    revalidatePath("/admin/response");
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to delete note:", error);
+    return { success: false, error: "Failed to delete note" };
+  }
+}
+
+export async function deleteResponse(responseId: string) {
+  const author = await checkAccess();
+  if (!author || !author.id) {
+    return { success: false, error: "Unauthorized" };
+  }
+  try {
+    await prisma.response.delete({
+      where: {
+        id: responseId,
+      },
+    });
+
+    revalidatePath("/admin/response");
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to delete response:", error);
+    return { success: false, error: "Failed to delete response" };
+  }
+}
+
+export async function editStage(responseId: string, newStage: ResponseStage) {
+  const author = await checkAccess();
+  if (!author || !author.id) {
+    return { success: false, error: "Unauthorized" };
+  }
+  try {
+    await prisma.response.update({
+      where: { id: responseId },
+      data: { stage: newStage },
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to update stage:", error);
+    return {
+      success: false,
+      error: "Failed to update response stage",
+    };
+  }
+}

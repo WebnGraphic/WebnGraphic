@@ -1,7 +1,7 @@
 "use server";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { checkAdmin } from "../helper/check-admin";
+import { checkAccess, checkAdmin } from "../helper/check-admin";
 
 export const getAllUsers = async () => {
   try {
@@ -18,6 +18,7 @@ export const getAllUsersBySearch = async (
   page: number,
   pageSize: number
 ) => {
+  await checkAccess();
   type SearchCondition = {
     OR: {
       name?: { contains: string; mode: "insensitive" };

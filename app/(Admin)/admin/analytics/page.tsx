@@ -1,15 +1,15 @@
 import { Suspense } from "react";
 
-import { fetchDashboardData } from "@/app/(Admin)/action/analytics-actions";
-import { Browsers } from "@/app/(Admin)/Component/analytics/browsers";
-import { DateRangeSelector } from "@/app/(Admin)/Component/analytics/date-range-selector";
-import { DeviceCategories } from "@/app/(Admin)/Component/analytics/device-categories";
-import { Overview } from "@/app/(Admin)/Component/analytics/overview";
-import { Stats } from "@/app/(Admin)/Component/analytics/stats";
-import { TopPages } from "@/app/(Admin)/Component/analytics/top-pages";
-import { TopReferrers } from "@/app/(Admin)/Component/analytics/top-referrers";
 import { Skeleton } from "@/components/ui/skeleton";
-
+import { fetchDashboardData } from "../../action/analytics";
+import { Browsers } from "../../Component/analytics/browser";
+import { DateRangeSelector } from "../../Component/analytics/date-range-selector";
+import { DeviceCategories } from "../../Component/analytics/device-categories";
+import { Overview } from "../../Component/analytics/overview";
+import { Stats } from "../../Component/analytics/stats";
+import { TopCountry } from "../../Component/analytics/top-country";
+import { TopPages } from "../../Component/analytics/top-pages";
+import { TopReferrers } from "../../Component/analytics/top-referrers";
 // Loading component for Suspense
 function LoadingDashboard() {
   return (
@@ -43,19 +43,17 @@ async function AnalyticsDashboard({ days }: { days: number }) {
 
   return (
     <div className="max-w-7xl space-y-6 w-full mx-auto px-5 py-10">
+      <h1 className="text-3xl font-bold">Analytics</h1>
       <div className="flex justify-end mb-4">
         <DateRangeSelector />
       </div>
       <Stats data={data.analyticsData} days={days} />
       <Overview data={data.analyticsData} days={days} />
-      <div className="grid gap-6 md:grid-cols-2">
-        <TopPages data={data.topPages} days={days} />
-        <TopReferrers data={data.topReferrers} days={days} />
-      </div>
-      <div className="grid gap-6 md:grid-cols-2">
-        <DeviceCategories data={data.deviceCategories} days={days} />
-        <Browsers data={data.browsers} days={days} />
-      </div>
+      <TopReferrers data={data.topReferrers} days={days} />
+      <TopCountry data={data.userCountries} days={days} />
+      <DeviceCategories data={data.deviceCategories} days={days} />
+      <Browsers data={data.browsers} days={days} />
+      <TopPages data={data.topPages} days={days} />
     </div>
   );
 }

@@ -75,6 +75,7 @@ export async function updateTestimonial(id: string, data: TestimonialData) {
 }
 
 export async function getAllTestimonial(page: number, pageSize: number) {
+  await checkAccess();
   try {
     const skip = (page - 1) * pageSize;
 

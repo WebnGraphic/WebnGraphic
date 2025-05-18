@@ -19,12 +19,23 @@ interface TopReferrersProps {
   data: any;
   days: number;
 }
+function formatDuration(seconds: number) {
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = Math.floor(seconds % 60);
+  return [h > 0 ? `${h}h` : "", m > 0 ? `${m}m` : "", `${s}s`]
+    .filter(Boolean)
+    .join(" ");
+}
 
 export function TopReferrers({ data, days }: TopReferrersProps) {
   const referrers =
     data?.rows?.map((row: any) => ({
       source: row?.dimensionValues?.[0]?.value,
       sessions: Number.parseInt(row.metricValues[0].value, 10),
+      avgDuration:
+        parseFloat(row.metricValues[1].value) /
+        Number.parseInt(row.metricValues[0].value, 10),
     })) || [];
 
   return (
@@ -35,20 +46,26 @@ export function TopReferrers({ data, days }: TopReferrersProps) {
           Sources driving traffic to your website in the last {days} days
         </CardDescription>
       </CardHeader>
-      <CardContent className="pt-6">
+      <CardContent>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Source</TableHead>
+              <TableHead className="font-medium">Source</TableHead>
               <TableHead className="text-right">Sessions</TableHead>
+              <TableHead className="text-right">Avg Duration</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {referrers.map((referrer: any) => (
               <TableRow key={referrer.source}>
-                <TableCell className="font-medium">{referrer.source}</TableCell>
-                <TableCell className="text-right">
+                <TableCell className="font-medium ">
+                  {referrer.source}
+                </TableCell>
+                <TableCell className="text-right ">
                   {referrer.sessions.toLocaleString()}
+                </TableCell>
+                <TableCell className="text-right">
+                  {formatDuration(referrer.avgDuration.toLocaleString())}
                 </TableCell>
               </TableRow>
             ))}

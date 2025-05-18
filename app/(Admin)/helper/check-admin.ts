@@ -1,60 +1,56 @@
-import { auth } from "@/auth";
+import { auth, signOut } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { forbidden } from "next/navigation";
+import { redirect } from "next/navigation";
 
-export async function checkAdmin() {
-  try {
-    const session = await auth();
-    const userId = session?.user?.id;
+async function getUserSession() {
+  const session = await auth();
+  const userId = session?.user?.id;
 
-    if (!userId) {
-      forbidden();
-    }
-
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      select: { role: true },
-    });
-
-    if (!user) {
-      forbidden();
-    }
-
-    if (user.role === "admin") {
-      return session.user;
-    } else {
-      forbidden();
-    }
-  } catch (error) {
-    console.error("Error while checking admin status:", error);
-    forbidden();
+  if (!userId) {
+    await signOut(); // optional: clear any invalid session
+    redirect("/sign-in-admin");
   }
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { role: true },
+  });
+
+  if (!user) {
+    await signOut();
+    redirect("/sign-in-admin");
+  }
+
+  return { session, role: user.role };
 }
+
 export async function checkAccess() {
   try {
-    const session = await auth();
-    const userId = session?.user?.id;
+    const { session, role } = await getUserSession();
 
-    if (!userId) {
-      forbidden();
+    if (role !== "admin" && role !== "editor") {
+      await signOut();
+      redirect("/sign-in-admin");
     }
 
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      select: { role: true },
-    });
-
-    if (!user) {
-      forbidden();
-    }
-
-    if (user.role === "admin" || user.role === "editor") {
-      return session.user;
-    } else {
-      forbidden();
-    }
+    return session.user;
   } catch (error) {
-    console.error("Error while checking admin status:", error);
-    forbidden();
+    console.error("checkAccess error:", error);
+    redirect("/sign-in-admin");
+  }
+}
+export async function checkAdmin() {
+  try {
+    const { session, role } = await getUserSession();
+
+    if (role !== "admin") {
+      await signOut();
+      redirect("/sign-in-admin");
+    }
+
+    return session.user;
+  } catch (error) {
+    console.error("checkAdmin error:", error);
+    redirect("/sign-in-admin");
   }
 }

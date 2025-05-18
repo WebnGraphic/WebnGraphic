@@ -25,6 +25,7 @@ export const getAllGraphicProjects = async (
   page: number,
   pageSize: number
 ) => {
+  await checkAccess();
   type SearchCondition = {
     OR: {
       title?: { contains: string; mode: "insensitive" };

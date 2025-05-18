@@ -1,7 +1,7 @@
 import { Suspense } from "react";
-import ResponseTable from "../../Component/response-table";
+import ResponseControl from "../../Component/response/response-control";
+import ResponseTableSkeleton from "../../Component/response/skeleton";
 import SearchForm from "../../Component/search-form";
-import TableSkeleton from "../../Component/table-skeleton";
 
 export default async function Page({
   searchParams,
@@ -14,7 +14,7 @@ export default async function Page({
   const search = params.q || "";
 
   return (
-    <div className="max-w-7xl w-full mx-auto px-5 py-10">
+    <div className=" w-full mx-auto px-5 py-10">
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-4">
           <h1 className="text-3xl font-bold">Responses</h1>
@@ -24,10 +24,10 @@ export default async function Page({
         </div>
 
         <Suspense
-          fallback={<TableSkeleton length={10} />}
+          fallback={<ResponseTableSkeleton />}
           key={`${search}-${currentPage}`}
         >
-          <ResponseTable search={search} page={currentPage} />
+          <ResponseControl search={search} page={currentPage} />
         </Suspense>
       </div>
     </div>

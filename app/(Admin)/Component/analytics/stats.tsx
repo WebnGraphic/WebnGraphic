@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { BarChart3, Eye, Users } from "lucide-react";
 
@@ -20,14 +19,14 @@ export function Stats({ data, days }: StatsProps) {
     { sessions: 0, users: 0, pageviews: 0 }
   ) || { sessions: 0, users: 0, pageviews: 0 };
 
-  // Calculate average bounce rate
   const avgBounceRate =
-    data?.rows?.reduce((acc: number, row: any, index: number, array: any[]) => {
-      return acc + Number.parseInt(row.metricValues[3].value);
-    }, 0) / (data?.rows?.length || 1);
+    (data?.rows?.reduce(
+      (sum: number, row: { metricValues: { value: string }[] }) =>
+        sum + parseFloat(row.metricValues[3].value),
+      0
+    ) || 0) / (data?.rows?.length || 1);
 
-  // Format the bounce rate as a percentage
-  const formattedBounceRate = (avgBounceRate * 100).toFixed(2) + "%";
+  const formattedBounceRate = `${(avgBounceRate * 100).toFixed(2)}%`;
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

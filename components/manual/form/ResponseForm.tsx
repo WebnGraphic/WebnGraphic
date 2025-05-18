@@ -137,7 +137,7 @@ const ResponseForm: React.FC<ResponseFormProps> = ({ interest }) => {
                       aria-required="true"
                     />
                   </FormControl>
-                  <FormMessage className="text-xs mt-1" />
+                  <FormMessage className="text-xs " />
                 </FormItem>
               )}
             />
@@ -156,7 +156,7 @@ const ResponseForm: React.FC<ResponseFormProps> = ({ interest }) => {
                       aria-required="true"
                     />
                   </FormControl>
-                  <FormMessage className="text-xs mt-1" />
+                  <FormMessage className="text-xs " />
                 </FormItem>
               )}
             />
@@ -175,7 +175,7 @@ const ResponseForm: React.FC<ResponseFormProps> = ({ interest }) => {
                       aria-required="true"
                     />
                   </FormControl>
-                  <FormMessage className="text-xs mt-1" />
+                  <FormMessage className="text-xs" />
                 </FormItem>
               )}
             />
@@ -194,7 +194,7 @@ const ResponseForm: React.FC<ResponseFormProps> = ({ interest }) => {
                       aria-required="false"
                     />
                   </FormControl>
-                  <FormMessage className="text-xs mt-1" />
+                  <FormMessage className="text-xs" />
                 </FormItem>
               )}
             />

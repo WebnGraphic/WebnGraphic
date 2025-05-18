@@ -67,7 +67,34 @@ model Response {
   message   String?
   interest  String?
   createdAt DateTime @default(now())
+  stage     ResponseStage @default(LEAD)
+  notes     Note[]  
 }
+enum ResponseStage {
+  LEAD
+  INTERESTED
+  CONVERTED
+  CANCELLED
+}
+
+model Note {
+  id                      String   @id @default(uuid())
+  content                 String
+  createdAt               DateTime @default(now())
+
+  responseId              String?
+  startedId               String?
+
+  response                Response?              @relation(fields: [responseId], references: [id], onDelete: Cascade)
+  getStarted              GetStarted? @relation(fields: [startedId], references: [id], onDelete: Cascade)
+
+  noteType                NoteType
+}
+enum NoteType {
+  RESPONSE
+  STARTED
+}
+
 
 model GetStarted {
   id        String   @id @default(uuid())
@@ -79,6 +106,8 @@ model GetStarted {
   budget    String?
   plan      String?
   createdAt DateTime @default(now())
+
+  notes              Note[]  
 }
 
 model Testimonial {

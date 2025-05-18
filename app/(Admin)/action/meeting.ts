@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { checkAccess } from "../helper/check-admin";
 
 export async function getMeetings(page: number, pageSize: number) {
+  await checkAccess();
   try {
     const skip = (page - 1) * pageSize;
 

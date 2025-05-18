@@ -88,7 +88,7 @@ export function ImageUploaderClient({
           const formData = new FormData();
           formData.append("file", file);
           formData.append("upload_preset", uploadPreset);
-          const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+          const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
           // Upload directly to Cloudinary
           const response = await fetch(
             `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
