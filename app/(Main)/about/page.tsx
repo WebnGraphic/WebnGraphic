@@ -1,4 +1,5 @@
 import TopSectionStatic from "@/components/manual/header/top-section-static";
+import { aboutPageSchema } from "@/scheema";
 import { Metadata } from "next";
 import ContactCommon from "../components/contact-common";
 import CTASection1 from "../components/cta-section-1";
@@ -9,9 +10,18 @@ import AboutWelcome from "./components/about-welcome";
 import OurStory from "./components/our-story";
 
 export const metadata: Metadata = {
-  title: "About Us | Our Web & Design Expertise",
+  title: "About Us",
   description:
-    "Learn about WebNGraphic's team of experienced web developers and graphic designers who are passionate about creating digital solutions that help businesses succeed online.",
+    "Meet the team behind WebNGraphic — expert web and graphic designers crafting digital solutions that help businesses thrive online.",
+  keywords: [
+    "About webngraphic",
+    "Web design company",
+    "Graphic design company",
+    "Web development agency",
+    "Creative design team",
+    "Professional web developers",
+    "Experienced graphic designers",
+  ],
   alternates: {
     canonical: "https://webngraphic.com/about",
   },
@@ -20,6 +30,7 @@ export const metadata: Metadata = {
     description:
       "Meet our team of web development and graphic design experts who are dedicated to helping businesses establish a strong online presence.",
     url: "https://webngraphic.com/about",
+    type: "article",
     images: [
       {
         url: "opengraph/about.jpg",
@@ -29,15 +40,26 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "About WebNGraphic - Our Story & Expertise",
+    description:
+      "Meet our team of web development and graphic design experts who are dedicated to helping businesses establish a strong online presence.",
+    images: ["opengraph/about.jpg"],
+  },
 };
 
 export default function page() {
   const breadcrumb = [{ label: "about", link: "/about" }];
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
+      />
       <TopSectionStatic
         breadcrumb={breadcrumb}
-        title="About US"
+        title="About Us"
         description="Passionate about turning ideas into impactful visuals and seamless digital experiences."
       />
       <AboutWelcome />

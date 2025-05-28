@@ -13,6 +13,16 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Metadata } from "next/types";
+
+export const metadata: Metadata = {
+  title: "Frequently Asked Questions",
+  description:
+    "Find answers to common questions about our web development & graphic design services, process, costs, and more.",
+  alternates: {
+    canonical: "https://webngraphic.com/faq",
+  },
+};
 
 export default function FAQPage() {
   const [searchQuery, setSearchQuery] = useState("");

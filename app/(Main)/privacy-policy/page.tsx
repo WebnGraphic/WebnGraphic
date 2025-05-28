@@ -1,5 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 import Link from "next/link";
+export const metadata = {
+  title: "Privacy Policy",
+  description:
+    "Read WebNGraphic's Privacy Policy to understand how we collect, use, and protect your personal information.",
+  alternates: {
+    canonical: "https://webngraphic.com/privacy-policy",
+  },
+};
 
 export default function PrivacyPolicyPage() {
   const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;

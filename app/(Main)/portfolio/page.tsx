@@ -6,7 +6,7 @@ import ProjectGraphic from "./components/project-graphic";
 import ProjectWebDev from "./components/project-web-dev";
 
 export const metadata: Metadata = {
-  title: "Portfolio | Our Web & Design Projects",
+  title: "Portfolio",
   description:
     "Browse our portfolio of successful web development and graphic design projects. See how we've helped businesses across various industries establish a strong online presence.",
   alternates: {

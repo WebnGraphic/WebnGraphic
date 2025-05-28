@@ -1,14 +1,13 @@
 import BookMeeting from "@/components/manual/book-meeting/book-meeting";
 import TopSectionStatic from "@/components/manual/header/top-section-static";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { Metadata } from "next";
 import Link from "next/link";
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { ContactForm } from "./contact-form";
 
-export const metadata: Metadata = {
-  title: "Contact Us | Get a Free Consultation",
+export const metadata = {
+  title: "Contact Us ",
   description:
     "Reach out to WebNGraphic for a free consultation on your web development or graphic design project. We're here to answer your questions and help bring your vision to life.",
   alternates: {
@@ -21,16 +20,19 @@ export const metadata: Metadata = {
     url: "https://webngraphic.com/contact",
     images: [
       {
-        url: "opengraph/contact.jpg", // Replace with your actual graphic design OG image
+        url: "opengraph/contact.jpg",
         width: 1200,
         height: 630,
         alt: "WebNGraphic Graphic Design Services",
       },
     ],
   },
-  robots: {
-    index: true,
-    follow: true,
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us - RPL Fast Track",
+    description:
+      "Contact RPL Fast Track Australia for help with your skills recognition and RPL process.",
+    images: ["opengraph/contact.jpg"],
   },
 };
 

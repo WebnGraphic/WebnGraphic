@@ -1,5 +1,13 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "Cookie Policy",
+  description:
+    "Learn about how WebnGraphic uses cookies to enhance your browsing experience and protect your privacy.",
+  alternates: {
+    canonical: "https://webngraphic.com/cookie-policy",
+  },
+};
 export default function CookiePolicyPage() {
   const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;
   const emailAddress = process.env.NEXT_PUBLIC_EMAIL_ADDRESS;

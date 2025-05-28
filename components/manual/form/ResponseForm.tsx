@@ -102,9 +102,9 @@ const ResponseForm: React.FC<ResponseFormProps> = ({ interest }) => {
 
   return (
     <div className="bg-Mbg flex-shrink-0 bg-opacity-70 border-[0.5px] border-[#00b1dc4d] w-full md:w-[350px] lg:w-[380px] h-auto py-8 px-5 rounded-md z-40">
-      <h3 className="text-[#00b1dc] text-center text-lg md:text-2xl mb-8 font-semibold">
+      <h2 className="text-[#00b1dc] text-center text-lg md:text-2xl mb-8 font-semibold">
         Get your free consultation!
-      </h3>
+      </h2>
 
       {formState?.success ? (
         <div className="text-green-500 text-center p-4">

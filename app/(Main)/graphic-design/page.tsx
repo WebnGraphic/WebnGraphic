@@ -1,4 +1,5 @@
 import BookMeeting from "@/components/manual/book-meeting/book-meeting";
+import { graphicDesignSchema } from "@/scheema";
 import { Metadata } from "next";
 import BlogCommon from "../components/blog-common";
 import ContactCommon from "../components/contact-common";
@@ -65,40 +66,58 @@ const pricingPlans = [
 ];
 
 export const metadata: Metadata = {
-  title: "Graphic Design Services | Brand Identity & Visual Design",
+  title: "Graphic Design Services",
   description:
-    "Our graphic design services include logo design, brand identity, print design, social media graphics, and UI/UX design to help your business create a cohesive and impactful visual presence.",
+    "Professional graphic design services tailored to elevate your brand. We specialize in logo design, brand identity, print media, UI/UX design, and eye-catching visuals for digital platforms.",
   alternates: {
     canonical: "https://webngraphic.com/graphic-design",
   },
+  keywords: [
+    "graphic design services",
+    "professional logo design",
+    "brand identity design",
+    "custom graphic design",
+    "UI/UX design services",
+    "print design agency",
+    "social media design",
+    "visual identity design",
+  ],
   openGraph: {
-    title: "Creative Graphic Design Services | WebNGraphic",
+    title: "Expert Graphic Design Services | WebNGraphic",
     description:
-      "Elevate your brand with our professional graphic design services including logo design, brand identity, and visual assets that capture your audience's attention.",
+      "Transform your brand with WebNGraphic's expert graphic design solutions including custom logos, cohesive brand identities, and high-impact digital & print visuals.",
     url: "https://webngraphic.com/graphic-design",
+    type: "website",
+    siteName: "WebNGraphic",
     images: [
       {
-        url: "opengraph/graphic-design.jpg", // Replace with your actual graphic design OG image
+        url: "https://webngraphic.com/opengraph/graphic-design.jpg",
         width: 1200,
         height: 630,
         alt: "WebNGraphic Graphic Design Services",
       },
     ],
   },
-  keywords: [
-    "graphic design",
-    "logo design",
-    "brand identity",
-    "visual design",
-    "UI/UX design",
-    "print design",
-    "social media graphics",
-  ],
+  twitter: {
+    card: "summary_large_image",
+    title: "Graphic Design Services | Logos, Branding & Visual Identity",
+    description:
+      "Explore our creative graphic design services — from logos and branding to UI/UX and social media visuals. Build a consistent, professional image.",
+    site: "@WebNGraphic",
+    creator: "@WebNGraphic",
+    images: ["https://webngraphic.com/opengraph/graphic-design.jpg"],
+  },
 };
 
 export default function page() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(graphicDesignSchema),
+        }}
+      />
       <GraphicHero />
       <GraphicService />
       <HowItsWork />

@@ -1,5 +1,6 @@
 import { getAllBlog, getBlogById } from "@/app/action/action";
 import TopSectionStatic from "@/components/manual/header/top-section-static";
+import { generateBlogSchema, getBlogBreadcrumbSchema } from "@/scheema";
 import { format } from "date-fns";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -12,13 +13,22 @@ import IndividualBlogPage from "../components/individual-blog-page";
 // Generate static params for all blog posts at build time
 export async function generateStaticParams() {
   const blogs = await getAllBlog();
-
   return blogs.blogs.map((blog) => ({
     id: blog.id.toString(),
   }));
 }
 
 // Generate metadata for SEO
+function getExcerpt(content: string, maxLength = 160): string {
+  const plainText = content
+    .replace(/<[^>]+>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return plainText.length > maxLength
+    ? plainText.slice(0, maxLength).trim() + "..."
+    : plainText;
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -29,21 +39,40 @@ export async function generateMetadata({
 
   if (!blog) {
     return {
-      title: "Blog Not Found",
-      description: "The requested blog post could not be found",
+      title: "Blog Not Found | WebNGraphic",
+      description: "The requested blog post could not be found.",
     };
   }
 
+  const excerpt = getExcerpt(blog.content);
+
   return {
-    title: `${blog.title} | Blog`,
-    description: blog.content,
+    title: `${blog.title} | WebNGraphic`,
+    description: excerpt,
+    alternates: {
+      canonical: `https://webngraphic.com/blog/${id}`,
+    },
     openGraph: {
       title: blog.title,
-      description: blog.content,
+      description: excerpt,
+      url: `https://webngraphic.com/blog/${id}`,
       type: "article",
       publishedTime: format(new Date(blog.createdAt), "MMMM d, yyyy"),
-      authors: [blog.author?.name],
-      images: blog.imageLink,
+      authors: blog.author?.name ? [blog.author.name] : [],
+      images: [
+        {
+          url: blog.imageLink,
+          width: 1200,
+          height: 630,
+          alt: blog.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.title,
+      description: excerpt,
+      images: [blog.imageLink],
     },
   };
 }
@@ -70,6 +99,18 @@ export default async function Page({
 
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getBlogBreadcrumbSchema(blog)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateBlogSchema(blog)),
+        }}
+      />
       <TopSectionStatic
         title="Blog"
         description={blog.title}

@@ -22,10 +22,11 @@ export default function HomeHero() {
               <ResModTrigBtn>
                 <NormalButton>Work With Us </NormalButton>
               </ResModTrigBtn>
-
-              <NormalButton className="bg-transparent border-White hover:shadow-lg active:scale-95 active:bg-white hover:shadow-white hover:bg-white hover:text-black border-[2px]">
-                <Link href="/portfolio">View Our Works</Link>
-              </NormalButton>
+              <Link href="/portfolio">
+                <NormalButton className="bg-transparent border-White hover:shadow-lg active:scale-95 active:bg-white hover:shadow-white hover:bg-white hover:text-black border-[2px]">
+                  View Our Works
+                </NormalButton>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,5 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 import Link from "next/link";
+export const metadata = {
+  title: "Terms of Service",
+  description:
+    "Read the Terms of Service for WebNGraphic to understand your rights, responsibilities, and the conditions of using our services.",
+  alternates: {
+    canonical: "https://webngraphic.com/terms-of-service",
+  },
+};
 
 export default function TermsOfServicePage() {
   const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;

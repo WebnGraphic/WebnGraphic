@@ -1,4 +1,5 @@
 import BookMeeting from "@/components/manual/book-meeting/book-meeting";
+import { homePageSchema, serviceSchema } from "@/scheema";
 import { Metadata } from "next";
 import BlogCommon from "./components/blog-common";
 import ContactCommon from "./components/contact-common";
@@ -55,6 +56,14 @@ export const metadata: Metadata = {
 export default async function Home() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageSchema) }}
+      />
       <HomeHero />
       <OurServices />
       <WhyChooseUs />

@@ -97,7 +97,7 @@ function ServiceCard({ title, image, features, link }: ServiceCardProps) {
           <CardFooter className="pt-3 pb-6">
             <Link
               href={link}
-              className="flex w-full bg-Ttext hover:bg-TtextH rounded-md transition-all duration-200 py-2 px-4 justify-between items-center gap-1 text-sm font-semibold text-white "
+              className="flex w-full bg-Ttext hover:bg-TtextH rounded-md transition-all duration-200 py-2 px-4 justify-between items-center gap-1 text font-semibold text-white "
             >
               <button className="cursor-pointer">Learn more</button>
 

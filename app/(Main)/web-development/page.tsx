@@ -1,4 +1,5 @@
 import BookMeeting from "@/components/manual/book-meeting/book-meeting";
+import { webDevBreadcrumbSchema, webDevelopmentSchema } from "@/scheema";
 import { Metadata } from "next";
 import BlogCommon from "../components/blog-common";
 import ContactCommon from "../components/contact-common";
@@ -70,41 +71,65 @@ const pricingPlans = [
 ];
 
 export const metadata: Metadata = {
-  title: "Web Development Services | Custom Website Solutions",
+  title: "Web Development Services",
   description:
-    "Our web development services include responsive website design, NDIS Website, e-commerce solutions, CMS development, and web application development using the latest technologies like Next.js, React, and more.",
+    "Boost your online presence with our expert web development services. We specialize in responsive websites, NDIS websites, e-commerce platforms, and modern web applications using Next.js and React.",
   alternates: {
     canonical: "https://webngraphic.com/web-development",
   },
+  keywords: [
+    "web development services",
+    "responsive website design",
+    "custom website development",
+    "NDIS website development",
+    "e-commerce website development",
+    "Next.js development agency",
+    "React web development",
+    "web application development",
+    "frontend and backend development",
+  ],
   openGraph: {
-    title: "Expert Web Development Services | WebNGraphic",
+    title: "Web Development Services | WebNGraphic",
     description:
-      "From responsive websites to complex web applications, our web development team creates custom solutions that drive results for your business.",
+      "Professional web development for businesses and organizations. We build responsive websites, e-commerce solutions, and web apps using the latest frameworks.",
     url: "https://webngraphic.com/web-development",
+    type: "website",
+    siteName: "WebNGraphic",
     images: [
       {
-        url: "opengraph/web-dev.jpg",
+        url: "https://webngraphic.com/opengraph/web-dev.jpg",
         width: 1200,
         height: 630,
         alt: "WebNGraphic Web Development Services",
       },
     ],
   },
-  keywords: [
-    "web development",
-    "website design",
-    "ndis website",
-    "responsive websites",
-    "e-commerce development",
-    "Next.js development",
-    "React development",
-    "custom website solutions",
-  ],
+  twitter: {
+    card: "summary_large_image",
+    title: "Custom Web Development Services | WebNGraphic",
+    description:
+      "Explore WebNGraphic's web development services: custom websites, responsive design, NDIS portals, e-commerce solutions, and more.",
+    site: "@WebNGraphic", // Update with your real Twitter handle
+    creator: "@WebNGraphic",
+    images: ["https://webngraphic.com/opengraph/web-dev.jpg"],
+  },
 };
 
 export default function page() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(webDevelopmentSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(webDevBreadcrumbSchema),
+        }}
+      />
       <WebDevHero />
       <WebDevService />
       <WebDevProcess />

@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { checkAccess, checkAdmin } from "../helper/check-admin";
 
-export const getAllUsers = async () => {
+export async function getAllUsers() {
   try {
     const users = await prisma.user.findMany(); // Fetch all users
     return users;
@@ -11,13 +11,13 @@ export const getAllUsers = async () => {
     console.error("Failed to fetch users:", err);
     return [];
   }
-};
+}
 
-export const getAllUsersBySearch = async (
+export async function getAllUsersBySearch(
   search: string,
   page: number,
   pageSize: number
-) => {
+) {
   await checkAccess();
   type SearchCondition = {
     OR: {
@@ -68,7 +68,7 @@ export const getAllUsersBySearch = async (
       },
     };
   }
-};
+}
 
 export async function updateUserRole(userId: string, newRole: string) {
   const author = await checkAdmin();

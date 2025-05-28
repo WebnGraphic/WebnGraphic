@@ -2,6 +2,7 @@ import { WhatsAppChatButton } from "@/components/manual/button/whatsapp-chat-but
 import MainNavbar from "@/components/manual/Navbar/MainNavbar";
 import { Toaster } from "@/components/ui/sonner";
 import { ResponseModalProvider } from "@/context/response-form-modal";
+import { organization } from "@/scheema";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -20,9 +21,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://webngraphic.com"),
   title: {
-    template: "%s | WebNGraphic - Web Development & Graphic Design Services",
-    default:
-      "WebNGraphic - Professional Web Development & Graphic Design Services",
+    template: "%s | WebNGraphic",
+    default: "WebNGraphic | Web Development & Graphic Design Services",
   },
   description:
     "WebNGraphic offers professional web development and graphic design services to help businesses establish a strong online presence with custom websites and stunning visuals.",
@@ -33,8 +33,12 @@ export const metadata: Metadata = {
     "UI/UX design",
     "responsive websites",
     "logo design",
+    "web design",
+    "WebnGraphic",
+    "website development",
+    "responsive websites",
   ],
-  authors: [{ name: "WebNGraphic Team" }],
+  authors: [{ name: "WebNGraphic", url: "https://webngraphic.com" }],
   creator: "WebNGraphic",
   publisher: "WebNGraphic",
   formatDetection: {
@@ -52,13 +56,15 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://webngraphic.com",
     siteName: "WebNGraphic",
-    title:
-      "WebNGraphic - Professional Web Development & Graphic Design Services",
+    title: "WebNGraphic - Web Development & Graphic Design Services",
     description:
       "Custom web development and graphic design solutions to help your business stand out online with responsive websites and eye-catching visuals.",
     images: [
@@ -77,6 +83,7 @@ export const metadata: Metadata = {
       "Custom web development and graphic design solutions to help your business stand out online.",
     images: ["opengraph/home.jpg"],
     creator: "@webngraphic",
+    site: "@rplfastrack",
   },
 };
 export default function MainLayout({
@@ -88,6 +95,14 @@ export default function MainLayout({
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organization),
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} bg-Mbg ${geistMono.variable} antialiased`}
       >
