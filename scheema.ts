@@ -189,6 +189,40 @@ export const generateBlogSchema = (blog: {
   },
 });
 
+export const graphicDesignSchema: WithContext<Service> = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Graphic Design Services",
+  name: "Graphic Design Services | WebNGraphic",
+  provider: {
+    "@type": "Organization",
+    name: "WebNGraphic",
+    url: "https://webngraphic.com",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://webngraphic.com/icons/logoicon.png",
+    },
+  },
+  areaServed: {
+    "@type": "Place",
+    name: "Global",
+  },
+  description:
+    "WebNGraphic provides expert graphic design services including logo creation, brand identity systems, print design, social media visuals, and UI/UX design solutions to build a strong and consistent brand presence.",
+  offers: {
+    "@type": "Offer",
+    url: "https://webngraphic.com/graphic-design",
+    priceCurrency: "USD",
+    price: "Custom", // Replace with a value if fixed
+    availability: "https://schema.org/InStock",
+  },
+  category: "Design Services",
+  url: "https://webngraphic.com/graphic-design",
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": "https://webngraphic.com/graphic-design",
+  },
+};
 export const webDevelopmentSchema: WithContext<WebPage> = {
   "@context": "https://schema.org",
   "@type": "WebPage",
