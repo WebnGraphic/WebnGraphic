@@ -35,7 +35,6 @@ const creativeProcess = [
   },
 ];
 export const metadata: Metadata = {
-  title: "Professional Web Development & Graphic Design Services",
   description:
     "WebNGraphic provides custom web development and graphic design services to help businesses create stunning websites and visual identities that convert visitors into customers.",
   alternates: {

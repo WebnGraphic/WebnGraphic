@@ -40,14 +40,14 @@ export default function Pricing({ pricing, service }: PricingProps) {
                   </h2>
                 </div>
 
-                <div className="py-8 flex justify-center border-b-2">
+   {/*              <div className="py-8 flex justify-center border-b-2">
                   <p className="text-5xl font-bold text-Ttext">
                     {plan.discountPrice}
                     <span className="text-gray-400 text-2xl italic line-through">
                       {plan.regularPrice}
                     </span>
                   </p>
-                </div>
+                </div> */}
               </div>
               <div>
                 <ul className="py-6 pl-5 list-none space-y-2 text-gray-700">
